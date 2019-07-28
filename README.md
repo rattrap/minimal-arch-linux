@@ -2,6 +2,7 @@
 ![screenshot](https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/screenshot.png)
 
 ## Installation
+*See 'Detailed installation guide' below for further details*
 * Increase cowspace partition so that git can be downloaded without before chroot: `mount -o remount,size=2G /run/archiso/cowspace`
 * Install git: `pacman -Sy git`
 * Clone repository: `git clone https://github.com/exah-io/minimal-arch-linux.git`
@@ -52,7 +53,7 @@
 * TRIM compatible SSD
 * Intel CPU
 
-## Quickstart
+## Detailed installation guide
 1. Download and boot into the latest [Arch Linux iso](https://www.archlinux.org/download/)
 2. Connect to the internet. If using wifi, you can use wifi-menu
 3. Clear all existing partitions (see MISC section below)
