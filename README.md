@@ -1,15 +1,8 @@
-# Modern Arch Linux install scripts
+# Minimal Arch Linux setup - Install scripts
 ![screenshot](https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/screenshot.png)
 
-## Installation
-*See 'Detailed installation guide' below for further details*
-* Increase cowspace partition so that git can be downloaded without before chroot: `mount -o remount,size=2G /run/archiso/cowspace`
-* Install git: `pacman -Sy git`
-* Clone repository: `git clone https://github.com/exah-io/minimal-arch-linux.git`
-* Run install script: `bash minimal-arch-linux/1_arch_install.sh`
-
-## Features and setup
-### Install script
+## Install script
+### Features and setup
 * LVM on LUKS
 * LUKS2
 * systemd-boot (with Pacman hook for automatic updates)
@@ -18,7 +11,20 @@
 * Intel microcode
 * Automatic sort of mirrors list by speed, synced within the last 12 hours and filtered by HTTPS protocol (Reflector with Pacman hook)
 
-### Post install script
+### Requirements
+* UEFI mode
+* NVMe SSD
+* TRIM compatible SSD
+* Intel CPU
+
+### Installation
+*See 'Detailed installation guide' below for further details*
+* Increase cowspace partition so that git can be downloaded without before chroot: `mount -o remount,size=2G /run/archiso/cowspace`
+* Install git: `pacman -Sy git`
+* Clone repository: `git clone https://github.com/exah-io/minimal-arch-linux.git`
+* Run install script: `bash minimal-arch-linux/1_arch_install.sh`
+
+## Post install script
 * UFW (deny incoming, allow outgoing)
 * TLP (default settings)
 * swaywm:
@@ -46,12 +52,6 @@
 | &nbsp;&nbsp;&nbsp;└─cryptoVols | crypt | |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─Arch-swap | lvm | [SWAP] |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─Arch-root | lvm | / |
-
-## Requirements
-* UEFI mode
-* NVMe SSD
-* TRIM compatible SSD
-* Intel CPU
 
 ## Detailed installation guide
 1. Download and boot into the latest [Arch Linux iso](https://www.archlinux.org/download/)
