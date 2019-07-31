@@ -2,7 +2,6 @@
 ![screenshot](https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/screenshot.png)
 
 ## Install script
-### Features and setup
 * LVM on LUKS
 * LUKS2
 * systemd-boot (with Pacman hook for automatic updates)
@@ -17,12 +16,15 @@
 * TRIM compatible SSD
 * Intel CPU
 
-### Installation
-*See 'Detailed installation guide' below for further details*
-* Increase cowspace partition so that git can be downloaded without before chroot: `mount -o remount,size=2G /run/archiso/cowspace`
-* Install git: `pacman -Sy git`
-* Clone repository: `git clone https://github.com/exah-io/minimal-arch-linux.git`
-* Run install script: `bash minimal-arch-linux/1_arch_install.sh`
+### Partitions
+| Name | Type | Mountpoint |
+| - | :-: | :-: |
+| nvme0n1 | disk | |
+| ├─nvme0n1p1 | part | /boot |
+| ├─nvme0n1p2 | part |  |
+| &nbsp;&nbsp;&nbsp;└─cryptoVols | crypt | |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─Arch-swap | lvm | [SWAP] |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─Arch-root | lvm | / |
 
 ## Post install script
 * UFW (deny incoming, allow outgoing)
@@ -39,36 +41,34 @@
    * History
    * Load NVM on first invocation
    * ~~Force wayland for QT applications~~ disabled due to incompatibility with keepassxc
-   * ~~Force wayland for GTK applications~~ disabled due to electron apps incompatibility (code oss)
+   * ~~Force wayland for GTK applications~~ disabled due to incompatibility with electron apps (e.g. VS Code)
 * GTK theme and icons: Qogir
-* Other applications: firefox, keepassxc, git, openssh, vim, alacritty, thunar (with USB automonting), NVM (with node.js LTS), tumbler, evince, gimp, inkscape, thunderbird, upower, htop, code oss, nnn
+* Other applications: firefox, keepassxc, git, openssh, vim, thunar (with USB automonting), NVM (with node.js LTS), tumbler, evince, gimp, inkscape, thunderbird, upower, htop, VS code oss, nnn and a few others
 
-### Partitions
-| Name | Type | Mountpoint |
-| - | :-: | :-: |
-| nvme0n1 | disk | |
-| ├─nvme0n1p1 | part | /boot |
-| ├─nvme0n1p2 | part |  |
-| &nbsp;&nbsp;&nbsp;└─cryptoVols | crypt | |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─Arch-swap | lvm | [SWAP] |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─Arch-root | lvm | / |
+## Quick start / Brief install guide
+*See 'Detailed installation guide' below for the expanded version*
+* Increase cowspace partition so that git can be downloaded without before chroot: `mount -o remount,size=2G /run/archiso/cowspace`
+* Install git: `pacman -Sy git`
+* Clone repository: `git clone https://github.com/exah-io/minimal-arch-linux.git`
+* Run install script: `bash minimal-arch-linux/1_arch_install.sh`
 
 ## Detailed installation guide
 1. Download and boot into the latest [Arch Linux iso](https://www.archlinux.org/download/)
-2. Connect to the internet. If using wifi, you can use wifi-menu
-3. Clear all existing partitions (see MISC section below)
-4. wget [1_arch_install.sh](https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/1_arch_install.sh)
-5. Change the variables at the top of the file
-   * continent_country must have the following format: Continent/City . e.g. Europe/Berlin
-6. Enable the closest mirror to you on /etc/pacman.d/mirrorlist (move it to the top)
-7. Make the script executable: chmod +x 1_arch_install.sh
-8. Run the script: ./1_arch_install.sh
-9. Reboot
-10. wget [2_arch_post_install.sh](https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/2_arch_post_install.sh)
-11. Make the script executable: chmod +x 2_arch_post_install.sh
-12. Run the script: ./2_arch_post_install.sh
+2. Connect to the internet. If using wifi, you can use `wifi-menu` to connect to a network
+3. Clear all existing partitions (see below: MISC - How to clear all partitions)
+4. `wget https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/1_arch_install.sh`
+5. Change the variables at the top of the file (lines 3 through 9)
+   * continent_country must have the following format: Zone/SubZone . e.g. Europe/Berlin
+   * run `timedatectl list-timezones` to see full list of zones and subzones   
+6. (optional) Give highest priority to the closest mirror to you on /etc/pacman.d/mirrorlist by moving it to the top
+7. Make the script executable: `chmod +x 1_arch_install.sh`
+8. Run the script: `./1_arch_install.sh`
+9. Reboot into Arch Linux 
+10. `wget https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/2_arch_post_install.sh`
+11. Make the script executable: `chmod +x 2_arch_post_install.sh`
+12. Run the script: `./2_arch_post_install.sh`
 
-## MISC
+## Misc guides
 ### How to clear all partitions
 ```
 gdisk /dev/nvme0n1
@@ -108,5 +108,5 @@ cd ..
 rm -rf yay-bin
 ```
 
-### References
+## References
 * Ricing: [First rice on my super old MacBook Air!](https://www.reddit.com/r/unixporn/comments/9y9w0r/sway_first_rice_on_my_super_old_macbook_air/) on Reddit
