@@ -28,7 +28,7 @@ echo "Installing office applications"
 yes | sudo pacman -S tumbler evince gimp inkscape thunderbird
 
 echo "Installing fonts"
-yes | sudo pacman -S ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code
+yes | sudo pacman -S ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts gsfonts
 
 echo "Installing VS Code, NVM and Node.js LTS"
 yes | sudo pacman -S code
