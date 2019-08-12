@@ -84,7 +84,7 @@ echo "Enabling auto-mount for thunar"
 yes | sudo pacman -S gvfs thunar-volman
 
 echo "Setting wallpaper"
-wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpaper/6303-mauritania.jpg
+wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpaper/b1ivv4tgg9831.jpg
 
 echo "Ricing waybar"
 mkdir -p ~/.config/waybar
