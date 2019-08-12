@@ -110,4 +110,26 @@ echo "Enabling audio power saving"
 sudo touch /etc/modprobe.d/audio_powersave.conf
 echo "options snd_hda_intel power_save=1" | sudo tee /etc/modprobe.d/audio_powersave.conf
 
+echo "Installing and configuring Firejail"
+yes | sudo pacman -S firejail
+sudo apparmor_parser -r /etc/apparmor.d/firejail-default
+sudo firecfg
+sudo touch /etc/pacman.d/hooks/firejail.hook
+sudo tee -a /etc/pacman.d/hooks/firejail.hook << END
+[Trigger]
+Type = File
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Target = usr/bin/*
+Target = usr/local/bin/*
+Target = usr/share/applications/*.desktop
+
+[Action]
+Description = Configure symlinks in /usr/local/bin based on firecfg.config...
+When = PostTransaction
+Depends = firejail
+Exec = /bin/sh -c 'firecfg &>/dev/null'
+END
+
 echo "Your setup is ready. You can reboot now!"
