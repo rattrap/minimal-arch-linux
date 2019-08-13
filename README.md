@@ -65,7 +65,8 @@
 6. (optional) Give highest priority to the closest mirror to you on /etc/pacman.d/mirrorlist by moving it to the top
 7. Make the script executable: `chmod +x 1_arch_install.sh`
 8. Run the script: `./1_arch_install.sh`
-9. Reboot into Arch Linux 
+9. Reboot into Arch Linux
+10. Connect to wifi with `nmtui`
 10. `wget https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/2_arch_post_install.sh`
 11. Make the script executable: `chmod +x 2_arch_post_install.sh`
 12. Run the script: `./2_arch_post_install.sh`
