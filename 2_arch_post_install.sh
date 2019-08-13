@@ -22,10 +22,13 @@ sudo systemctl mask systemd-rfkill.service
 sudo systemctl mask systemd-rfkill.socket
 
 echo "Installing common applications"
-echo -en "1\nyes" | sudo pacman -S firefox chromium keepassxc git openssh vim links alacritty upower htop powertop p7zip
+echo -en "1\nyes" | sudo pacman -S firefox chromium keepassxc git openssh neovim links alacritty upower htop powertop p7zip
 
 echo "Installing office applications"
-yes | sudo pacman -S tumbler evince gimp inkscape thunderbird
+yes | sudo pacman -S tumbler evince thunderbird 
+
+echo "Installing image editing applications"
+#yes | sudo pacman -S gimp inkscape
 
 echo "Installing fonts"
 yes | sudo pacman -S ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts gsfonts
