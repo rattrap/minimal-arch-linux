@@ -113,3 +113,4 @@ rm -rf yay-bin
 
 ## References
 * Ricing: [First rice on my super old MacBook Air!](https://www.reddit.com/r/unixporn/comments/9y9w0r/sway_first_rice_on_my_super_old_macbook_air/) on Reddit
+* Wallpaper: [Photo by Omar G. Garnica on Unsplash](https://unsplash.com/photos/6gdqWFolkC4)
