@@ -33,8 +33,7 @@ echo "Installing image editing applications"
 echo "Installing fonts"
 yes | sudo pacman -S ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts gsfonts
 
-echo "Installing VS Code, NVM and Node.js LTS"
-yes | sudo pacman -S code
+echo "Installing NVM and Node.js LTS"
 git clone https://aur.archlinux.org/nvm.git
 cd nvm
 yes | makepkg -si
@@ -43,9 +42,21 @@ rm -rf nvm
 source /usr/share/nvm/init-nvm.sh
 nvm install --lts=dubnium
 
-echo "Installing VS Code theme and icons"
-code --install-extension jolaleye.horizon-theme-vscode
-code --install-extension vscode-icons-team.vscode-icons
+echo "Configuring neovim"
+mkdir -p ~/.config/nvim/colors
+cd ~/.config/nvim/colors
+git clone git://github.com/chriskempson/base16-vim.git base16
+cp base16/colors/*.vim .
+cd ~/.config/nvim
+touch init.vim
+tee -a ~/.config/nvim/init.vim << END
+:colorscheme base16-material-darker
+END
+
+#echo "Installing VS Code + theme + icons"
+#yes | sudo pacman -S code
+#code --install-extension jolaleye.horizon-theme-vscode
+#code --install-extension vscode-icons-team.vscode-icons
 
 echo "Installing and setting zsh"
 yes | sudo pacman -S zsh zsh-theme-powerlevel9k
