@@ -34,7 +34,7 @@ echo "Installing fonts"
 yes | sudo pacman -S ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts gsfonts powerline-fonts
 
 echo "Installing Node.js LTS"
-yes | sudo pacman -S nodejs-lts-dubnium
+yes | sudo pacman -S nodejs-lts-dubnium npm
 
 echo "Configuring golang with LSP server"
 sudo pacman -S go go-tools
