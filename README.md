@@ -1,6 +1,6 @@
 # Minimal Arch Linux setup - Install scripts
 
-Clean | nvim + powertop + neofetch
+Clean | Busy
 :-------------------------:|:-------------------------:
 ![screenshot_2](https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/screenshot_2.png) | ![screenshot](https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/screenshot.png)
 
