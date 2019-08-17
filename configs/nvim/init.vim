@@ -1,17 +1,17 @@
 call plug#begin()
-" Theme
+" Base16 Theme
 Plug 'chriskempson/base16-vim'
 
+" Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Denite - Fuzzy finding, buffer management
 Plug 'Shougo/denite.nvim'
 
-" Golang linter
+"Golang linter
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-" Better syntax highlighting
-Plug 'vim-scripts/vim-polyglot'
-
-" Tree explorer
+" File explorer
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
