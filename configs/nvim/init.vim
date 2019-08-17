@@ -26,6 +26,9 @@ call plug#end()
 " Set colour scheme
 colorscheme base16-material-darker
 
+" Close NERDTree on file open
+let NERDTreeQuitOnOpen=1
+
 let g:mapleader=','
 " === Denite setup ==="
 " Use ripgrep for searching current directory for files
