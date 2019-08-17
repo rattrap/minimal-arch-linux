@@ -26,7 +26,7 @@ call plug#end()
 " Set colour scheme
 colorscheme base16-material-darker
 
-" Close NERDTree on file open
+" Close NERDTree on opening
 let NERDTreeQuitOnOpen=1
 
 let g:mapleader=','
