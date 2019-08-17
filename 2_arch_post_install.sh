@@ -22,16 +22,16 @@ sudo systemctl mask systemd-rfkill.service
 sudo systemctl mask systemd-rfkill.socket
 
 echo "Installing common applications"
-echo -en "1\nyes" | sudo pacman -S firefox chromium keepassxc git openssh neovim links alacritty upower htop powertop p7zip
+echo -en "1\nyes" | sudo pacman -S firefox chromium keepassxc git openssh neovim links alacritty upower htop powertop p7zip ripgrep
 
 echo "Installing office applications"
 yes | sudo pacman -S tumbler evince thunderbird 
 
-echo "Installing image editing applications"
+#echo "Installing image editing applications"
 #yes | sudo pacman -S gimp inkscape
 
 echo "Installing fonts"
-yes | sudo pacman -S ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts gsfonts
+yes | sudo pacman -S ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts gsfonts powerline-fonts
 
 echo "Installing NVM and Node.js LTS"
 git clone https://aur.archlinux.org/nvm.git
@@ -43,15 +43,35 @@ source /usr/share/nvm/init-nvm.sh
 nvm install --lts=dubnium
 
 echo "Configuring neovim"
-mkdir -p ~/.config/nvim/colors
-cd ~/.config/nvim/colors
-git clone git://github.com/chriskempson/base16-vim.git base16
-cp base16/colors/*.vim .
-cd ~/.config/nvim
-touch init.vim
-tee -a ~/.config/nvim/init.vim << END
-:colorscheme base16-material-darker
-END
+mkdir -p ~/.config/nvim
+wget -P ~/.config/nvim https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/nvim/init.vim
+wget -P ~/.config/nvim https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/nvim/coc-settings.json
+
+echo "Installing vim-plug"
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+nvim +'PlugInstall --sync' +qa
+
+echo "Installing neovim language extensions"
+nvim +'CocInstall -sync coc-json' +qall
+nvim +'CocInstall -sync coc-tsserver' +qall
+nvim +'CocInstall -sync coc-html' +qall
+nvim +'CocInstall -sync coc-css' +qall
+nvim +'CocInstall -sync coc-python' +qall
+nvim +'CocInstall -sync coc-svg' +qall
+nvim +'CocInstall -sync coc-eslint' +qall
+nvim +'CocInstall -sync coc-prettier' +qall
+
+echo "Adding Node.js provider for neovim"
+npm install neovim
+
+echo "Adding Python 3 provider for neovim"
+sudo pacman -S python-pip
+pip install --user --upgrade pynvim
+
+echo "Configuring golang with LSP server"
+sudo pacman -S go go-tools
+mkdir -p ~/go/src
+GO111MODULE=on go get golang.org/x/tools/gopls@latest
 
 #echo "Installing VS Code + theme + icons"
 #yes | sudo pacman -S code
@@ -109,6 +129,11 @@ echo "Ricing Alacritty"
 mkdir -p ~/.config/alacritty
 wget -P ~/.config/alacritty https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/alacritty/alacritty.yml
 
+echo "Ricing rofi"
+mkdir -p ~/.config/rofi
+wget -p ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/base16-material-darker.rasi
+wget -p ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/config
+
 echo "Blacklisting bluetooth"
 sudo touch /etc/modprobe.d/nobt.conf
 sudo tee /etc/modprobe.d/nobt.conf << END
@@ -138,7 +163,6 @@ Operation = Remove
 Target = usr/bin/*
 Target = usr/local/bin/*
 Target = usr/share/applications/*.desktop
-
 [Action]
 Description = Configure symlinks in /usr/local/bin based on firecfg.config...
 When = PostTransaction

@@ -1,5 +1,8 @@
 # Minimal Arch Linux setup - Install scripts
-![screenshot](https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/screenshot.png)
+
+Clean | nvim + powertop + neofetch
+:-------------------------:|:-------------------------:
+![screenshot_2](https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/screenshot_2.png) | ![screenshot](https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/screenshot.png)
 
 ## Install script
 * LVM on LUKS
@@ -31,6 +34,7 @@
 * UFW (deny incoming, allow outgoing)
 * Firejail (with AppArmor integration)
 * TLP (default settings)
+* base16-material-darker (alacritty, neovim, rofi)
 * swaywm:
    * autostart on tty1
    * waybar: onclick pavucontrol (volume control) and nmtui (ncli network manager)
@@ -44,8 +48,12 @@
    * Load NVM on first invocation
    * ~~Force wayland for QT applications~~ disabled due to incompatibility with keepassxc
    * ~~Force wayland for GTK applications~~ disabled due to incompatibility with electron apps (e.g. VS Code)
+* neovim:
+   * nerdtree
+   * coc
+   * denite
 * GTK theme and icons: Qogir
-* Other applications: firefox, keepassxc, git, openssh, vim, thunar (with USB automonting), NVM (with node.js LTS), tumbler, evince, gimp, inkscape, thunderbird, upower, htop, VS code oss, nnn and a few others
+* Other applications: firefox, keepassxc, git, openssh, vim, thunar (with USB automonting), golang, NVM (with node.js LTS), tumbler, evince, gimp, inkscape, thunderbird, upower, htop, ~~VS code oss~~, nnn and a few others
 
 ## Quick start / Brief install guide
 *See 'Detailed installation guide' below for the expanded version*
@@ -112,5 +120,6 @@ rm -rf yay-bin
 ```
 
 ## References
-* Ricing: [First rice on my super old MacBook Air!](https://www.reddit.com/r/unixporn/comments/9y9w0r/sway_first_rice_on_my_super_old_macbook_air/) on Reddit
+* Ricing: [First rice on my super old MacBook Air!](https://www.reddit.com/r/unixporn/comments/9y9w0r/sway_first_rice_on_my_super_old_macbook_air/)
 * Wallpaper: [Photo by Omar G. Garnica on Unsplash](https://unsplash.com/photos/6gdqWFolkC4)
+* neovim configurations: [jarvis dotfiles](https://github.com/ctaylo21/jarvis)

@@ -5,7 +5,7 @@
     // "width": 1280, // Waybar width
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
+    // "modules-center": ["sway/window"],
     "modules-right": ["pulseaudio", "backlight", "battery", "network", "clock", "tray"],
     // Modules configuration
     // "sway/workspaces": {
@@ -26,9 +26,9 @@
     "sway/mode": {
         "format": "{}"
     },
-    "sway/window": {
-        "max-length": 50
-    },
+    //"sway/window": {
+    //    "max-length": 50
+    //},
     "tray": {
         // "icon-size": 21,
         "spacing": 10
