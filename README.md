@@ -45,7 +45,6 @@ Clean | Busy
 * zsh:
    * powerlevel9k theme
    * History
-   * Load NVM on first invocation
    * ~~Force wayland for QT applications~~ disabled due to incompatibility with keepassxc
    * ~~Force wayland for GTK applications~~ disabled due to incompatibility with electron apps (e.g. VS Code)
 * neovim:
