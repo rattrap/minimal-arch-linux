@@ -60,6 +60,7 @@ nvim +'CocInstall -sync coc-python' +qall
 nvim +'CocInstall -sync coc-svg' +qall
 nvim +'CocInstall -sync coc-eslint' +qall
 nvim +'CocInstall -sync coc-prettier' +qall
+nvim +'silent :GoInstallBinaries' +qall
 
 echo "Adding Node.js provider for neovim"
 npm install neovim

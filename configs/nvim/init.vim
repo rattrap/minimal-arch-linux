@@ -5,12 +5,14 @@ Plug 'chriskempson/base16-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Shougo/denite.nvim'
 
+" Golang linter
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 " Better syntax highlighting
 Plug 'vim-scripts/vim-polyglot'
 
 " Tree explorer
 Plug 'scrooloose/nerdtree'
-"Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Git plugins
