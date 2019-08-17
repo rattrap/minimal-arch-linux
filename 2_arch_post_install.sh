@@ -33,14 +33,29 @@ yes | sudo pacman -S tumbler evince thunderbird
 echo "Installing fonts"
 yes | sudo pacman -S ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts gsfonts powerline-fonts
 
-echo "Installing NVM and Node.js LTS"
-git clone https://aur.archlinux.org/nvm.git
-cd nvm
-yes | makepkg -si
-cd ..
-rm -rf nvm
-source /usr/share/nvm/init-nvm.sh
-nvm install --lts=dubnium
+echo "Installing Node.js LTS"
+yes | sudo pacman -S nodejs-lts-dubnium
+
+echo "Configuring golang with LSP server"
+sudo pacman -S go go-tools
+mkdir -p ~/go/src
+GO111MODULE=on go get golang.org/x/tools/gopls@latest
+
+#echo "Installing NVM and Node.js LTS"
+#git clone https://aur.archlinux.org/nvm.git
+#cd nvm
+#yes | makepkg -si
+#cd ..
+#rm -rf nvm
+#source /usr/share/nvm/init-nvm.sh
+#nvm install --lts=dubnium
+
+echo "Adding Node.js provider for neovim"
+npm install neovim
+
+echo "Adding Python 3 provider for neovim"
+sudo pacman -S python-pip
+pip install --user --upgrade pynvim
 
 echo "Configuring neovim"
 mkdir -p ~/.config/nvim
@@ -61,18 +76,6 @@ nvim +'CocInstall -sync coc-svg' +qall
 nvim +'CocInstall -sync coc-eslint' +qall
 nvim +'CocInstall -sync coc-prettier' +qall
 nvim +'silent :GoInstallBinaries' +qall
-
-echo "Adding Node.js provider for neovim"
-npm install neovim
-
-echo "Adding Python 3 provider for neovim"
-sudo pacman -S python-pip
-pip install --user --upgrade pynvim
-
-echo "Configuring golang with LSP server"
-sudo pacman -S go go-tools
-mkdir -p ~/go/src
-GO111MODULE=on go get golang.org/x/tools/gopls@latest
 
 #echo "Installing VS Code + theme + icons"
 #yes | sudo pacman -S code
