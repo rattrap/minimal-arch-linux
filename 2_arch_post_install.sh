@@ -36,6 +36,15 @@ yes | sudo pacman -S ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack t
 echo "Installing Node.js LTS"
 yes | sudo pacman -S nodejs-lts-dubnium npm
 
+echo "Changing default npm directory"
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+touch ~/.profile
+tee ~/.profile << END
+export PATH=~/.npm-global/bin:$PATH
+END
+source ~/.profile
+
 echo "Configuring golang with LSP server"
 sudo pacman -S go go-tools
 mkdir -p ~/go/src
@@ -144,6 +153,7 @@ sudo tee /etc/modprobe.d/nobt.conf << END
 blacklist btusb
 blacklist bluetooth
 END
+sudo mkinitcpio -p linux-lts
 sudo mkinitcpio -p linux
 
 echo "Increasing the amount of inotify watchers"
