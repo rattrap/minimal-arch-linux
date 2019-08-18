@@ -53,7 +53,7 @@ Clean | Busy
    * coc
    * denite
 * GTK theme and icons: Qogir
-* Other applications: firefox, keepassxc, git, openssh, vim, thunar (with USB automonting), golang, Node.js LTS, tumbler, evince, gimp, inkscape, thunderbird, upower, htop, ~~VS code oss~~, nnn and a few others
+* Other applications: firefox, keepassxc, git, openssh, vim, thunar (with USB automonting), golang, Node.js LTS, tumbler, evince, gimp, inkscape, thunderbird, upower, htop, VS code oss, nnn and a few others
 
 ## Quick start / Brief install guide
 *See 'Detailed installation guide' below for the expanded version*

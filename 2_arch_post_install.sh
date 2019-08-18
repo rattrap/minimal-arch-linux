@@ -86,10 +86,10 @@ nvim +'CocInstall -sync coc-eslint' +qall
 nvim +'CocInstall -sync coc-prettier' +qall
 nvim +'silent :GoInstallBinaries' +qall
 
-#echo "Installing VS Code + theme + icons"
-#yes | sudo pacman -S code
-#code --install-extension jolaleye.horizon-theme-vscode
-#code --install-extension vscode-icons-team.vscode-icons
+echo "Installing VS Code + theme + icons"
+yes | sudo pacman -S code
+code --install-extension pkief.material-icon-theme
+code --install-extension equinusocio.vsc-material-theme
 
 echo "Installing and setting zsh"
 yes | sudo pacman -S zsh zsh-theme-powerlevel9k
@@ -183,5 +183,9 @@ When = PostTransaction
 Depends = firejail
 Exec = /bin/sh -c 'firecfg &>/dev/null'
 END
+
+echo "Granting internet access again to VSCode"
+sudo sed -i 's/net none/#net none/g' /etc/firejail/code.profile
+sudo firecfg
 
 echo "Your setup is ready. You can reboot now!"
