@@ -43,7 +43,7 @@ mount /dev/nvme0n1p1 /mnt/boot
 swapon /dev/mapper/Arch-swap
 
 echo "Installing Arch Linux"
-yes '' | pacstrap /mnt base base-devel intel-ucode networkmanager wget reflector apparmor
+yes '' | pacstrap /mnt base base-devel intel-ucode networkmanager wget linux-lts reflector apparmor
 
 echo "Generating fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -72,6 +72,7 @@ echo -en "$user_password\n$user_password" | passwd $user_name
 echo "Generating initramfs"
 sed -i 's/^HOOKS.*/HOOKS=(base udev keyboard autodetect modconf block keymap encrypt lvm2 resume filesystems fsck)/' /etc/mkinitcpio.conf
 sed -i 's/^MODULES.*/MODULES=(ext4 intel_agp i915)/' /etc/mkinitcpio.conf
+mkinitcpio -p linux-lts
 mkinitcpio -p linux
 
 echo "Setting up systemd-boot"
@@ -81,7 +82,7 @@ mkdir -p /boot/loader/
 touch /boot/loader/loader.conf
 tee -a /boot/loader/loader.conf << END
 default arch
-timeout 0
+timeout 1
 editor 0
 END
 
@@ -92,6 +93,15 @@ title ArchLinux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
+options cryptdevice=LABEL=LVMPART:cryptoVols root=/dev/mapper/Arch-root resume=/dev/mapper/Arch-swap apparmor=1 security=apparmor quiet rw
+END
+
+touch /boot/loader/entries/archlts.conf
+tee -a /boot/loader/entries/archlts.conf << END
+title ArchLinux
+linux /vmlinuz-linux-lts
+initrd /intel-ucode.img
+initrd /initramfs-linux-lts.img
 options cryptdevice=LABEL=LVMPART:cryptoVols root=/dev/mapper/Arch-root resume=/dev/mapper/Arch-swap apparmor=1 security=apparmor quiet rw
 END
 

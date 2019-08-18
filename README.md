@@ -12,6 +12,7 @@ Clean | Busy
 * SSD Periodic TRIM
 * Intel microcode
 * Automatic sort of mirrors list by speed, synced within the last 12 hours and filtered by HTTPS protocol (Reflector with Pacman hook)
+* LTS kernel (as fallback)
 * AppArmor
 
 ### Requirements
