@@ -62,9 +62,9 @@ GO111MODULE=on go get golang.org/x/tools/gopls@latest
 #echo "Adding Node.js provider for neovim"
 #npm install -g neovim
 
-#echo "Adding Python 3 provider for neovim"
-#sudo pacman -S python-pip
-#pip install --user --upgrade pynvim
+echo "Adding Python 3 provider for neovim"
+yes | sudo pacman -S python-pip
+pip install --user --upgrade pynvim
 
 echo "Configuring neovim"
 mkdir -p ~/.config/nvim
@@ -84,7 +84,7 @@ nvim +'CocInstall -sync coc-python' +qall
 nvim +'CocInstall -sync coc-svg' +qall
 nvim +'CocInstall -sync coc-eslint' +qall
 nvim +'CocInstall -sync coc-prettier' +qall
-nvim +'silent :GoInstallBinaries' +qall
+#nvim +'silent :GoInstallBinaries' +qall
 
 echo "Installing VS Code + theme + icons"
 yes | sudo pacman -S code
