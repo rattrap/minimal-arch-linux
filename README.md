@@ -12,7 +12,7 @@ Clean | Busy
 * SSD Periodic TRIM
 * Intel microcode
 * Automatic sort of mirrors list by speed, synced within the last 12 hours and filtered by HTTPS protocol (Reflector with Pacman hook)
-* LTS kernel (as fallback)
+* Standard Kernel + LTS kernel as fallback
 * AppArmor
 
 ### Requirements
@@ -85,11 +85,17 @@ Clean | Busy
 gdisk /dev/nvme0n1
 x
 z
-w
+y
+y
 ```
 
 ### How to disable VS Code online services
 * Search for @tag:usesOnlineServices in VSCode settings and disable online services
+
+### Recommended Firefox add-ons
+* [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
+* [HTTPS Everywhere](https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/)
+* [Privacy Badger](https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/)
 
 ### How to setup Github with SSH Key
 ```
