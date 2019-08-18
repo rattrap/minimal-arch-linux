@@ -51,7 +51,7 @@ GO111MODULE=on go get golang.org/x/tools/gopls@latest
 #nvm install --lts=dubnium
 
 echo "Adding Node.js provider for neovim"
-npm install neovim
+npm install -g neovim
 
 echo "Adding Python 3 provider for neovim"
 sudo pacman -S python-pip
