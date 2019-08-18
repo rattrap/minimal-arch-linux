@@ -12,7 +12,7 @@ sudo ufw default deny incoming
 sudo ufw default allow outgoing
 
 echo "Installing and enabling TLP"
-sudo pacman -S tlp tlp-rdw
+yes | sudo pacman -S tlp tlp-rdw
 sudo systemctl enable tlp.service
 sudo systemctl enable tlp.service
 sudo systemctl start tlp.service
@@ -46,7 +46,7 @@ END
 source ~/.profile
 
 echo "Configuring golang with LSP server"
-sudo pacman -S go go-tools
+yes | sudo pacman -S go go-tools
 mkdir -p ~/go/src
 GO111MODULE=on go get golang.org/x/tools/gopls@latest
 
@@ -131,7 +131,7 @@ echo "Enabling auto-mount for thunar"
 yes | sudo pacman -S gvfs thunar-volman
 
 echo "Setting wallpaper"
-wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpaper/b1ivv4tgg9831.jpg
+wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpaper/omar-g-garnica-6gdqWFolkC4-unsplash.jpg
 
 echo "Ricing waybar"
 mkdir -p ~/.config/waybar
@@ -144,8 +144,8 @@ wget -P ~/.config/alacritty https://raw.githubusercontent.com/exah-io/minimal-ar
 
 echo "Ricing rofi"
 mkdir -p ~/.config/rofi
-wget -p ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/base16-material-darker.rasi
-wget -p ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/config
+wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/base16-material-darker.rasi
+wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/config
 
 echo "Blacklisting bluetooth"
 sudo touch /etc/modprobe.d/nobt.conf
