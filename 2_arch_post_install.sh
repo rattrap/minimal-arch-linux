@@ -59,12 +59,12 @@ GO111MODULE=on go get golang.org/x/tools/gopls@latest
 #source /usr/share/nvm/init-nvm.sh
 #nvm install --lts=dubnium
 
-echo "Adding Node.js provider for neovim"
-npm install -g neovim
+#echo "Adding Node.js provider for neovim"
+#npm install -g neovim
 
-echo "Adding Python 3 provider for neovim"
-sudo pacman -S python-pip
-pip install --user --upgrade pynvim
+#echo "Adding Python 3 provider for neovim"
+#sudo pacman -S python-pip
+#pip install --user --upgrade pynvim
 
 echo "Configuring neovim"
 mkdir -p ~/.config/nvim
@@ -184,7 +184,7 @@ Depends = firejail
 Exec = /bin/sh -c 'firecfg &>/dev/null'
 END
 
-echo "Granting internet access again to VSCode"
+echo "Granting internet access again to VSCode in Firejail profile"
 sudo sed -i 's/net none/#net none/g' /etc/firejail/code.profile
 sudo firecfg
 

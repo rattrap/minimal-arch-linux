@@ -35,7 +35,7 @@ Clean | Busy
 * UFW (deny incoming, allow outgoing)
 * Firejail (with AppArmor integration)
 * TLP (default settings)
-* base16-material-darker (alacritty, neovim, rofi)
+* base16-material-darker (alacritty, neovim, rofi, waybar, VS Code)
 * swaywm:
    * autostart on tty1
    * waybar: onclick pavucontrol (volume control) and nmtui (ncli network manager)
