@@ -153,6 +153,10 @@ systemctl enable fstrim.timer
 echo "Enabling NetworkManager"
 systemctl enable NetworkManager
 
+echo "Enabling suspend and hibernate"
+sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=hibernate/g' /etc/systemd/logind.conf
+sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=suspend/g' /etc/systemd/logind.conf
+
 echo "Enabling AppArmor"
 systemctl enable apparmor.service
 

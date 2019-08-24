@@ -14,6 +14,7 @@ Clean | Busy
 * Automatic sort of mirrors list by speed, synced within the last 12 hours and filtered by HTTPS protocol (Reflector with Pacman hook)
 * Standard Kernel + LTS kernel as fallback
 * AppArmor
+* Hibernate (power key) + suspend (lid close)
 
 ### Requirements
 * UEFI mode
