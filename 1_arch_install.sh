@@ -67,6 +67,7 @@ echo -en "$root_password\n$root_password" | passwd
 
 echo "Creating new user"
 useradd -m -G wheel -s /bin/bash $user_name
+usermod -a -G video $user_name
 echo -en "$user_password\n$user_password" | passwd $user_name
 
 echo "Generating initramfs"

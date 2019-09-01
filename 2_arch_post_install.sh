@@ -64,7 +64,9 @@ GO111MODULE=on go get golang.org/x/tools/gopls@latest
 
 echo "Adding Python 3 provider for neovim"
 yes | sudo pacman -S python-pip
-pip install --user --upgrade pynvim
+pip3 install --user --upgrade pynvim
+sudo pip3 install pylint # Linter
+pip install pep8 # Formatter
 
 echo "Configuring neovim"
 mkdir -p ~/.config/nvim
