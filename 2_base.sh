@@ -70,6 +70,10 @@ echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.zshrc
 #echo "Adding Node.js provider for neovim"
 #npm install -g neovim
 
+echo "Installing spacemacs"
+yes | sudo pacman -S emacs adobe-source-code-pro-fonts
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+
 echo "Adding Python 3 provider for neovim"
 yes | sudo pacman -S python-pip
 pip3 install --user --upgrade pynvim
@@ -100,7 +104,6 @@ echo "Installing VS Code"
 yes | sudo pacman -S code
 
 echo "Installing VS Code theme + icons"
-# code --install-extension pkief.material-icon-theme
 code --install-extension jolaleye.horizon-theme-vscode
 code --install-extension pkief.material-icon-theme
 
