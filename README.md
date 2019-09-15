@@ -93,10 +93,17 @@ y
 ### How to disable VS Code online services
 * Search for @tag:usesOnlineServices in VSCode settings and disable online services
 
+### Firefox Plata Noir colours
+* [Firefox Colours - Plata Noir](https://color.firefox.com/?theme=XQAAAAL8AAAAAAAAAABBKYhm849SCia2CaaEGccwS-xNKlhR4U3ii01izoNSwV8EzxA9i34l-h9kNzmmbht5egIz1VwqGu4asy3bC0Iu-fSfcIJAVAwKwUYrdnMCFPHjDRh3WIEk3D10l1b0yhJ2JJ4iidXrDdOeHtPXECgT4mWPRinIv4rInTDn_LmydH4PXIv_OPeKQZiffADmQZvxlSWtpsLQfUznQX8sEtOtxfBaEVM7_-LnUAA)
+
 ### Recommended Firefox add-ons
 * [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
 * [HTTPS Everywhere](https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/)
 * [Privacy Badger](https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/)
+
+### Recommended Gnome extensions
+* [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
+* [Dynamic Panel Transparency](https://extensions.gnome.org/extension/1011/dynamic-panel-transparency/)
 
 ### How to setup Github with SSH Key
 ```

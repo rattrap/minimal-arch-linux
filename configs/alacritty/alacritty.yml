@@ -128,42 +128,45 @@ font:
 # render_timer: false
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
+#draw_bold_text_with_bright_colors: true
 
-# Base16 Material Darker - alacritty color config
-# Nate Peterson
+# Base16 Horizon Dark - alacritty color config
+# Michaël Ball (http://github.com/michael-ball/)
 colors:
   # Default colors
   primary:
-    background: '0x212121'
-    foreground: '0xeeffff'
+    background: '0x1c1e26'
+    foreground: '0xcbced0'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x212121'
-    cursor: '0xeeffff'
+    text: '0x1c1e26'
+    cursor: '0xcbced0'
 
   # Normal colors
   normal:
-    black:   '0x212121'
-    red:     '0xf07178'
-    green:   '0xc3e88d'
-    yellow:  '0xffcb6b'
-    blue:    '0x82aaff'
-    magenta: '0xc792ea'
-    cyan:    '0x89ddff'
-    white:   '0xeeffff'
+    black:   '0x1c1e26'
+    red:     '0xe93c58'
+    green:   '0xefaf8e'
+    yellow:  '0xefb993'
+    blue:    '0xdf5273'
+    magenta: '0xb072d1'
+    cyan:    '0x24a8b4'
+    white:   '0xcbced0'
 
   # Bright colors
   bright:
-    black:   '0x4a4a4a'
-    red:     '0xf78c6c'
-    green:   '0x303030'
-    yellow:  '0x353535'
-    blue:    '0xb2ccd6'
-    magenta: '0xeeffff'
-    cyan:    '0xff5370'
-    white:   '0xffffff'
+    black:   '0x6f6f70'
+    red:     '0xe58d7d'
+    green:   '0x232530'
+    yellow:  '0x2e303e'
+    blue:    '0x9da0a2'
+    magenta: '0xdcdfe4'
+    cyan:    '0xe4a382'
+    white:   '0xe3e6ee'
+
+draw_bold_text_with_bright_colors: false
+
 
   # Dim colors
   #

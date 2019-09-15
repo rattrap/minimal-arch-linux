@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Installing common packages"
-yes | sudo pacman -S linux-headers dkms xdg-user-dirs xorg-server-xwayland
+yes | sudo pacman -S linux-headers dkms xorg-server-xwayland
 
 echo "Installing and configuring UFW"
 yes | sudo pacman -S ufw
@@ -22,16 +22,20 @@ sudo systemctl mask systemd-rfkill.service
 sudo systemctl mask systemd-rfkill.socket
 
 echo "Installing common applications"
-echo -en "1\nyes" | sudo pacman -S firefox chromium keepassxc git openssh neovim links alacritty upower htop powertop p7zip ripgrep
-
-echo "Installing office applications"
-yes | sudo pacman -S tumbler evince thunderbird 
-
-#echo "Installing image editing applications"
-#yes | sudo pacman -S gimp inkscape
+echo -en "1\nyes" | sudo pacman -S firefox chromium keepassxc git openssh neovim links upower htop powertop p7zip ripgrep unzip
 
 echo "Installing fonts"
-yes | sudo pacman -S ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts gsfonts powerline-fonts
+yes | sudo pacman -S ttf-roboto ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts gsfonts powerline-fonts
+
+echo "Installing and setting zsh, oh-my-zsh and powerlevel9k"
+yes | sudo pacman -S zsh zsh-theme-powerlevel9k
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+sed -i 's/robbyrussell/powerlevel9k\/powerlevel9k/g' $HOME/.zshrc
+echo 'POWERLEVEL9K_DISABLE_RPROMPT=true' >> ~/.zshrc
+echo 'POWERLEVEL9K_PROMPT_ON_NEWLINE=true' >> ~/.zshrc
+echo 'POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="▶ "' >> ~/.zshrc
+echo 'POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)' >> ~/.zshrc
 
 echo "Installing Node.js LTS"
 yes | sudo pacman -S nodejs-lts-dubnium npm
@@ -44,11 +48,15 @@ tee ~/.profile << END
 export PATH=~/.npm-global/bin:$PATH
 END
 source ~/.profile
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.zshrc
 
-echo "Configuring golang with LSP server"
-yes | sudo pacman -S go go-tools
-mkdir -p ~/go/src
-GO111MODULE=on go get golang.org/x/tools/gopls@latest
+#echo "Installing image editing applications"
+#yes | sudo pacman -S gimp inkscape
+
+# echo "Configuring golang with LSP server"
+# yes | sudo pacman -S go go-tools
+# mkdir -p ~/go/src
+# GO111MODULE=on go get golang.org/x/tools/gopls@latest
 
 #echo "Installing NVM and Node.js LTS"
 #git clone https://aur.archlinux.org/nvm.git
@@ -88,22 +96,18 @@ nvim +'CocInstall -sync coc-eslint' +qall
 nvim +'CocInstall -sync coc-prettier' +qall
 #nvim +'silent :GoInstallBinaries' +qall
 
-echo "Installing VS Code + theme + icons"
+echo "Installing VS Code"
 yes | sudo pacman -S code
+
+echo "Installing VS Code theme + icons"
+# code --install-extension pkief.material-icon-theme
+code --install-extension jolaleye.horizon-theme-vscode
 code --install-extension pkief.material-icon-theme
-code --install-extension equinusocio.vsc-material-theme
 
-echo "Installing and setting zsh"
-yes | sudo pacman -S zsh zsh-theme-powerlevel9k
-chsh -s /bin/zsh
-wget -P ~/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc
-wget -P ~/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zprofile
-mkdir -p ~/.zshrc.d
-wget -P ~/.zshrc.d https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc.d/environ.zsh
-wget -P ~/.zshrc.d https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc.d/wayland.zsh
-
-echo "Setting up GTK theme and installing dependencies"
+echo "Installing theme dependencies"
 yes | sudo pacman -S gtk-engine-murrine gtk-engines
+
+echo "Setting up Qogir (GTK) theme"
 git clone https://github.com/vinceliuice/Qogir-theme.git
 cd Qogir-theme
 sudo mkdir -p /usr/share/themes
@@ -111,43 +115,13 @@ sudo ./install.sh -d /usr/share/themes
 cd ..
 rm -rf Qogir-theme
 
-echo "Setting up icon theme"
+echo "Setting up Qogir icons"
 git clone https://github.com/vinceliuice/Qogir-icon-theme.git
 cd Qogir-icon-theme
 sudo mkdir -p /usr/share/icons
 sudo ./install.sh -d /usr/share/icons
 cd ..
 rm -rf Qogir-icon-theme
-
-echo "Installing Material Design icons"
-sudo mkdir -p /usr/share/fonts/TTF/
-sudo wget -P /usr/share/fonts/TTF/ https://raw.githubusercontent.com/Templarian/MaterialDesign-Webfont/master/fonts/materialdesignicons-webfont.ttf
-
-echo "Installing sway and additional packages"
-yes | sudo pacman -S sway swaylock swayidle waybar wl-clipboard pulseaudio pavucontrol rofi slurp grim thunar mousepad nnn light feh qalculate-gtk
-mkdir -p ~/.config/sway
-wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/config
-mkdir -p ~/Pictures/screenshots
-
-echo "Enabling auto-mount for thunar"
-yes | sudo pacman -S gvfs thunar-volman
-
-echo "Setting wallpaper"
-wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpaper/omar-g-garnica-6gdqWFolkC4-unsplash.jpg
-
-echo "Ricing waybar"
-mkdir -p ~/.config/waybar
-wget -P ~/.config/waybar https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/waybar/config
-wget -P ~/.config/waybar https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/waybar/style.css
-
-echo "Ricing Alacritty"
-mkdir -p ~/.config/alacritty
-wget -P ~/.config/alacritty https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/alacritty/alacritty.yml
-
-echo "Ricing rofi"
-mkdir -p ~/.config/rofi
-wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/base16-material-darker.rasi
-wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/config
 
 echo "Blacklisting bluetooth"
 sudo touch /etc/modprobe.d/nobt.conf
@@ -189,5 +163,3 @@ END
 echo "Granting internet access again to VSCode in Firejail profile"
 sudo sed -i 's/net none/#net none/g' /etc/firejail/code.profile
 sudo firecfg
-
-echo "Your setup is ready. You can reboot now!"

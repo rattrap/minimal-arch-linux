@@ -9,7 +9,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Shougo/denite.nvim'
 
 "Golang linter
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " File explorer
 Plug 'scrooloose/nerdtree'
@@ -24,7 +24,7 @@ Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 " Set colour scheme
-colorscheme base16-material-darker
+colorscheme base16-horizon-dark
 
 " Close NERDTree on opening
 let NERDTreeQuitOnOpen=1

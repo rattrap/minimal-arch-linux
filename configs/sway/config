@@ -16,12 +16,12 @@ set $menu rofi -show run
 
 ### Output configuration
 
-output * bg ~/Pictures/omar-g-garnica-6gdqWFolkC4-unsplash.jpg fill
+output * bg ~/Pictures/beach.jpg fill
 
 default_border pixel 3
-#smart_gaps on
+smart_gaps on
 gaps inner 3
-gaps outer 3
+gaps outer 0
 hide_edge_borders smart
 
 bindsym XF86MonBrightnessUp exec light -A 5
@@ -36,17 +36,17 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000 -i ~/Pictures/omar-g-garnica-6gdqWFolkC4-unsplash.jpg' \
+         timeout 300 'swaylock -f -c 000000 -i ~/Pictures/beach.jpg' \
          timeout 305 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000 -i ~/Pictures/omar-g-garnica-6gdqWFolkC4-unsplash.jpg'
+         before-sleep 'swaylock -f -c 000000 -i ~/Pictures/beach.jpg'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 305 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 # Lock screen
-bindsym $mod+m exec swaylock -f -i ~/Pictures/omar-g-garnica-6gdqWFolkC4-unsplash.jpg
+bindsym $mod+m exec swaylock -f -i ~/Pictures/beach.jpg
 
 #
 # Example configuration:
