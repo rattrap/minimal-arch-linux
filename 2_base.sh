@@ -106,6 +106,9 @@ yes | sudo pacman -S code
 echo "Installing VS Code theme + icons"
 code --install-extension jolaleye.horizon-theme-vscode
 code --install-extension pkief.material-icon-theme
+code --install-extension dsznajder.es7-react-js-snippets
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension esbenp.prettier-vscode
 
 echo "Installing theme dependencies"
 yes | sudo pacman -S gtk-engine-murrine gtk-engines
