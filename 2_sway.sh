@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "Downloading and running base script"
-https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/2_base.sh
+wget https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/2_base.sh
+chmod +x 2_base.sh
 sh ./2_base.sh
 
 echo "Creating user's folders"
@@ -33,7 +34,7 @@ echo "Enabling auto-mount for thunar"
 yes | sudo pacman -S gvfs thunar-volman
 
 echo "Setting wallpaper"
-wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpaper/omar-g-garnica-6gdqWFolkC4-unsplash.jpg
+wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpaper/beach_inverted.jpg
 
 echo "Ricing waybar"
 mkdir -p ~/.config/waybar

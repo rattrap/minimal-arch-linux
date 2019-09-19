@@ -70,9 +70,9 @@ echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.zshrc
 #echo "Adding Node.js provider for neovim"
 #npm install -g neovim
 
-echo "Installing spacemacs"
-yes | sudo pacman -S emacs adobe-source-code-pro-fonts
-git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+#echo "Installing spacemacs"
+#yes | sudo pacman -S emacs adobe-source-code-pro-fonts
+#git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
 echo "Adding Python 3 provider for neovim"
 yes | sudo pacman -S python-pip
@@ -94,7 +94,7 @@ nvim +'CocInstall -sync coc-json' +qall
 nvim +'CocInstall -sync coc-tsserver' +qall
 nvim +'CocInstall -sync coc-html' +qall
 nvim +'CocInstall -sync coc-css' +qall
-nvim +'CocInstall -sync coc-python' +qall
+#nvim +'CocInstall -sync coc-python' +qall
 nvim +'CocInstall -sync coc-svg' +qall
 nvim +'CocInstall -sync coc-eslint' +qall
 nvim +'CocInstall -sync coc-prettier' +qall

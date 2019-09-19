@@ -107,12 +107,9 @@ y
 
 - Install ESLint on a per project basis: npm install eslint
 - Check the following settings:
-
-```
-editor.formatOnSave
-Prettier: Use Tabs
-enablePreview
-```
+  - editor.formatOnSave
+  - Prettier: Use Tabs
+  - enablePreview
 
 ### Firefox Plata Noir colours
 

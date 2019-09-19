@@ -3,7 +3,8 @@
 user_name=""
 
 echo "Downloading and running base script"
-https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/2_base.sh
+wget https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/2_base.sh
+chmod +x 2_base.sh
 sh ./2_base.sh
 
 echo "Installing Xorg"
