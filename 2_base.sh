@@ -30,32 +30,29 @@ yes | sudo pacman -S ttf-roboto ttf-droid ttf-opensans ttf-dejavu ttf-liberation
 echo "Installing and setting zsh, oh-my-zsh and powerlevel9k"
 yes | sudo pacman -S zsh zsh-theme-powerlevel9k
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-sed -i 's/robbyrussell/powerlevel9k\/powerlevel9k/g' $HOME/.zshrc
-echo 'POWERLEVEL9K_DISABLE_RPROMPT=true' >> ~/.zshrc
-echo 'POWERLEVEL9K_PROMPT_ON_NEWLINE=true' >> ~/.zshrc
-echo 'POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="▶ "' >> ~/.zshrc
-echo 'POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)' >> ~/.zshrc
+git clone https://github.com/bhilburn/powerlevel9k.git "$HOME"/.oh-my-zsh/custom/themes/powerlevel9k
+sed -i 's/robbyrussell/powerlevel9k\/powerlevel9k/g' "$HOME"/.zshrc
+{ echo 'POWERLEVEL9K_DISABLE_RPROMPT=true'; echo 'POWERLEVEL9K_PROMPT_ON_NEWLINE=true';  echo 'POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="▶ "'; echo 'POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)'; } >> "$HOME"/.zshrc
 
 echo "Installing Node.js LTS"
 yes | sudo pacman -S nodejs-lts-dubnium npm
 
 echo "Changing default npm directory"
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
-touch ~/.profile
-tee ~/.profile << END
-export PATH=~/.npm-global/bin:$PATH
+mkdir "$HOME"/.npm-global
+npm config set prefix "$HOME/.npm-global"
+touch "$HOME"/.profile
+tee "$HOME"/.profile << END
+export PATH=$HOME/.npm-global/bin:$PATH
 END
-source ~/.profile
-echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.zshrc
+source "$HOME"/.profile
+echo "export PATH=$HOME/.npm-global/bin:$PATH" >> "$HOME"/.zshrc
 
 #echo "Installing image editing applications"
 #yes | sudo pacman -S gimp inkscape
 
 # echo "Configuring golang with LSP server"
 # yes | sudo pacman -S go go-tools
-# mkdir -p ~/go/src
+# mkdir -p $HOME/go/src
 # GO111MODULE=on go get golang.org/x/tools/gopls@latest
 
 #echo "Installing NVM and Node.js LTS"
@@ -72,7 +69,7 @@ echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.zshrc
 
 #echo "Installing spacemacs"
 #yes | sudo pacman -S emacs adobe-source-code-pro-fonts
-#git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+#git clone https://github.com/syl20bnr/spacemacs $HOME/.emacs.d
 
 echo "Adding Python 3 provider for neovim"
 yes | sudo pacman -S python-pip
@@ -81,12 +78,12 @@ sudo pip3 install pylint # Linter
 pip install pep8 # Formatter
 
 echo "Configuring neovim"
-mkdir -p ~/.config/nvim
-wget -P ~/.config/nvim https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/nvim/init.vim
-wget -P ~/.config/nvim https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/nvim/coc-settings.json
+mkdir -p "$HOME"/.config/nvim
+wget -P "$HOME"/.config/nvim https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/nvim/init.vim
+wget -P "$HOME"/.config/nvim https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/nvim/coc-settings.json
 
 echo "Installing vim-plug"
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo "$HOME"/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim +'PlugInstall --sync' +qa
 
 echo "Installing neovim language extensions"
@@ -109,13 +106,14 @@ code --install-extension pkief.material-icon-theme
 code --install-extension dsznajder.es7-react-js-snippets
 code --install-extension dbaeumer.vscode-eslint
 code --install-extension esbenp.prettier-vscode
+code --install-extension ms-azuretools.vscode-docker
 
 echo "Installing theme dependencies"
 yes | sudo pacman -S gtk-engine-murrine gtk-engines
 
 echo "Setting up Qogir (GTK) theme"
 git clone https://github.com/vinceliuice/Qogir-theme.git
-cd Qogir-theme
+cd Qogir-theme || exit
 sudo mkdir -p /usr/share/themes
 sudo ./install.sh -d /usr/share/themes
 cd ..
@@ -123,7 +121,7 @@ rm -rf Qogir-theme
 
 echo "Setting up Qogir icons"
 git clone https://github.com/vinceliuice/Qogir-icon-theme.git
-cd Qogir-icon-theme
+cd Qogir-icon-theme || exit
 sudo mkdir -p /usr/share/icons
 sudo ./install.sh -d /usr/share/icons
 cd ..
