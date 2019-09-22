@@ -37,6 +37,8 @@
 
 ## Post install script
 
+- Sway (2_sway.sh), Gnome (2_gnome.sh) and KDE Plasma (2_plasma.sh) support
+  - Gnome and KDE have very basic support
 - UFW (deny incoming, allow outgoing)
 - Firejail (with AppArmor integration)
 - TLP (default settings)
@@ -50,7 +52,7 @@
   - slurp and grim for screenshots
 - zsh:
   - powerlevel9k theme
-  - History
+  - oh-my-zsh
   - ~~Force wayland for QT applications~~ disabled due to incompatibility with keepassxc
   - ~~Force wayland for GTK applications~~ disabled due to incompatibility with electron apps (e.g. VS Code)
 - neovim:
@@ -99,7 +101,7 @@ y
 y
 ```
 
-### VSCode - ESLint / Prettier
+### VSCode - Settings
 
 - Install ESLint on a per project basis: npm install eslint
 - Check the following settings:
@@ -117,9 +119,9 @@ y
 ### How to setup Github with SSH Key
 
 ```
-git config --global user.email "github external email"
-git config --global user.name "username"
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+git config --global user.email "Github external email"
+git config --global user.name "Github username"
+ssh-keygen -t rsa -b 4096 -C "Github email"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 copy SSH key and add to Github (eg. nvim ~/.ssh/id_rsa.pub and copy content)
