@@ -40,7 +40,7 @@
 - UFW (deny incoming, allow outgoing)
 - Firejail (with AppArmor integration)
 - TLP (default settings)
-- base16-material-darker (alacritty, neovim, rofi, waybar, VS Code)
+- Horizon Dark color scheme (alacritty, neovim, rofi, waybar, VS Code)
 - swaywm:
   - autostart on tty1
   - waybar: onclick pavucontrol (volume control) and nmtui (ncli network manager)
@@ -83,9 +83,9 @@ _See 'Detailed installation guide' below for the expanded version_
 8. Run the script: `./1_arch_install.sh`
 9. Reboot into Arch Linux
 10. Connect to wifi with `nmtui`
-11. `wget https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/2_arch_post_install.sh`
-12. Make the script executable: `chmod +x 2_arch_post_install.sh`
-13. Run the script: `./2_arch_post_install.sh`
+11. `wget https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/2_sway.sh`
+12. Make the script executable: `chmod +x 2_sway.sh`
+13. Run the script: `./2_sway.sh`
 
 ## Misc guides
 
@@ -99,10 +99,6 @@ y
 y
 ```
 
-### How to disable VS Code online services
-
-- Search for @tag:usesOnlineServices in VSCode settings and disable online services
-
 ### VSCode - ESLint / Prettier
 
 - Install ESLint on a per project basis: npm install eslint
@@ -110,21 +106,13 @@ y
   - editor.formatOnSave
   - Prettier: Use Tabs
   - enablePreview
-
-### Firefox Plata Noir colours
-
-- [Firefox Colours - Plata Noir](https://color.firefox.com/?theme=XQAAAAL8AAAAAAAAAABBKYhm849SCia2CaaEGccwS-xNKlhR4U3ii01izoNSwV8EzxA9i34l-h9kNzmmbht5egIz1VwqGu4asy3bC0Iu-fSfcIJAVAwKwUYrdnMCFPHjDRh3WIEk3D10l1b0yhJ2JJ4iidXrDdOeHtPXECgT4mWPRinIv4rInTDn_LmydH4PXIv_OPeKQZiffADmQZvxlSWtpsLQfUznQX8sEtOtxfBaEVM7_-LnUAA)
+  - @tag:usesOnlineServices
 
 ### Recommended Firefox add-ons
 
 - [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
 - [HTTPS Everywhere](https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/)
 - [Privacy Badger](https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/)
-
-### Recommended Gnome extensions
-
-- [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
-- [Dynamic Panel Transparency](https://extensions.gnome.org/extension/1011/dynamic-panel-transparency/)
 
 ### How to setup Github with SSH Key
 
@@ -157,8 +145,7 @@ cd ..
 rm -rf yay-bin
 ```
 
-## References
+### Recommended Gnome extensions
 
-- Ricing: [First rice on my super old MacBook Air!](https://www.reddit.com/r/unixporn/comments/9y9w0r/sway_first_rice_on_my_super_old_macbook_air/)
-- Wallpaper: [Photo by Omar G. Garnica on Unsplash](https://unsplash.com/photos/6gdqWFolkC4)
-- neovim configurations: [jarvis dotfiles](https://github.com/ctaylo21/jarvis)
+- [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
+- [Dynamic Panel Transparency](https://extensions.gnome.org/extension/1011/dynamic-panel-transparency/)
