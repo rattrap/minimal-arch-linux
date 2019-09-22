@@ -103,7 +103,7 @@ y
 
 ### VSCode - Settings
 
-- Install ESLint on a per project basis: npm install eslint
+- Install ESLint on a per project basis: npm i eslint
 - Check the following settings:
   - editor.formatOnSave
   - Prettier: Use Tabs

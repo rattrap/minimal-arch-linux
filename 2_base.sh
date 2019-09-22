@@ -45,7 +45,9 @@ tee "$HOME"/.profile << END
 export PATH=$HOME/.npm-global/bin:$PATH
 END
 source "$HOME"/.profile
-echo "export PATH=$HOME/.npm-global/bin:$PATH" >> "$HOME"/.zshrc
+tee "$HOME"/.zshrc << END
+export PATH=$HOME/.npm-global/bin:$PATH"
+END
 
 #echo "Installing image editing applications"
 #yes | sudo pacman -S gimp inkscape
