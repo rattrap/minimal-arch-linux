@@ -74,8 +74,8 @@ echo "export PATH=$HOME/.npm-global/bin:$PATH" >> "$HOME"/.zshrc
 echo "Adding Python 3 provider for neovim"
 yes | sudo pacman -S python-pip
 pip3 install --user --upgrade pynvim
-sudo pip3 install pylint # Linter
-pip install pep8 # Formatter
+#sudo pip3 install pylint # Linter
+#pip install pep8 # Formatter
 
 echo "Configuring neovim"
 mkdir -p "$HOME"/.config/nvim
