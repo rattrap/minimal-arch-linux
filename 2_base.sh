@@ -11,6 +11,9 @@ sudo ufw enable
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 
+echo "Improving Intel GPU support"
+yes | sudo pacman -S vulkan-intel intel-media-driver
+
 echo "Installing common applications"
 echo -en "1\nyes" | sudo pacman -S firefox chromium keepassxc git openssh neovim links upower htop powertop p7zip ripgrep unzip
 
