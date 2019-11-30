@@ -43,7 +43,7 @@ mount /dev/nvme0n1p1 /mnt/boot
 swapon /dev/mapper/Arch-swap
 
 echo "Installing Arch Linux"
-yes '' | pacstrap /mnt base base-devel linux linux-headers linux-lts linux-lts-headers linux-firmware lvm2 intel-ucode networkmanager wget apparmor
+yes '' | pacstrap /mnt base base-devel linux linux-headers linux-lts linux-lts-headers linux-firmware lvm2 e2fsprogs intel-ucode networkmanager wget apparmor man-db man-pages nano vi
 
 echo "Generating fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
