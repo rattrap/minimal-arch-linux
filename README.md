@@ -52,11 +52,9 @@
 - zsh:
   - powerlevel10k theme
   - oh-my-zsh
-  - ~~Force wayland for QT applications~~ disabled due to incompatibility with keepassxc
-  - ~~Force wayland for GTK applications~~ disabled due to incompatibility with electron apps (e.g. VS Code)
-- neovim:
+- neovim
 - GTK theme and icons: Qogir
-- Other applications: firefox, keepassxc, git, openssh, vim, thunar (with USB automonting), ~~golang~~, Node.js LTS, tumbler, evince, ~~gimp, inkscape,~~ thunderbird, upower, htop, VS code oss, nnn and a few others
+- Other applications: firefox, keepassxc, git, openssh, vim, thunar (with USB automonting), Node.js LTS, tumbler, evince, thunderbird, upower, htop, VS code oss, nnn and a few others
 
 ## Quick start / Brief install guide
 
@@ -151,13 +149,9 @@ rm -rf yay-bin
 ### TODO
 
 - [Change GTK theme colors to match Horizon's](https://www.reddit.com/r/unixporn/comments/4lp6fn/matching_gtk_theme_for_base16flat_theme/)
-- ~~Change wallpaper to /wallpaper/fgvKe0O.jpg~~
 - [Improve](https://www.reddit.com/r/swaywm/comments/bkzeo7/font_rendering_really_bad_and_rough_in_gtk3/?ref=readnext) [font](https://www.reddit.com/r/archlinux/comments/5r5ep8/make_your_arch_fonts_beautiful_easily/) [rendering](https://aur-dev.archlinux.org/packages/fontconfig-enhanced-defaults/) [with](https://gist.github.com/cryzed/e002e7057435f02cc7894b9e748c5671) [this](https://wiki.archlinux.org/index.php/Font_configuration#Incorrect_hinting_in_GTK_applications) [or this](https://www.reddit.com/r/archlinux/comments/9ujhbc/how_to_get_windows_like_font_rendering/)
 - [Support secure boot](https://wiki.archlinux.org/index.php/Secure_Boot)
 - Evaluate:
-  - ~~remove 'reflector'~~
-  - ~~replace 'powerlevel9k' with 'powerlevel10k'~~
-  - remove all 'neovim' extras (eg. nerdtree, coc, etc)
   - Use 'NVM' instead of nodejs package
 - [Waybar custom module](https://github.com/Alexays/Waybar/wiki/Module:-Custom) to toggle TLP on battery: [apply Bat/AC settings](https://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html#tlp)
   - Possibly remove TLP altogether (test without TLP, due to kernel improvements)
