@@ -155,7 +155,7 @@ rm -rf yay-bin
 ### TODO
 
 - [Change GTK theme colors to match Horizon's](https://www.reddit.com/r/unixporn/comments/4lp6fn/matching_gtk_theme_for_base16flat_theme/)
-- Change wallpaper to /wallpaper/fgvKe0O.jpg
+- ~~Change wallpaper to /wallpaper/fgvKe0O.jpg~~
 - [Improve](https://www.reddit.com/r/swaywm/comments/bkzeo7/font_rendering_really_bad_and_rough_in_gtk3/?ref=readnext) [font](https://www.reddit.com/r/archlinux/comments/5r5ep8/make_your_arch_fonts_beautiful_easily/) [rendering](https://aur-dev.archlinux.org/packages/fontconfig-enhanced-defaults/) [with](https://gist.github.com/cryzed/e002e7057435f02cc7894b9e748c5671) [this](https://wiki.archlinux.org/index.php/Font_configuration#Incorrect_hinting_in_GTK_applications) [or this](https://www.reddit.com/r/archlinux/comments/9ujhbc/how_to_get_windows_like_font_rendering/)
 - [Support secure boot](https://wiki.archlinux.org/index.php/Secure_Boot)
 - Evaluate:
