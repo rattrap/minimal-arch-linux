@@ -48,55 +48,13 @@ tee "$HOME"/.zshrc << END
 export PATH=$HOME/.npm-global/bin:$PATH"
 END
 
-#echo "Installing image editing applications"
-#yes | sudo pacman -S gimp inkscape
-
-# echo "Configuring golang with LSP server"
-# yes | sudo pacman -S go go-tools
-# mkdir -p $HOME/go/src
-# GO111MODULE=on go get golang.org/x/tools/gopls@latest
-
-#echo "Installing NVM and Node.js LTS"
-#git clone https://aur.archlinux.org/nvm.git
-#cd nvm
-#yes | makepkg -si
-#cd ..
-#rm -rf nvm
-#source /usr/share/nvm/init-nvm.sh
-#nvm install --lts=dubnium
-
-#echo "Adding Node.js provider for neovim"
-#npm install -g neovim
-
-#echo "Installing spacemacs"
-#yes | sudo pacman -S emacs adobe-source-code-pro-fonts
-#git clone https://github.com/syl20bnr/spacemacs $HOME/.emacs.d
-
-echo "Adding Python 3 provider for neovim"
-yes | sudo pacman -S python-pip
-pip3 install --user --upgrade pynvim
-#sudo pip3 install pylint # Linter
-#pip install pep8 # Formatter
-
 echo "Configuring neovim"
 mkdir -p "$HOME"/.config/nvim
 wget -P "$HOME"/.config/nvim https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/nvim/init.vim
-wget -P "$HOME"/.config/nvim https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/nvim/coc-settings.json
 
 echo "Installing vim-plug"
 curl -fLo "$HOME"/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim +'PlugInstall --sync' +qa
-
-echo "Installing neovim language extensions"
-nvim +'CocInstall -sync coc-json' +qall
-nvim +'CocInstall -sync coc-tsserver' +qall
-nvim +'CocInstall -sync coc-html' +qall
-nvim +'CocInstall -sync coc-css' +qall
-#nvim +'CocInstall -sync coc-python' +qall
-nvim +'CocInstall -sync coc-svg' +qall
-nvim +'CocInstall -sync coc-eslint' +qall
-nvim +'CocInstall -sync coc-prettier' +qall
-#nvim +'silent :GoInstallBinaries' +qall
 
 echo "Installing VS Code"
 yes | sudo pacman -S code
@@ -104,10 +62,7 @@ yes | sudo pacman -S code
 echo "Installing VS Code theme + icons"
 code --install-extension jolaleye.horizon-theme-vscode
 code --install-extension pkief.material-icon-theme
-code --install-extension dsznajder.es7-react-js-snippets
-code --install-extension dbaeumer.vscode-eslint
 code --install-extension esbenp.prettier-vscode
-code --install-extension ms-azuretools.vscode-docker
 
 echo "Installing theme dependencies"
 yes | sudo pacman -S gtk-engine-murrine gtk-engines

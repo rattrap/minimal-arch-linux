@@ -12,7 +12,6 @@
 - Automatic login (with systemd)
 - SSD Periodic TRIM
 - Intel microcode
-- ~~Automatic sort of mirrors list by speed, synced within the last 12 hours and filtered by HTTPS protocol (Reflector with Pacman hook)~~
 - Standard Kernel + LTS kernel as fallback
 - AppArmor
 - Hibernate (power key) + suspend (lid close)
@@ -56,9 +55,6 @@
   - ~~Force wayland for QT applications~~ disabled due to incompatibility with keepassxc
   - ~~Force wayland for GTK applications~~ disabled due to incompatibility with electron apps (e.g. VS Code)
 - neovim:
-  - nerdtree
-  - coc
-  - denite
 - GTK theme and icons: Qogir
 - Other applications: firefox, keepassxc, git, openssh, vim, thunar (with USB automonting), ~~golang~~, Node.js LTS, tumbler, evince, ~~gimp, inkscape,~~ thunderbird, upower, htop, VS code oss, nnn and a few others
 
