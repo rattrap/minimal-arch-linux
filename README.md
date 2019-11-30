@@ -51,7 +51,7 @@
   - rofi as application launcher
   - slurp and grim for screenshots
 - zsh:
-  - powerlevel9k theme
+  - powerlevel10k theme
   - oh-my-zsh
   - ~~Force wayland for QT applications~~ disabled due to incompatibility with keepassxc
   - ~~Force wayland for GTK applications~~ disabled due to incompatibility with electron apps (e.g. VS Code)
@@ -160,7 +160,7 @@ rm -rf yay-bin
 - [Support secure boot](https://wiki.archlinux.org/index.php/Secure_Boot)
 - Evaluate:
   - ~~remove 'reflector'~~
-  - replace 'powerlevel9k' with 'powerlevel10k'
+  - ~~replace 'powerlevel9k' with 'powerlevel10k'~~
   - remove all 'neovim' extras (eg. nerdtree, coc, etc)
   - Use 'NVM' instead of nodejs package
 - [Waybar custom module](https://github.com/Alexays/Waybar/wiki/Module:-Custom) to toggle TLP on battery: [apply Bat/AC settings](https://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html#tlp)
