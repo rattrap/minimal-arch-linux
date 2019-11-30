@@ -88,10 +88,6 @@ sudo mkinitcpio -p linux
 echo "Increasing the amount of inotify watchers"
 echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf && sudo sysctl --system
 
-echo "Disable NMI watchdog"
-sudo touch /etc/sysctl.d/disable_watchdog.conf
-echo "kernel.nmi_watchdog = 0" | sudo tee /etc/sysctl.d/disable_watchdog.conf
-
 echo "Installing and configuring Firejail"
 yes | sudo pacman -S firejail
 sudo apparmor_parser -r /etc/apparmor.d/firejail-default
