@@ -88,9 +88,9 @@ sudo mkinitcpio -p linux
 echo "Increasing the amount of inotify watchers"
 echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf && sudo sysctl --system
 
-echo "Enabling audio power saving"
-sudo touch /etc/modprobe.d/audio_powersave.conf
-echo "options snd_hda_intel power_save=1" | sudo tee /etc/modprobe.d/audio_powersave.conf
+echo "Disable NMI watchdog"
+sudo touch /etc/sysctl.d/disable_watchdog.conf
+echo "kernel.nmi_watchdog = 0" | sudo tee /etc/sysctl.d/disable_watchdog.conf
 
 echo "Installing and configuring Firejail"
 yes | sudo pacman -S firejail
