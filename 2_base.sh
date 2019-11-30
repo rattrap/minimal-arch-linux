@@ -35,7 +35,7 @@ sed -i 's/robbyrussell/powerlevel9k\/powerlevel9k/g' "$HOME"/.zshrc
 { echo 'POWERLEVEL9K_DISABLE_RPROMPT=true'; echo 'POWERLEVEL9K_PROMPT_ON_NEWLINE=true';  echo 'POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="▶ "'; echo 'POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)'; } >> "$HOME"/.zshrc
 
 echo "Installing Node.js LTS"
-yes | sudo pacman -S nodejs-lts-dubnium npm
+yes | sudo pacman -S nodejs-lts-erbium npm
 
 echo "Changing default npm directory"
 mkdir "$HOME"/.npm-global
