@@ -40,7 +40,6 @@
   - Gnome and KDE have very basic support
 - UFW (deny incoming, allow outgoing)
 - Firejail (with AppArmor integration)
-- TLP (default settings)
 - Horizon Dark color scheme (alacritty, neovim, rofi, waybar, VS Code)
 - swaywm:
   - autostart on tty1
@@ -153,9 +152,7 @@ rm -rf yay-bin
 - [Support secure boot](https://wiki.archlinux.org/index.php/Secure_Boot)
 - Evaluate:
   - Use 'NVM' instead of nodejs package
-- [Waybar custom module](https://github.com/Alexays/Waybar/wiki/Module:-Custom) to toggle TLP on battery: [apply Bat/AC settings](https://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html#tlp)
-  - Possibly remove TLP altogether (test without TLP, due to kernel improvements)
-  - Also add battery discharge rate. Use [this config](https://gitlab.com/krathalan/waybar-modules/raw/3a652315f537ac957c37f08e55b5184da2b36cbd/mywaybar.jpg) as reference: [snippets](https://gitlab.com/snippets/1880686) and [modules](https://gitlab.com/krathalan/waybar-modules)
+- Waybar: add battery discharge rate. Use [this config](https://gitlab.com/krathalan/waybar-modules/raw/3a652315f537ac957c37f08e55b5184da2b36cbd/mywaybar.jpg) as reference: [snippets](https://gitlab.com/snippets/1880686) and [modules](https://gitlab.com/krathalan/waybar-modules)
 - Use [swaylock-blur](https://github.com/cjbassi/swaylock-blur)
 - Add gestures to switch workspaces: [example](https://www.reddit.com/r/unixporn/comments/bd0l15/sway_real_world_student_workflow/ekv1ird?utm_source=share&utm_medium=web2x)
 - Install mesa + vulkan packages: https://wiki.archlinux.org/index.php/Intel_graphics

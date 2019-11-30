@@ -11,16 +11,6 @@ sudo ufw enable
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 
-echo "Installing and enabling TLP"
-yes | sudo pacman -S tlp tlp-rdw
-sudo systemctl enable tlp.service
-sudo systemctl enable tlp.service
-sudo systemctl start tlp.service
-sudo systemctl start tlp.service
-sudo systemctl enable NetworkManager-dispatcher.service
-sudo systemctl mask systemd-rfkill.service
-sudo systemctl mask systemd-rfkill.socket
-
 echo "Installing common applications"
 echo -en "1\nyes" | sudo pacman -S firefox chromium keepassxc git openssh neovim links upower htop powertop p7zip ripgrep unzip
 
