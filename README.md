@@ -12,7 +12,7 @@
 - Automatic login (with systemd)
 - SSD Periodic TRIM
 - Intel microcode
-- Automatic sort of mirrors list by speed, synced within the last 12 hours and filtered by HTTPS protocol (Reflector with Pacman hook)
+- ~~Automatic sort of mirrors list by speed, synced within the last 12 hours and filtered by HTTPS protocol (Reflector with Pacman hook)~~
 - Standard Kernel + LTS kernel as fallback
 - AppArmor
 - Hibernate (power key) + suspend (lid close)
@@ -159,7 +159,7 @@ rm -rf yay-bin
 - [Improve](https://www.reddit.com/r/swaywm/comments/bkzeo7/font_rendering_really_bad_and_rough_in_gtk3/?ref=readnext) [font](https://www.reddit.com/r/archlinux/comments/5r5ep8/make_your_arch_fonts_beautiful_easily/) [rendering](https://aur-dev.archlinux.org/packages/fontconfig-enhanced-defaults/) [with](https://gist.github.com/cryzed/e002e7057435f02cc7894b9e748c5671) [this](https://wiki.archlinux.org/index.php/Font_configuration#Incorrect_hinting_in_GTK_applications) [or this](https://www.reddit.com/r/archlinux/comments/9ujhbc/how_to_get_windows_like_font_rendering/)
 - [Support secure boot](https://wiki.archlinux.org/index.php/Secure_Boot)
 - Evaluate:
-  - remove 'reflector'
+  - ~~remove 'reflector'~~
   - replace 'powerlevel9k' with 'powerlevel10k'
   - remove all 'neovim' extras (eg. nerdtree, coc, etc)
   - Use 'NVM' instead of nodejs package

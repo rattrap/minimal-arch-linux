@@ -43,7 +43,7 @@ mount /dev/nvme0n1p1 /mnt/boot
 swapon /dev/mapper/Arch-swap
 
 echo "Installing Arch Linux"
-yes '' | pacstrap /mnt base base-devel intel-ucode networkmanager wget linux-lts reflector apparmor
+yes '' | pacstrap /mnt base base-devel intel-ucode networkmanager wget linux-lts apparmor
 
 echo "Generating fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -128,24 +128,6 @@ tee -a /etc/systemd/system/getty@tty1.service.d/override.conf << END
 [Service]
 ExecStart=
 ExecStart=-/usr/bin/agetty --autologin $user_name --noclear %I $TERM
-END
-
-echo "Updating mirrors list"
-cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.BAK
-reflector --latest 200 --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-
-touch /etc/pacman.d/hooks/mirrors-update.hook
-tee -a /etc/pacman.d/hooks/mirrors-update.hook << END
-[Trigger]
-Operation = Upgrade
-Type = Package
-Target = pacman-mirrorlist
-
-[Action]
-Description = Updating pacman-mirrorlist with reflector
-When = PostTransaction
-Depends = reflector
-Exec = /bin/sh -c "reflector --latest 200 --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
 END
 
 echo "Enabling periodic TRIM"
