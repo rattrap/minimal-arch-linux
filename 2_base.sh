@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Installing common packages"
-yes | sudo pacman -S linux-headers dkms xorg-server-xwayland
+yes | sudo pacman -S dkms xorg-server-xwayland
 
 echo "Installing and configuring UFW"
 yes | sudo pacman -S ufw
