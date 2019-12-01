@@ -55,5 +55,6 @@ wget -P ~/.config/alacritty https://raw.githubusercontent.com/exah-io/minimal-ar
 echo "Ricing rofi"
 mkdir -p ~/.config/rofi
 wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/config
+wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/ayu-mirage.rasi
 
 echo "Your setup is ready. You can reboot now!"
