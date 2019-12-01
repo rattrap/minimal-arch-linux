@@ -1,49 +1,89 @@
-* {
-    border: none;
-    border-radius: 0;
-    font-family: sans-serif;
-    font-size: 14px;
-}
-
-window {
-    background: rgba(22, 22, 28, 0.98);
-    color: white;
-}
-
-#workspaces button {
-    padding: 5px 10px;
+ * {
+    font-weight: 700;
+    font-family: Iosevka, sans-serif;
+    font-size: 12px;
+  }
+  
+  #waybar {
     background: transparent;
-    color: white;
-    border-bottom: 3px solid transparent;
-}
-
-#workspaces button.icon label {
-    font-size: 10px;
-}
-
-#workspaces button.focused {
-    background: rgba(200, 200, 200, 0.1);
-    border-bottom: 3px solid white;
-}
-
-#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-brightness, #custom-spotify {
-    padding: 0 6px;
-    margin: 0 2px;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: black;
-    }
-}
-
-#battery.warning {
-    background: #f53c3c;
-    color: white;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
+    color: #6c7680;
+    transition: background-color 0.2s;
+  }
+  
+  #waybar.ayu-mirage {
+    color: #bfbab0;
+  }
+  
+  #waybar.ayu-dark {
+    color: #b3b1ad;
+  }
+  
+  #workspaces {
+    margin-right: 6px;
+  }
+  
+  #workspaces button {
+    background: transparent;
+    border: none;
+    padding: 0 8px;
+  }
+  
+  #workspaces button.focused {
+    color: #ff9940;
+    border-bottom: 1px solid transparent;
+  }
+  
+  #waybar.ayu-mirage #workspaces button.focused {
+    color: #ffcc66;
+  }
+  
+  #waybar.ayu-dark #workspaces button.focused {
+    color: #e6b450;
+  }
+  
+  #workspaces button.urgent {
+    color: #f51818;
+  }
+  
+  #waybar.ayu-mirage #workspaces button.urgent {
+    color: #ff3333;
+  }
+  
+  #waybar.ayu-dark #workspaces button.urgent {
+    color: #ff3333;
+  }
+  
+  #battery,
+  #cpu,
+  #memory,
+  #disk,
+  #temperature,
+  #backlight,
+  #network,
+  #pulseaudio,
+  #custom-media,
+  #tray,
+  #idle_inhibitor,
+  #custom-browser,
+  #custom-terminal,
+  #custom-files,
+  #custom-editor,
+  #custom-disks,
+  #custom-weather,
+  #custom-system,
+  #custom-separator,
+  #mode {
+    padding: 0 12px;
+  }
+  
+  #tray {
+    opacity: 0.8;
+  }
+  
+  #custom-system {
+    margin-right: 6px;
+  }
+  
+  #workspaces {
+    margin: 0 3px 0 1px;
+  }  

@@ -5,6 +5,13 @@ wget https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/2_base.
 chmod +x 2_base.sh
 sh ./2_base.sh
 
+echo "Installing fonts"
+git clone https://aur.archlinux.org/ttf-iosevka.git
+cd ttf-iosevka
+yes | makepkg -si
+cd ..
+rm -rf ttf-iosevka
+
 echo "Creating user's folders"
 yes | sudo pacman -S xdg-user-dirs
 
@@ -30,8 +37,8 @@ mkdir -p ~/.config/sway
 wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/config
 mkdir -p ~/Pictures/screenshots
 
-echo "Enabling auto-mount for thunar"
-yes | sudo pacman -S gvfs thunar-volman
+echo "Enabling auto-mount and archives creation/deflation for thunar"
+yes | sudo pacman -S gvfs thunar-volman thunar-archive-plugin
 
 echo "Setting wallpaper"
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpaper/fgvKe0O.jpg
