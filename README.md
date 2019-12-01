@@ -40,7 +40,7 @@
   - Gnome and KDE have very basic support
 - UFW (deny incoming, allow outgoing)
 - Firejail (with AppArmor integration)
-- Horizon Dark color scheme (alacritty, neovim, rofi, waybar, VS Code)
+- Ayu Mirage color scheme (alacritty, neovim, rofi, waybar, VS Code)
 - swaywm:
   - autostart on tty1
   - waybar: onclick pavucontrol (volume control) and nmtui (ncli network manager)
@@ -108,6 +108,7 @@ y
 - [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
 - [HTTPS Everywhere](https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/)
 - [Privacy Badger](https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/)
+- [Firefox - Ayu Mirage theme](https://addons.mozilla.org/en-US/firefox/addon/ayu-mirage/)
 
 ### How to setup Github with SSH Key
 
