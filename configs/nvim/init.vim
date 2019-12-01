@@ -1,23 +1,15 @@
-" === Plugins === "
 call plug#begin()
-" Base16 Theme
-Plug 'chriskempson/base16-vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
-" === Theme === "
-" Set colour scheme
-colorscheme base16-horizon-dark
+" === Theme and Fonts === "
+" let ayucolor="light"  " for light version of theme
+" let ayucolor="dark"   " for dark version of theme
+set termguicolors     " enable true colors support
+let ayucolor="mirage" " for mirage version of theme
+colorscheme ayu
+let g:airline_theme='ayu-mirage'
 
-" === Search === "
-" ignore case when searching
-set ignorecase
-
-" if the search string has an upper case letter in it, the search will be case sensitive
-set smartcase
-
-" === Misc === "
-" Automatically re-read file if a change was detected outside of vim
-set autoread
-
-" Enable line numbers
-" set number
+let g:airline_powerline_fonts = 1
+set guifont=FiraCode 14
