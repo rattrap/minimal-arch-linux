@@ -7,21 +7,20 @@
   "modules-left": [
     "sway/workspaces",
     "custom/terminal",
-    "custom/files",
-    "custom/browser",
     "custom/editor",
+    "custom/browser",
+    "custom/files",
     "sway/mode"
   ],
   "modules-center": [ "clock" ],
   "modules-right": [
     "tray",
-    "pulseaudio",
-    "backlight",
-    "battery",
-    "network",
-    "cpu",
     "memory",
+    "cpu",
     "temperature",
+    "pulseaudio",
+    "network",
+    "backlight",
     "custom/system"
   ],
   "custom/separator": {
@@ -44,26 +43,26 @@
     "on-click": "swaynag -t ayu-mirage -m '' -b 'Exit' 'swaymsg exit' -b 'Reboot' 'swaymsg exec systemctl reboot' -b 'Shut down' 'systemctl poweroff'",
     "on-click-right": "swaymsg mode System"
   },
-  "custom/terminal": {
-    "format":"",
+  "custom/browser": {
+    "format":"",
     "tooltip": false,
-    "on-click": "alacritty",
+    "on-click": "firefox"
   },
   "custom/files": {
     "format":"",
     "tooltip": false,
     "on-click": "thunar"
   },
-  "custom/browser": {
-    "format":"",
-    "tooltip": false,
-    "on-click": "firefox"
-  },
-
   "custom/editor": {
     "format":"",
     "tooltip": false,
-    "on-click": "code-oss"
+    "on-click": "code"
+  },
+  "custom/terminal": {
+    "format":"",
+    "tooltip": false,
+    "on-click": "swaymsg scratchpad show",
+    "on-click-right": "alacritty"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
@@ -107,28 +106,5 @@
       "format": "{percent}% ",
       "on-scroll-down": "light -A 1",
       "on-scroll-up": "light -U 1"
-  },
-  "battery": {
-    "interval": 2,
-    "states": {
-        "100": 100,
-        "75": 75,
-        "50": 50,
-        "20": 25,
-        "critical": 5
-    },
-    "format": "{capacity}% ",
-    "format-full": "{capacity}% ",
-    "format-discharging-100": "{capacity}% ",
-    "format-discharging-75": "{capacity}% ",
-    "format-discharging-50": "{capacity}% ",
-    "format-discharging-25": "{capacity}% ",
-    "format-discharging-critical": "{capacity}% ",
-    "format-charging-100": "{capacity}% ",
-    "format-charging-75": "{capacity}% ",
-    "format-charging-50": "{capacity}% ",
-    "format-charging-25": "{capacity}% ",
-    "format-charging-critical": "{capacity}% ", 
-    "format-icons": ["", "", "", "", ""]
-}
+  }
 }
