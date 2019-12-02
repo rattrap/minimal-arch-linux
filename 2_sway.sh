@@ -47,7 +47,7 @@ wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-l
 wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/colors.ayu-mirage
 
 echo "Enabling auto-mount and archives creation/deflation for thunar"
-yes | sudo pacman -S gvfs thunar-volman thunar-archive-plugin
+yes | sudo pacman -S gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
 
 echo "Setting wallpaper"
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/andre-benz-cXU6tNxhub0-unsplash.jpg

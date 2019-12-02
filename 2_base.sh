@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Updating databases"
+sudo pacman -Syu
+
 echo "Installing common packages"
 yes | sudo pacman -S dkms xorg-server-xwayland
 
@@ -23,8 +26,9 @@ yes | sudo pacman -S ttf-roboto ttf-droid ttf-opensans ttf-dejavu ttf-liberation
 echo "Installing and setting zsh, oh-my-zsh and powerlevel10k"
 yes | sudo pacman -S zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM"/themes/powerlevel10k
-sed -i 's/robbyrussell/powerlevel10k\/powerlevel10k/g' "$HOME"/.zshrc
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME"/.oh-my-zsh/custom/themes/powerlevel10k
+rm -rf "$HOME"/.zshrc
+wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc
 
 echo "Installing Node.js LTS"
 yes | sudo pacman -S nodejs-lts-erbium npm
@@ -68,10 +72,10 @@ papirus-folders -C yellow --theme Papirus-Dark
 
 echo "Installing GTK theme and dependencies"
 yes | sudo pacman -S gtk-engine-murrine gtk-engines
-mkdir -p /usr/share/themes/
-wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/dependencies/ayu-gtk-themes.tar.gz
-tar -xzf /usr/share/themes/ayu-gtk-themes.tar.gz
-rm -f /usr/share/themes/ayu-gtk-themes.tar.gz
+sudo mkdir -p /usr/share/themes/
+sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/dependencies/ayu-gtk-themes.tar.gz
+sudo tar -xzf /usr/share/themes/ayu-gtk-themes.tar.gz
+sudo rm -f /usr/share/themes/ayu-gtk-themes.tar.gz
 
 echo "Setting GTK theme, font and icons"
 FONT="SF Pro Text Regular 9"

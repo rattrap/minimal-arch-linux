@@ -12,4 +12,4 @@ colorscheme ayu
 let g:airline_theme='ayu-mirage'
 
 let g:airline_powerline_fonts = 1
-set guifont=FiraCode 14
+set guifont=FiraCode
