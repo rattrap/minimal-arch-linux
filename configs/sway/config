@@ -228,13 +228,5 @@ set $screenshotout $HOME/Pictures/screenshots/$(date "+%Y-%m-%d-%H%M%S_shot.png"
 bindsym Print exec $screenshot $screenshotout
 bindsym $mod+Print exec $screenshot -g "$($screenselect)" $screenshotout
 
-# Set gnome theme and icons
-# ----------------------------------------------------------------------------
-
-set $gnome-schema org.gnome.desktop.interface
-exec_always {
-    gsettings set $gnome-schema gtk-theme 'Qogir-win-light'
-    gsettings set $gnome-schema icon-theme 'Qogir'
-}
 
 include /etc/sway/config.d/*

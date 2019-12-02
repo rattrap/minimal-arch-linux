@@ -55,23 +55,3 @@ sudo systemctl enable gdm.service
 # AutomaticLogin=$user_name
 # AutomaticLoginEnable=True
 # END
-
-# echo "Installing Plata theme"
-# git clone https://aur.archlinux.org/plata-theme.git
-# cd plata-theme
-# yes | makepkg -si
-# cd ..
-# rm -rf plata-theme
-
-# echo "Installing GTK icons"
-# git clone https://aur.archlinux.org/mcmojave-circle-icon-theme-git.git
-# cd mcmojave-circle-icon-theme-git
-# yes | makepkg -si
-# cd ..
-# rm -rf mcmojave-circle-icon-theme-git
-
-# echo "Applying theme and icons"
-# gsettings set org.gnome.desktop.interface icon-theme 'McMojave-circle-black'
-# gsettings set org.gnome.desktop.interface gtk-theme 'Plata-Noir-Compact'
-# gsettings set org.gnome.desktop.wm.preferences theme 'Plata-Noir-Compact'
-# gsettings set org.gnome.shell.extensions.user-theme name "Plata-Noir"

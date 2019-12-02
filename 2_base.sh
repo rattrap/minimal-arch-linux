@@ -57,24 +57,31 @@ code --install-extension jolaleye.horizon-theme-vscode
 code --install-extension pkief.material-icon-theme
 code --install-extension esbenp.prettier-vscode
 
-echo "Installing theme dependencies"
+echo "Installing GTK icons"
+yes | sudo pacman -S papirus-icon-theme
+git clone https://aur.archlinux.org/papirus-folders-git.git
+cd papirus-folders-git
+yes | makepkg -si
+cd ..
+rm -rf papirus-folders-git
+papirus-folders -C yellow --theme Papirus-Dark
+
+echo "Installing GTK theme and dependencies"
 yes | sudo pacman -S gtk-engine-murrine gtk-engines
+mkdir -p /usr/share/themes/
+wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/dependencies/ayu-gtk-themes.tar.gz
+tar -xzf /usr/share/themes/ayu-gtk-themes.tar.gz
+rm -f /usr/share/themes/ayu-gtk-themes.tar.gz
 
-echo "Setting up Qogir (GTK) theme"
-git clone https://github.com/vinceliuice/Qogir-theme.git
-cd Qogir-theme || exit
-sudo mkdir -p /usr/share/themes
-sudo ./install.sh -d /usr/share/themes
-cd ..
-rm -rf Qogir-theme
-
-echo "Setting up Qogir icons"
-git clone https://github.com/vinceliuice/Qogir-icon-theme.git
-cd Qogir-icon-theme || exit
-sudo mkdir -p /usr/share/icons
-sudo ./install.sh -d /usr/share/icons
-cd ..
-rm -rf Qogir-icon-theme
+echo "Setting GTK theme, font and icons"
+FONT="SF Pro Text Regular 9"
+GTK_THEME="Ayu-Mirage-Dark"
+GTK_ICON_THEME="Papirus-Dark"
+GTK_SCHEMA="org.gnome.desktop.interface"
+gsettings set $GTK_SCHEMA gtk-theme "$GTK_THEME"
+gsettings set $GTK_SCHEMA icon-theme "$GTK_ICON_THEME"
+gsettings set $GTK_SCHEMA font-name "$FONT"
+gsettings set $GTK_SCHEMA document-font-name "$FONT"
 
 echo "Blacklisting bluetooth"
 sudo touch /etc/modprobe.d/nobt.conf

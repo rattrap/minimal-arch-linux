@@ -12,6 +12,12 @@ yes | makepkg -si
 cd ..
 rm -rf ttf-iosevka
 
+git clone https://aur.archlinux.org/otf-san-francisco-pro.git
+cd otf-san-francisco-pro
+yes | makepkg -si
+cd ..
+rm -rf otf-san-francisco-pro
+
 echo "Creating user's folders"
 yes | sudo pacman -S xdg-user-dirs
 
