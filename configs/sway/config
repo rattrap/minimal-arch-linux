@@ -1,3 +1,4 @@
+### VARIABLES
 # Font
 set $font SF Pro Text Semibold 10
 
@@ -7,63 +8,55 @@ set $colors ayu-mirage
 # Background image
 set $background andre-benz-cXU6tNxhub0-unsplash.jpg
 
-### Variables
-#
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
+
+# Terminal + Rofi
 set $term alacritty
-# Your preferred application launcher
-set $menu rofi -show run
+set $menu rofi -show combi | xargs swaymsg exec
 
-### Output configuration
-
+# Background
 output * bg ~/Pictures/$background fill
 
+# Font
 font pango:$font
-default_border pixel 2
-smart_gaps on
-gaps inner 3
+
+# Gaps
+default_border pixel 5
+gaps inner 5
 gaps outer 0
 hide_edge_borders smart
 
+# Brightness control
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
+# Volume control
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
-### Idle configuration
-#
-# Example configuration:
-#
+# Idle configuration
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 305 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000 -i ~/Pictures/andre-benz-cXU6tNxhub0-unsplash.jpg' \
          timeout 305 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000 -i ~/Pictures/andre-benz-cXU6tNxhub0-unsplash.jpg'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 305 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
+
 
 # Lock screen
 bindsym $mod+m exec swaylock -f -i ~/Pictures/andre-benz-cXU6tNxhub0-unsplash.jpg
 
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
-
-### Input configuration
+# Input configuration
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
@@ -220,19 +213,27 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Load waybar
-# ----------------------------------------------------------------------------
-
 bar {
     swaybar_command waybar
 }
 
-# Take screenshots
-# ----------------------------------------------------------------------------
+# System Mode
+set $mode_system System
+mode "$mode_system" {
+  bindsym e exec swaymsg exit, mode "default"
+  bindsym s exec systemctl poweroff, mode "default"
+  bindsym r exec systemctl reboot, mode "default"
 
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym Space mode "default"
+}
+bindsym $mod+Delete mode "$mode_system"
+
+# Screenshots
 set $screenselect slurp
 set $screenshot grim
 set $screenshotout $HOME/Pictures/screenshots/$(date "+%Y-%m-%d-%H%M%S_shot.png")
-
 bindsym Print exec $screenshot $screenshotout
 bindsym $mod+Print exec $screenshot -g "$($screenselect)" $screenshotout
 
