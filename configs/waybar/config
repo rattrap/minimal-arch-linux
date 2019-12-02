@@ -15,7 +15,6 @@
   "modules-center": [ "clock" ],
   "modules-right": [
     "tray",
-    "idle_inhibitor",
     "memory",
     "cpu",
     "temperature",
@@ -65,26 +64,13 @@
     "on-click": "swaymsg scratchpad show",
     "on-click-right": "alacritty"
   },
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "tooltip": false,
-    "format-icons": {
-        "activated": "",
-        "deactivated": ""
-    }
-  },
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-bluetooth": "{icon} ",
-    "format-muted": "",
+    "format-muted": "",
     "format-icons": {
-        "headphones": "",
-        "handsfree": "",
-        "headset": "",
-        "phone": "",
-        "portable": "",
-        "car": "",
-        "default": ["", ""]
+        "headphones": "",
+        "default": ""
     },
     "scroll-step": 5,
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
@@ -95,8 +81,8 @@
     "thermal-zone": 2,
     "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
     "critical-threshold": 80,
-    "format-critical": "{temperatureC}°C ",
-    "format": " {temperatureC}°C"
+    "format-critical": "{temperatureC}°C ",
+    "format": " {temperatureC}°C"
   },
   "cpu": {
     "tooltip": false,
@@ -105,7 +91,7 @@
   "network": {
     "format": "{ifname}",
     "format-wifi": " {essid}",
-    "format-ethernet": " {ifname}",
+    "format-ethernet": " {ifname}",
     "format-disconnected": "",
     "tooltip": false,
     "max-length": 50,
@@ -117,7 +103,7 @@
     "tooltip": false
   },
   "backlight": {
-      "format": "{percent}% ",
+      "format": "{percent}% ",
       "on-scroll-down": "light -A 1",
       "on-scroll-up": "light -U 1"
   }
