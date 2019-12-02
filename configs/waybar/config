@@ -15,12 +15,13 @@
   "modules-center": [ "clock" ],
   "modules-right": [
     "tray",
-    "memory",
-    "cpu",
-    "temperature",
     "pulseaudio",
-    "network",
     "backlight",
+    "battery",
+    "network",
+    "cpu",
+    "memory",
+    "temperature",
     "custom/system"
   ],
   "custom/separator": {
@@ -106,5 +107,28 @@
       "format": "{percent}% ",
       "on-scroll-down": "light -A 1",
       "on-scroll-up": "light -U 1"
-  }
+  },
+  "battery": {
+    "interval": 2,
+    "states": {
+        "100": 100,
+        "75": 75,
+        "50": 50,
+        "20": 25,
+        "critical": 5
+    },
+    "format": "{capacity}% ",
+    "format-full": "{capacity}% ",
+    "format-discharging-100": "{capacity}% ",
+    "format-discharging-75": "{capacity}% ",
+    "format-discharging-50": "{capacity}% ",
+    "format-discharging-25": "{capacity}% ",
+    "format-discharging-critical": "{capacity}% ",
+    "format-charging-100": "{capacity}% ",
+    "format-charging-75": "{capacity}% ",
+    "format-charging-50": "{capacity}% ",
+    "format-charging-25": "{capacity}% ",
+    "format-charging-critical": "{capacity}% ", 
+    "format-icons": ["", "", "", "", ""]
+}
 }
