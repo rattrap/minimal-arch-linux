@@ -47,12 +47,16 @@ echo "Enabling auto-mount and archives creation/deflation for thunar"
 yes | sudo pacman -S gvfs thunar-volman thunar-archive-plugin
 
 echo "Setting wallpaper"
-wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpaper/andre-benz-cXU6tNxhub0-unsplash.jpg
+wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/andre-benz-cXU6tNxhub0-unsplash.jpg
 
 echo "Ricing waybar"
 mkdir -p ~/.config/waybar
 wget -P ~/.config/waybar https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/waybar/config
 wget -P ~/.config/waybar https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/waybar/style.css
+
+echo "Ricing swaynag"
+mkdir -p ~/.config/swaynag
+wget -P ~/.config/swaynag https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/swaynag/config
 
 echo "Ricing Alacritty"
 mkdir -p ~/.config/alacritty
