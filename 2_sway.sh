@@ -6,12 +6,6 @@ chmod +x 2_base.sh
 sh ./2_base.sh
 
 echo "Installing fonts"
-git clone https://aur.archlinux.org/ttf-iosevka.git
-cd ttf-iosevka
-yes | makepkg -si
-cd ..
-rm -rf ttf-iosevka
-
 git clone https://aur.archlinux.org/otf-san-francisco-pro.git
 cd otf-san-francisco-pro
 yes | makepkg -si
