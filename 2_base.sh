@@ -28,7 +28,7 @@ yes | sudo pacman -S zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME"/.oh-my-zsh/custom/themes/powerlevel10k
 wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/powerlevel10k/.p10k.zsh
-mv "$HOME"/.zshrc "$HOME"/.zshrc.BACKUP
+rm -rf "$HOME"/.zshrc
 wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc
 
 echo "Installing Node.js LTS"
@@ -42,9 +42,6 @@ tee "$HOME"/.profile << END
 export PATH=$HOME/.npm-global/bin:$PATH
 END
 source "$HOME"/.profile
-tee "$HOME"/.zshrc << END
-export PATH=$HOME/.npm-global/bin:$PATH"
-END
 
 echo "Configuring neovim"
 mkdir -p "$HOME"/.config/nvim
@@ -58,7 +55,7 @@ echo "Installing VS Code"
 yes | sudo pacman -S code
 
 echo "Installing VS Code theme + icons"
-code --install-extension jolaleye.horizon-theme-vscode
+code --install-extension teabyii.ayu
 code --install-extension pkief.material-icon-theme
 code --install-extension esbenp.prettier-vscode
 
