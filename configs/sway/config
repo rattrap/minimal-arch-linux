@@ -16,7 +16,7 @@ set $menu rofi -show run
 
 ### Output configuration
 
-output * bg ~/Pictures/fgvKe0O.jpg fill
+output * bg ~/Pictures/andre-benz-cXU6tNxhub0-unsplash.jpg fill
 
 default_border pixel 3
 smart_gaps on
@@ -36,17 +36,17 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000 -i ~/Pictures/fgvKe0O.jpg' \
+         timeout 300 'swaylock -f -c 000000 -i ~/Pictures/andre-benz-cXU6tNxhub0-unsplash.jpg' \
          timeout 305 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000 -i ~/Pictures/fgvKe0O.jpg'
+         before-sleep 'swaylock -f -c 000000 -i ~/Pictures/andre-benz-cXU6tNxhub0-unsplash.jpg'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 305 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 # Lock screen
-bindsym $mod+m exec swaylock -f -i ~/Pictures/fgvKe0O.jpg
+bindsym $mod+m exec swaylock -f -i ~/Pictures/andre-benz-cXU6tNxhub0-unsplash.jpg
 
 #
 # Example configuration:
