@@ -1,4 +1,11 @@
-# Read `man 5 sway` for a complete reference.
+# Font
+set $font SF Pro Text Semibold 9
+
+# Color scheme
+set $colors ayu-mirage
+
+# Background image
+set $background andre-benz-cXU6tNxhub0-unsplash.jpg
 
 ### Variables
 #
@@ -16,8 +23,9 @@ set $menu rofi -show run
 
 ### Output configuration
 
-output * bg ~/Pictures/andre-benz-cXU6tNxhub0-unsplash.jpg fill
+output * bg ~/Pictures/$background fill
 
+font pango:$font
 default_border pixel 3
 smart_gaps on
 gaps inner 3
@@ -228,5 +236,5 @@ set $screenshotout $HOME/Pictures/screenshots/$(date "+%Y-%m-%d-%H%M%S_shot.png"
 bindsym Print exec $screenshot $screenshotout
 bindsym $mod+Print exec $screenshot -g "$($screenselect)" $screenshotout
 
-
+include colors.$colors
 include /etc/sway/config.d/*
