@@ -79,7 +79,7 @@ sudo tar -xzf /usr/share/themes/ayu-gtk-themes.tar.gz -C /usr/share/themes/
 sudo rm -f /usr/share/themes/ayu-gtk-themes.tar.gz
 
 echo "Setting GTK theme, font and icons"
-FONT="SF Pro Text Regular 9"
+FONT="SF Pro Text Regular 10"
 GTK_THEME="Ayu-Mirage-Dark"
 GTK_ICON_THEME="Papirus-Dark"
 GTK_SCHEMA="org.gnome.desktop.interface"

@@ -1,12 +1,12 @@
 /**
- * Ayu Mirage theme ported for rofi
+ * Ayu Dark theme ported for rofi
  */
 
 * {
-  accentcolor: #ffcc66;
-  backgroundcolor: #1f2430f3;
+  accentcolor: #e6b450;
+  backgroundcolor: #0a0e14f3;
   separatorcolor: transparent;
-  foregroundcolor: #bfbab0;
+  foregroundcolor: #b3b1ad;
   selectioncolor: #fafafa;
   
   background-color: transparent;

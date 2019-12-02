@@ -1,5 +1,5 @@
 # Font
-set $font SF Pro Text Semibold 9
+set $font SF Pro Text Semibold 10
 
 # Color scheme
 set $colors ayu-mirage
