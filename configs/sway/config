@@ -28,8 +28,8 @@ output * bg ~/Pictures/$background fill
 font pango:$font
 
 # Gaps
-default_border pixel 5
-gaps inner 5
+default_border pixel 1
+gaps inner 1
 gaps outer 0
 hide_edge_borders smart
 
