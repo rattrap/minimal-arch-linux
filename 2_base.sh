@@ -3,9 +3,6 @@
 echo "Updating databases"
 sudo pacman -Syu --noconfirm
 
-echo "Enabling AppArmor cache"
-sudo sed -i 's/#write-cache/write-cache/g' /etc/apparmor/parser.conf
-
 echo "Installing DKMS packages"
 sudo pacman -S --noconfirm dkms
 
@@ -71,28 +68,3 @@ sudo mkinitcpio -p linux
 
 echo "Increasing the amount of inotify watchers"
 echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf && sudo sysctl --system
-
-echo "Installing and configuring Firejail"
-sudo pacman -S --noconfirm firejail
-sudo apparmor_parser -r /etc/apparmor.d/firejail-default
-sudo firecfg
-sudo touch /etc/pacman.d/hooks/firejail.hook
-sudo tee -a /etc/pacman.d/hooks/firejail.hook << END
-[Trigger]
-Type = File
-Operation = Install
-Operation = Upgrade
-Operation = Remove
-Target = usr/bin/*
-Target = usr/local/bin/*
-Target = usr/share/applications/*.desktop
-[Action]
-Description = Configure symlinks in /usr/local/bin based on firecfg.config...
-When = PostTransaction
-Depends = firejail
-Exec = /bin/sh -c 'firecfg &>/dev/null'
-END
-
-echo "Granting internet access again to VSCode in Firejail profile"
-sudo sed -i 's/net none/#net none/g' /etc/firejail/code.profile
-sudo firecfg
