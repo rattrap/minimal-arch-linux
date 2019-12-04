@@ -7,10 +7,10 @@ echo "Enabling AppArmor cache"
 sudo sed -i 's/#write-cache/write-cache/g' /etc/apparmor/parser.conf
 
 echo "Installing DKMS packages"
-yes | sudo pacman -S dkms
+sudo pacman -S --noconfirm dkms
 
 echo "Installing and configuring UFW"
-yes | sudo pacman -S ufw
+sudo pacman -S --noconfirm ufw
 sudo systemctl enable ufw
 sudo systemctl start ufw
 sudo ufw enable
@@ -18,13 +18,13 @@ sudo ufw default deny incoming
 sudo ufw default allow outgoing
 
 echo "Improving Intel GPU support"
-yes | sudo pacman -S vulkan-intel intel-media-driver
+sudo pacman -S --noconfirm vulkan-intel intel-media-driver
 
 echo "Installing common applications"
-echo -en "1\nyes" | sudo pacman -S firefox chromium keepassxc git openssh neovim links upower htop powertop p7zip ripgrep unzip
+sudo pacman -S --noconfirm firefox chromium keepassxc git openssh neovim links upower htop powertop p7zip ripgrep unzip
 
 echo "Installing fonts"
-yes | sudo pacman -S ttf-roboto ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts ttf-font-awesome
+sudo pacman -S --noconfirm ttf-roboto ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts ttf-font-awesome
 
 echo "Installing San Francisco Fonts"
 git clone https://aur.archlinux.org/otf-san-francisco-pro.git
@@ -34,14 +34,14 @@ cd ..
 rm -rf otf-san-francisco-pro
 
 echo "Installing and setting zsh, oh-my-zsh and powerlevel10k"
-yes | sudo pacman -S zsh
+sudo pacman -S --noconfirm zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME"/.oh-my-zsh/custom/themes/powerlevel10k
 rm -rf "$HOME"/.zshrc
 wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc
 
 echo "Installing Node.js LTS"
-yes | sudo pacman -S nodejs-lts-erbium npm
+sudo pacman -S --noconfirm nodejs-lts-erbium npm
 
 echo "Changing default npm directory"
 mkdir "$HOME"/.npm-global
@@ -53,7 +53,7 @@ END
 source "$HOME"/.profile
 
 echo "Installing VS Code"
-yes | sudo pacman -S code
+sudo pacman -S --noconfirm code
 
 echo "Installing VS Code theme + icons"
 code --install-extension teabyii.ayu
@@ -73,7 +73,7 @@ echo "Increasing the amount of inotify watchers"
 echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf && sudo sysctl --system
 
 echo "Installing and configuring Firejail"
-yes | sudo pacman -S firejail
+sudo pacman -S --noconfirm firejail
 sudo apparmor_parser -r /etc/apparmor.d/firejail-default
 sudo firecfg
 sudo touch /etc/pacman.d/hooks/firejail.hook

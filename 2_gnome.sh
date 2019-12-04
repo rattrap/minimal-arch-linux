@@ -8,7 +8,7 @@ chmod +x 2_base.sh
 sh ./2_base.sh
 
 echo "Installing Gnome and a few extra apps"
-echo -en " \nyes" | sudo pacman -S gnome gnome-tweaks gnome-usage gitg evolution gvfs-goa
+sudo pacman -S --no-confirm gnome gnome-tweaks gnome-usage gitg evolution gvfs-goa
 
 echo "Enabling GDM"
 sudo systemctl enable gdm.service

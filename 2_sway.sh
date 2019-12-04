@@ -6,16 +6,16 @@ chmod +x 2_base.sh
 sh ./2_base.sh
 
 echo "Installing xwayland"
-yes | sudo pacman -S xorg-server-xwayland
+sudo pacman -S --noconfirm xorg-server-xwayland
 
 echo "Creating user's folders"
-yes | sudo pacman -S xdg-user-dirs
+sudo pacman -S --noconfirm xdg-user-dirs
 
 echo "Installing Alacritty terminal"
-yes | sudo pacman -S alacritty
+sudo pacman -S --noconfirm alacritty
 
 echo "Installing office applications"
-yes | sudo pacman -S tumbler evince thunderbird
+sudo pacman -S --noconfirm tumbler evince thunderbird
 
 echo "Importing sway specific zsh configurations"
 wget -P ~/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/sway/.zprofile
@@ -24,7 +24,7 @@ wget -P ~/.zshrc.d https://raw.githubusercontent.com/exah-io/minimal-arch-linux/
 wget -P ~/.zshrc.d https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/sway/.zshrc.d/wayland.zsh
 
 echo "Installing sway and additional packages"
-yes | sudo pacman -S sway swaylock swayidle waybar wl-clipboard pulseaudio pavucontrol rofi slurp grim thunar mousepad nnn light feh qalculate-gtk
+sudo pacman -S --noconfirm sway swaylock swayidle waybar wl-clipboard pulseaudio pavucontrol rofi slurp grim thunar mousepad nnn light feh qalculate-gtk
 mkdir -p ~/Pictures/screenshots
 mkdir -p ~/.config/sway
 wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/config
@@ -33,7 +33,7 @@ wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-l
 wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/colors.ayu-mirage
 
 echo "Enabling auto-mount and archives creation/deflation for thunar"
-yes | sudo pacman -S gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
+sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
 
 echo "Setting wallpaper"
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/andre-benz-cXU6tNxhub0-unsplash.jpg
@@ -68,14 +68,14 @@ curl -fLo "$HOME"/.local/share/nvim/site/autoload/plug.vim --create-dirs https:/
 nvim +'PlugInstall --sync' +qa
 
 echo "Installing GTK theme and dependencies"
-yes | sudo pacman -S gtk-engine-murrine gtk-engines
+sudo pacman -S --noconfirm gtk-engine-murrine gtk-engines
 sudo mkdir -p /usr/share/themes/
 sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/dependencies/ayu-gtk-themes.tar.gz
 sudo tar -xzf /usr/share/themes/ayu-gtk-themes.tar.gz -C /usr/share/themes/
 sudo rm -f /usr/share/themes/ayu-gtk-themes.tar.gz
 
 echo "Installing icons"
-yes | sudo pacman -S papirus-icon-theme
+sudo pacman -S --noconfirm papirus-icon-theme
 git clone https://aur.archlinux.org/papirus-folders-git.git
 cd papirus-folders-git
 yes | makepkg -si
