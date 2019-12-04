@@ -3,6 +3,9 @@
 echo "Updating databases"
 sudo pacman -Syu
 
+echo "Enabling AppArmor cache"
+sudo sed -i 's/#write-cache/write-cache/g' /etc/apparmor/parser.conf
+
 echo "Installing DKMS packages"
 yes | sudo pacman -S dkms
 
