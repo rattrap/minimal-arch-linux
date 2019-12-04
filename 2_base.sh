@@ -3,8 +3,8 @@
 echo "Updating databases"
 sudo pacman -Syu
 
-echo "Installing common packages"
-yes | sudo pacman -S dkms xorg-server-xwayland
+echo "Installing DKMS packages"
+yes | sudo pacman -S dkms
 
 echo "Installing and configuring UFW"
 yes | sudo pacman -S ufw
@@ -21,7 +21,14 @@ echo "Installing common applications"
 echo -en "1\nyes" | sudo pacman -S firefox chromium keepassxc git openssh neovim links upower htop powertop p7zip ripgrep unzip
 
 echo "Installing fonts"
-yes | sudo pacman -S ttf-roboto ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts gsfonts ttf-font-awesome
+yes | sudo pacman -S ttf-roboto ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts ttf-font-awesome
+
+echo "Installing San Francisco Fonts"
+git clone https://aur.archlinux.org/otf-san-francisco-pro.git
+cd otf-san-francisco-pro
+yes | makepkg -si
+cd ..
+rm -rf otf-san-francisco-pro
 
 echo "Installing and setting zsh, oh-my-zsh and powerlevel10k"
 yes | sudo pacman -S zsh
@@ -43,14 +50,6 @@ export PATH=$HOME/.npm-global/bin:$PATH
 END
 source "$HOME"/.profile
 
-echo "Configuring neovim"
-mkdir -p "$HOME"/.config/nvim
-wget -P "$HOME"/.config/nvim https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/nvim/init.vim
-
-echo "Installing vim-plug"
-curl -fLo "$HOME"/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim +'PlugInstall --sync' +qa
-
 echo "Installing VS Code"
 yes | sudo pacman -S code
 
@@ -58,32 +57,6 @@ echo "Installing VS Code theme + icons"
 code --install-extension teabyii.ayu
 code --install-extension pkief.material-icon-theme
 code --install-extension esbenp.prettier-vscode
-
-echo "Installing GTK icons"
-yes | sudo pacman -S papirus-icon-theme
-git clone https://aur.archlinux.org/papirus-folders-git.git
-cd papirus-folders-git
-yes | makepkg -si
-cd ..
-rm -rf papirus-folders-git
-papirus-folders -C yellow --theme Papirus-Dark
-
-echo "Installing GTK theme and dependencies"
-yes | sudo pacman -S gtk-engine-murrine gtk-engines
-sudo mkdir -p /usr/share/themes/
-sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/dependencies/ayu-gtk-themes.tar.gz
-sudo tar -xzf /usr/share/themes/ayu-gtk-themes.tar.gz -C /usr/share/themes/
-sudo rm -f /usr/share/themes/ayu-gtk-themes.tar.gz
-
-echo "Setting GTK theme, font and icons"
-FONT="SF Pro Text Regular 10"
-GTK_THEME="Ayu-Mirage-Dark"
-GTK_ICON_THEME="Papirus-Dark"
-GTK_SCHEMA="org.gnome.desktop.interface"
-gsettings set $GTK_SCHEMA gtk-theme "$GTK_THEME"
-gsettings set $GTK_SCHEMA icon-theme "$GTK_ICON_THEME"
-gsettings set $GTK_SCHEMA font-name "$FONT"
-gsettings set $GTK_SCHEMA document-font-name "$FONT"
 
 echo "Blacklisting bluetooth"
 sudo touch /etc/modprobe.d/nobt.conf

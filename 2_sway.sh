@@ -5,12 +5,8 @@ wget https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/2_base.
 chmod +x 2_base.sh
 sh ./2_base.sh
 
-echo "Installing fonts"
-git clone https://aur.archlinux.org/otf-san-francisco-pro.git
-cd otf-san-francisco-pro
-yes | makepkg -si
-cd ..
-rm -rf otf-san-francisco-pro
+echo "Installing xwayland"
+yes | sudo pacman -S xorg-server-xwayland
 
 echo "Creating user's folders"
 yes | sudo pacman -S xdg-user-dirs
@@ -62,5 +58,39 @@ wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-li
 wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/ayu-dark.rasi
 wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/ayu.rasi
 wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/defaults.rasi
+
+echo "Ricing neovim"
+mkdir -p "$HOME"/.config/nvim
+wget -P "$HOME"/.config/nvim https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/nvim/init.vim
+
+echo "Installing vim-plug"
+curl -fLo "$HOME"/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+nvim +'PlugInstall --sync' +qa
+
+echo "Installing GTK theme and dependencies"
+yes | sudo pacman -S gtk-engine-murrine gtk-engines
+sudo mkdir -p /usr/share/themes/
+sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/dependencies/ayu-gtk-themes.tar.gz
+sudo tar -xzf /usr/share/themes/ayu-gtk-themes.tar.gz -C /usr/share/themes/
+sudo rm -f /usr/share/themes/ayu-gtk-themes.tar.gz
+
+echo "Installing icons"
+yes | sudo pacman -S papirus-icon-theme
+git clone https://aur.archlinux.org/papirus-folders-git.git
+cd papirus-folders-git
+yes | makepkg -si
+cd ..
+rm -rf papirus-folders-git
+papirus-folders -C yellow --theme Papirus-Dark
+
+echo "Setting GTK theme, font and icons"
+FONT="SF Pro Text Regular 10"
+GTK_THEME="Ayu-Mirage-Dark"
+GTK_ICON_THEME="Papirus-Dark"
+GTK_SCHEMA="org.gnome.desktop.interface"
+gsettings set $GTK_SCHEMA gtk-theme "$GTK_THEME"
+gsettings set $GTK_SCHEMA icon-theme "$GTK_ICON_THEME"
+gsettings set $GTK_SCHEMA font-name "$FONT"
+gsettings set $GTK_SCHEMA document-font-name "$FONT"
 
 echo "Your setup is ready. You can reboot now!"
