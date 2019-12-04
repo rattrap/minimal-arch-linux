@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Updating databases"
-sudo pacman -Syu
+sudo pacman -Syu --noconfirm
 
 echo "Enabling AppArmor cache"
 sudo sed -i 's/#write-cache/write-cache/g' /etc/apparmor/parser.conf
