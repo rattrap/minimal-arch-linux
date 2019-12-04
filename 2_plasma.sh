@@ -15,7 +15,3 @@ echo -en " \n \nyes" | sudo pacman -S plasma ark dolphin dolphin-plugins gwenvie
 
 echo "Installing Plasma wayland session"
 yes | sudo pacman -S plasma-wayland-session
-
-echo "Installing and enabling SDDM"
-yes | sudo pacman -S sddm sddm-kcm
-sudo systemctl enable sddm.service
