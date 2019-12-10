@@ -6,16 +6,6 @@ sudo pacman -Syu --noconfirm
 echo "Installing DKMS packages"
 sudo pacman -S --noconfirm dkms
 
-echo "Adding Firefox and LibreOffice AppArmor profiles"
-sudo wget -P /etc/apparmor.d/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/apparmor/profiles.tar.gz
-sudo tar -xzf /etc/apparmor.d/profiles.tar.gz -C /etc/apparmor.d/
-sudo rm -f /etc/apparmor.d/profiles.tar.gz
-sudo aa-enforce /etc/apparmor.d/usr.bin.firefox
-sudo aa-enforce /etc/apparmor.d/usr.lib.libreoffice.program.oosplash
-sudo aa-enforce /etc/apparmor.d/usr.lib.libreoffice.program.senddoc
-sudo aa-enforce /etc/apparmor.d/usr.lib.libreoffice.program.soffice.bin
-sudo aa-enforce /etc/apparmor.d/usr.lib.libreoffice.program.xpdfimport
-
 echo "Installing and configuring UFW"
 sudo pacman -S --noconfirm ufw
 sudo systemctl enable ufw

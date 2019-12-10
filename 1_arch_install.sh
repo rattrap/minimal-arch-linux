@@ -143,6 +143,16 @@ sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=suspend/g' /etc/systemd/login
 echo "Enabling AppArmor"
 systemctl enable apparmor.service
 
+echo "Adding Firefox and LibreOffice AppArmor profiles"
+sudo wget -P /etc/apparmor.d/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/apparmor/profiles.tar.gz
+sudo tar -xzf /etc/apparmor.d/profiles.tar.gz -C /etc/apparmor.d/
+sudo rm -f /etc/apparmor.d/profiles.tar.gz
+sudo aa-enforce /etc/apparmor.d/usr.bin.firefox
+sudo aa-enforce /etc/apparmor.d/usr.lib.libreoffice.program.oosplash
+sudo aa-enforce /etc/apparmor.d/usr.lib.libreoffice.program.senddoc
+sudo aa-enforce /etc/apparmor.d/usr.lib.libreoffice.program.soffice.bin
+sudo aa-enforce /etc/apparmor.d/usr.lib.libreoffice.program.xpdfimport
+
 echo "Adding user as a sudoer"
 echo '%wheel ALL=(ALL) ALL' | EDITOR='tee -a' visudo
 EOF
