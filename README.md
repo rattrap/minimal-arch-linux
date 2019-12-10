@@ -14,7 +14,7 @@
 - SSD Periodic TRIM
 - Intel microcode
 - Standard Kernel + LTS kernel as fallback
-- AppArmor (with Firefox + LibreOffice profiles)
+- AppArmor
 - Hibernate (power key) + suspend (lid close)
 
 ### Requirements
