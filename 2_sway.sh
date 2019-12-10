@@ -24,7 +24,7 @@ wget -P ~/.zshrc.d https://raw.githubusercontent.com/exah-io/minimal-arch-linux/
 wget -P ~/.zshrc.d https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/sway/.zshrc.d/wayland.zsh
 
 echo "Installing sway and additional packages"
-sudo pacman -S --noconfirm sway swaylock swayidle waybar wl-clipboard pulseaudio pavucontrol rofi slurp grim thunar mousepad nnn light feh qalculate-gtk
+sudo pacman -S --noconfirm sway swaylock swayidle waybar otf-font-awesome wl-clipboard pulseaudio pavucontrol rofi slurp grim thunar mousepad nnn light feh qalculate-gtk
 mkdir -p ~/Pictures/screenshots
 mkdir -p ~/.config/sway
 wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/config
@@ -70,7 +70,7 @@ nvim +'PlugInstall --sync' +qa
 echo "Installing GTK theme and dependencies"
 sudo pacman -S --noconfirm gtk-engine-murrine gtk-engines
 sudo mkdir -p /usr/share/themes/
-sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/dependencies/ayu-gtk-themes.tar.gz
+sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/ayu-gtk-themes.tar.gz
 sudo tar -xzf /usr/share/themes/ayu-gtk-themes.tar.gz -C /usr/share/themes/
 sudo rm -f /usr/share/themes/ayu-gtk-themes.tar.gz
 
