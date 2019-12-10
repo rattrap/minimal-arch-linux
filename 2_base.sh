@@ -21,7 +21,7 @@ echo "Installing common applications"
 sudo pacman -S --noconfirm firefox chromium keepassxc git openssh neovim links upower htop powertop p7zip ripgrep unzip
 
 echo "Installing fonts"
-sudo pacman -S --noconfirm ttf-roboto ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts ttf-font-awesome
+sudo pacman -S --noconfirm ttf-roboto ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts otf-font-awesome ttf-font-awesome
 
 echo "Installing San Francisco Fonts"
 git clone https://aur.archlinux.org/otf-san-francisco-pro.git
