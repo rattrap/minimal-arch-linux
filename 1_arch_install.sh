@@ -87,7 +87,7 @@ timeout 1
 editor 0
 END
 
-LVM_BLKID=$(blkid -o value -s UUID /dev/nvme0n1p2)
+LVM_BLKID=$(blkid /dev/nvme0n1p2 -sUUID -ovalue)
 
 mkdir -p /boot/loader/entries/
 touch /boot/loader/entries/arch.conf
