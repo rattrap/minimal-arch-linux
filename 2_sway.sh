@@ -38,6 +38,9 @@ sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-rol
 echo "Setting wallpaper"
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/andre-benz-cXU6tNxhub0-unsplash.jpg
 
+echo "Adding VSCode ayu theme"
+code --install-extension teabyii.ayu
+
 echo "Ricing waybar"
 mkdir -p ~/.config/waybar
 wget -P ~/.config/waybar https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/waybar/config

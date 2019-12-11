@@ -14,6 +14,16 @@ sudo ufw enable
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 
+echo "Installing and enabling TLP"
+yes | sudo pacman -S tlp tlp-rdw
+sudo systemctl enable tlp.service
+sudo systemctl enable tlp.service
+sudo systemctl start tlp.service
+sudo systemctl start tlp.service
+sudo systemctl enable NetworkManager-dispatcher.service
+sudo systemctl mask systemd-rfkill.service
+sudo systemctl mask systemd-rfkill.socket
+
 echo "Improving Intel GPU support"
 sudo pacman -S --noconfirm vulkan-intel intel-media-driver
 
@@ -21,7 +31,8 @@ echo "Installing common applications"
 sudo pacman -S --noconfirm firefox chromium keepassxc git openssh neovim links upower htop powertop p7zip ripgrep unzip
 
 echo "Installing fonts"
-sudo pacman -S --noconfirm ttf-roboto ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack ttf-fira-code noto-fonts ttf-font-awesome
+sudo pacman -S --noconfirm ttf-roboto ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack noto-fonts ttf-font-awesome
+sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc
 
 echo "Installing San Francisco Fonts"
 git clone https://aur.archlinux.org/otf-san-francisco-pro.git
@@ -53,7 +64,6 @@ echo "Installing VS Code"
 sudo pacman -S --noconfirm code
 
 echo "Installing VS Code theme + icons"
-code --install-extension teabyii.ayu
 code --install-extension pkief.material-icon-theme
 code --install-extension esbenp.prettier-vscode
 
