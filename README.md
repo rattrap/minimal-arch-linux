@@ -41,7 +41,8 @@
   - Gnome and KDE have very basic support
 - UFW (deny incoming, allow outgoing)
 - Firejail with AppArmor integration
-- Ayu Mirage color scheme (alacritty, neovim, rofi, waybar, VS Code)
+- TLP (default settings)
+- (sway) Ayu Mirage color scheme (alacritty, neovim, rofi, waybar, VS Code)
   - Visual: [[Sway] Ayu (Updated)](https://www.reddit.com/r/unixporn/comments/dosu0c/sway_ayu_updated/)
 - swaywm:
   - autostart on tty1
