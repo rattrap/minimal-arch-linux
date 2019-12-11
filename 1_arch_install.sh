@@ -6,7 +6,7 @@ user_password=""
 hostname=""
 user_name=""
 continent_city=""
-swap_size="8"
+swap_size="16"
 
 echo "Updating system clock"
 timedatectl set-ntp true
@@ -137,10 +137,6 @@ systemctl enable fstrim.timer
 
 echo "Enabling NetworkManager"
 systemctl enable NetworkManager
-
-echo "Enabling suspend and hibernate"
-sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=hibernate/g' /etc/systemd/logind.conf
-sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=suspend/g' /etc/systemd/logind.conf
 
 echo "Enabling AppArmor"
 systemctl enable apparmor.service

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Updating databases"
+echo "Updating packages"
 sudo pacman -Syu --noconfirm
 
 echo "Installing DKMS packages"

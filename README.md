@@ -15,7 +15,6 @@
 - Intel microcode
 - Standard Kernel + LTS kernel as fallback
 - AppArmor
-- Hibernate (power key) + suspend (lid close)
 
 ### Requirements
 
@@ -51,6 +50,7 @@
   - Alacritty terminal
   - rofi as application launcher
   - slurp and grim for screenshots
+  - - Hibernate (power key) + suspend (lid close)
 - zsh:
   - powerlevel10k theme
   - oh-my-zsh

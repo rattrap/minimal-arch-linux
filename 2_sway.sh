@@ -96,4 +96,8 @@ gsettings set $GTK_SCHEMA icon-theme "$GTK_ICON_THEME"
 gsettings set $GTK_SCHEMA font-name "$FONT"
 gsettings set $GTK_SCHEMA document-font-name "$FONT"
 
+echo "Enabling suspend and hibernate hotkeys"
+sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=hibernate/g' /etc/systemd/logind.conf
+sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=suspend/g' /etc/systemd/logind.conf
+
 echo "Your setup is ready. You can reboot now!"
