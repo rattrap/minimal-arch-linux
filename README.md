@@ -10,7 +10,6 @@
 - LVM on LUKS
 - LUKS2
 - systemd-boot (with Pacman hook for automatic updates)
-- Automatic login (with systemd)
 - SSD Periodic TRIM
 - Intel microcode
 - Standard Kernel + LTS kernel as fallback
@@ -50,7 +49,8 @@
   - Alacritty terminal
   - rofi as application launcher
   - slurp and grim for screenshots
-  - - Hibernate (power key) + suspend (lid close)
+  - Hibernate (power key) + suspend (lid close)
+  - Automatic login (with systemd)
 - zsh:
   - powerlevel10k theme
   - oh-my-zsh
