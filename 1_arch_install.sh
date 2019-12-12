@@ -24,11 +24,11 @@ yes | mkfs.fat -F32 /dev/nvme0n1p1
 
 echo "Setting up cryptographic volume"
 printf "%s" "$encryption_passphrase" | cryptsetup -c aes-xts-plain64 -h sha512 -s 512 --use-random --type luks2 --label LVMPART luksFormat /dev/nvme0n1p2
-printf "%s" "$encryption_passphrase" | cryptsetup luksOpen /dev/nvme0n1p2 cryptoVols
+printf "%s" "$encryption_passphrase" | cryptsetup luksOpen /dev/nvme0n1p2 cryptlvm
 
 echo "Setting up LVM"
-pvcreate /dev/mapper/cryptoVols
-vgcreate Arch /dev/mapper/cryptoVols
+pvcreate /dev/mapper/cryptlvm
+vgcreate Arch /dev/mapper/cryptlvm
 lvcreate -L +"$swap_size"GB Arch -n swap
 lvcreate -l +100%FREE Arch -n root
 
@@ -71,7 +71,7 @@ usermod -a -G video $user_name
 echo -en "$user_password\n$user_password" | passwd $user_name
 
 echo "Generating initramfs"
-sed -i 's/^HOOKS.*/HOOKS=(base udev keyboard autodetect modconf block keymap encrypt lvm2 resume filesystems fsck)/' /etc/mkinitcpio.conf
+sed -i 's/^HOOKS.*/HOOKS=(base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt sd-lvm2 filesystems fsck)/' /etc/mkinitcpio.conf
 sed -i 's/^MODULES.*/MODULES=(ext4 intel_agp i915)/' /etc/mkinitcpio.conf
 mkinitcpio -p linux
 mkinitcpio -p linux-lts
@@ -87,6 +87,9 @@ timeout 1
 editor 0
 END
 
+echo "Getting UUID"
+LVM_BLKID="$(blkid -s UUID -o value /dev/nvme0n1p2)"
+
 mkdir -p /boot/loader/entries/
 touch /boot/loader/entries/arch.conf
 tee -a /boot/loader/entries/arch.conf << END
@@ -94,7 +97,7 @@ title ArchLinux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
-options cryptdevice=LABEL=LVMPART:cryptoVols root=/dev/mapper/Arch-root resume=/dev/mapper/Arch-swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
+options rd.luks.name=$LVM_BLKID=cryptlvm root=/dev/mapper/Arch-root resume=/dev/mapper/Arch-swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
 END
 
 touch /boot/loader/entries/archlts.conf
@@ -103,7 +106,7 @@ title ArchLinux
 linux /vmlinuz-linux-lts
 initrd /intel-ucode.img
 initrd /initramfs-linux-lts.img
-options cryptdevice=LABEL=LVMPART:cryptoVols root=/dev/mapper/Arch-root resume=/dev/mapper/Arch-swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
+options rd.luks.name=$LVM_BLKID=cryptlvm root=/dev/mapper/Arch-root resume=/dev/mapper/Arch-swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
 END
 
 echo "Setting up Pacman hook for automatic systemd-boot updates"
