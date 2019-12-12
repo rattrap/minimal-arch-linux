@@ -19,6 +19,9 @@ echo "Zeroing partitions"
 cat /dev/zero > /dev/nvme0n1p1
 cat /dev/zero > /dev/nvme0n1p2
 
+echo "Getting UUID"
+LVM_BLKID="$(blkid -s UUID -o value /dev/nvme0n1p2)"
+
 echo "Setting up cryptographic volume"
 printf "%s" "$encryption_passphrase" | cryptsetup -c aes-xts-plain64 -h sha512 -s 512 --use-random --type luks2 luksFormat /dev/nvme0n1p2
 printf "%s" "$encryption_passphrase" | cryptsetup luksOpen /dev/nvme0n1p2 cryptlvm
@@ -96,9 +99,6 @@ default arch
 timeout 1
 editor 0
 END
-
-echo "Getting UUID"
-LVM_BLKID="$(blkid -s UUID -o value /dev/nvme0n1p2)"
 
 mkdir -p /boot/loader/entries/
 touch /boot/loader/entries/arch.conf
