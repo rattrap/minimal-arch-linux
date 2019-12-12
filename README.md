@@ -1,5 +1,5 @@
 # Minimal Arch Linux setup - Install scripts
-- Revamp undergoing. There are still some things a bit rough on the edges, like the icons on waybar
+- Revamp undergoing. Current master branch is WIP and should not be used till this message is removed
 
 |                                                 Clean                                                 |                                               Busy                                                |
 | :---------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------: |
