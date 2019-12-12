@@ -25,7 +25,7 @@ sudo systemctl mask systemd-rfkill.service
 sudo systemctl mask systemd-rfkill.socket
 
 echo "Improving Intel GPU support"
-sudo pacman -S --noconfirm vulkan-intel intel-media-driver
+sudo pacman -S --noconfirm intel-media-driver
 
 echo "Installing common applications"
 sudo pacman -S --noconfirm firefox chromium keepassxc git openssh neovim links upower htop powertop p7zip ripgrep unzip
@@ -55,10 +55,10 @@ echo "Changing default npm directory"
 mkdir "$HOME"/.npm-global
 npm config set prefix "$HOME/.npm-global"
 touch "$HOME"/.profile
-tee "$HOME"/.profile << END
-export PATH=$HOME/.npm-global/bin:$PATH
-END
+echo "export PATH=$HOME/.npm-global/bin:$PATH" >> "$HOME"/.profile
 source "$HOME"/.profile
+
+
 
 echo "Installing VS Code"
 sudo pacman -S --noconfirm code

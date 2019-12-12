@@ -10,6 +10,7 @@ swap_size="16"
 
 echo "Updating system clock"
 timedatectl set-ntp true
+timedatectl set-timezone $continent_city
 
 echo "Creating partition tables"
 printf "n\n1\n4096\n+512M\nef00\nw\ny\n" | gdisk /dev/nvme0n1
@@ -88,11 +89,10 @@ bootctl --path=/boot install
 
 mkdir -p /boot/loader/
 touch /boot/loader/loader.conf
-tee -a /boot/loader/loader.conf << END
-default arch
-timeout 1
-editor 0
-END
+echo "default arch" >> /boot/loader/loader.conf
+echo "timeout 1" >> /boot/loader/loader.conf
+echo "editor 0" >> /boot/loader/loader.conf
+
 
 echo "Getting UUID"
 LVM_BLKID=$(blkid -s UUID -o value /dev/nvme0n1p2)
@@ -104,8 +104,8 @@ title ArchLinux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
-options rd.luks.name=$LVM_BLKID=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
 END
+echo "options rd.luks.name=$LVM_BLKID=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw" >> /boot/loader/entries/arch.conf
 
 touch /boot/loader/entries/archlts.conf
 tee -a /boot/loader/entries/archlts.conf << END
@@ -113,8 +113,8 @@ title ArchLinux
 linux /vmlinuz-linux-lts
 initrd /intel-ucode.img
 initrd /initramfs-linux-lts.img
-options rd.luks.name=$LVM_BLKID=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
 END
+echo "options rd.luks.name=$LVM_BLKID=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw" >> /boot/loader/entries/arch.conf
 
 echo "Setting up Pacman hook for automatic systemd-boot updates"
 mkdir -p /etc/pacman.d/hooks/
