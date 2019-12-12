@@ -73,11 +73,14 @@ echo -en "$user_password\n$user_password" | passwd $user_name
 echo "Generating initramfs"
 sed -i 's/^HOOKS.*/HOOKS=(base udev keyboard autodetect modconf block keymap encrypt lvm2 resume filesystems fsck)/' /etc/mkinitcpio.conf
 sed -i 's/^MODULES.*/MODULES=(ext4 intel_agp i915)/' /etc/mkinitcpio.conf
-mkinitcpio -p linux-lts
 mkinitcpio -p linux
+mkinitcpio -p linux-lts
 
 echo "Setting up systemd-boot"
 bootctl --path=/boot install
+
+echo "Getting UUID"
+LVM_BLKID="$(blkid -s UUID -o value /dev/nvme0n1p2)"
 
 mkdir -p /boot/loader/
 touch /boot/loader/loader.conf
@@ -86,8 +89,6 @@ default arch
 timeout 1
 editor 0
 END
-
-LVM_BLKID=$(blkid /dev/nvme0n1p2 -sUUID -ovalue)
 
 mkdir -p /boot/loader/entries/
 touch /boot/loader/entries/arch.conf
