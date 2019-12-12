@@ -47,7 +47,7 @@ yes | mkswap /dev/vg0/swap
 swapon /dev/vg0/swap
 
 echo "Installing Arch Linux"
-yes '' | pacstrap /mnt base base-devel linux linux-headers linux-lts linux-lts-headers linux-firmware lvm2 device-mapper e2fsprogs intel-ucode mesa networkmanager apparmor wget man-db man-pages nano vi diffutils
+yes '' | pacstrap /mnt base base-devel linux linux-headers linux-lts linux-lts-headers linux-firmware lvm2 device-mapper e2fsprogs intel-ucode cryptsetup mesa networkmanager apparmor wget man-db man-pages nano vi diffutils
 
 echo "Generating fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -75,7 +75,7 @@ usermod -a -G video $user_name
 echo -en "$user_password\n$user_password" | passwd $user_name
 
 echo "Generating initramfs"
-sed -i 's/^HOOKS.*/HOOKS=(base udev systemd autodetect keyboard sd-vconsole modconf block sd-encrypt sd-lvm2 filesystems fsck)/' /etc/mkinitcpio.conf
+sed -i 's/^HOOKS.*/HOOKS=(base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt sd-lvm2 filesystems fsck)/' /etc/mkinitcpio.conf
 sed -i 's/^MODULES.*/MODULES=(ext4 intel_agp i915)/' /etc/mkinitcpio.conf
 mkinitcpio -p linux
 mkinitcpio -p linux-lts
