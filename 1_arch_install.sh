@@ -19,28 +19,32 @@ echo "Zeroing partitions"
 cat /dev/zero > /dev/nvme0n1p1
 cat /dev/zero > /dev/nvme0n1p2
 
-echo "Building EFI filesystem"
-yes | mkfs.fat -F32 /dev/nvme0n1p1
-
 echo "Setting up cryptographic volume"
 printf "%s" "$encryption_passphrase" | cryptsetup -c aes-xts-plain64 -h sha512 -s 512 --use-random --type luks2 --label LVMPART luksFormat /dev/nvme0n1p2
 printf "%s" "$encryption_passphrase" | cryptsetup luksOpen /dev/nvme0n1p2 cryptlvm
 
-echo "Setting up LVM"
+echo "Creating physical volume"
 pvcreate /dev/mapper/cryptlvm
-vgcreate Arch /dev/mapper/cryptlvm
-lvcreate -L +"$swap_size"GB Arch -n swap
-lvcreate -l +100%FREE Arch -n root
 
-echo "Building filesystems for root and swap"
-yes | mkswap /dev/mapper/Arch-swap
-yes | mkfs.ext4 /dev/mapper/Arch-root
+echo "Creating volume volume"
+vgcreate vg0 /dev/mapper/cryptlvm
 
-echo "Mounting root/boot and enabling swap"
-mount /dev/mapper/Arch-root /mnt
+echo "Creating logical volumes"
+lvcreate -L +"$swap_size"GB vg0 -n swap
+lvcreate -l +100%FREE vg0 -n root
+
+echo "Setting up / partition"
+yes | mkfs.ext4 /dev/vg0/root
+mount /dev/vg0/root /mnt
+
+echo "Setting up /boot partition"
+yes | mkfs.fat -F32 /dev/nvme0n1p1
 mkdir /mnt/boot
 mount /dev/nvme0n1p1 /mnt/boot
-swapon /dev/mapper/Arch-swap
+
+echo "Setting up swap"
+yes | mkswap /dev/vg0/swap
+swapon /dev/vg0/swap
 
 echo "Installing Arch Linux"
 yes '' | pacstrap /mnt base base-devel linux linux-headers linux-lts linux-lts-headers linux-firmware lvm2 device-mapper e2fsprogs intel-ucode mesa networkmanager apparmor wget man-db man-pages nano vi diffutils
@@ -97,7 +101,7 @@ title ArchLinux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
-options rd.luks.name=$LVM_BLKID=cryptlvm root=/dev/mapper/Arch-root resume=/dev/mapper/Arch-swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
+options rd.luks.name=$LVM_BLKID=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
 END
 
 touch /boot/loader/entries/archlts.conf
@@ -106,7 +110,7 @@ title ArchLinux
 linux /vmlinuz-linux-lts
 initrd /intel-ucode.img
 initrd /initramfs-linux-lts.img
-options rd.luks.name=$LVM_BLKID=cryptlvm root=/dev/mapper/Arch-root resume=/dev/mapper/Arch-swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
+options rd.luks.name=$LVM_BLKID=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
 END
 
 echo "Setting up Pacman hook for automatic systemd-boot updates"
@@ -122,15 +126,6 @@ Target = systemd
 Description = Updating systemd-boot
 When = PostTransaction
 Exec = /usr/bin/bootctl update
-END
-
-echo "Enabling autologin"
-mkdir -p  /etc/systemd/system/getty@tty1.service.d/
-touch /etc/systemd/system/getty@tty1.service.d/override.conf
-tee -a /etc/systemd/system/getty@tty1.service.d/override.conf << END
-[Service]
-ExecStart=
-ExecStart=-/usr/bin/agetty --autologin $user_name --noclear %I $TERM
 END
 
 echo "Enabling periodic TRIM"
