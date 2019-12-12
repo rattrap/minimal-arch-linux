@@ -19,9 +19,6 @@ echo "Zeroing partitions"
 cat /dev/zero > /dev/nvme0n1p1
 cat /dev/zero > /dev/nvme0n1p2
 
-echo "Getting UUID"
-LVM_BLKID="$(blkid -s UUID -o value /dev/nvme0n1p2)"
-
 echo "Setting up cryptographic volume"
 printf "%s" "$encryption_passphrase" | cryptsetup -c aes-xts-plain64 -h sha512 -s 512 --use-random --type luks2 luksFormat /dev/nvme0n1p2
 printf "%s" "$encryption_passphrase" | cryptsetup luksOpen /dev/nvme0n1p2 cryptlvm
@@ -66,6 +63,9 @@ echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 locale-gen
 
+echo "Adding persistent keymap"
+echo "KEYMAP=us" > /etc/vconsole.conf
+
 echo "Setting hostname"
 echo $hostname > /etc/hostname
 
@@ -76,12 +76,6 @@ echo "Creating new user"
 useradd -m -G wheel -s /bin/bash $user_name
 usermod -a -G video $user_name
 echo -en "$user_password\n$user_password" | passwd $user_name
-
-echo "Adding persistent keymap"
-touch /etc/vconsole.conf
-tee -a /etc/vconsole.conf << END
-KEYMAP=us
-END
 
 echo "Generating initramfs"
 sed -i 's/^HOOKS.*/HOOKS=(base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt sd-lvm2 filesystems fsck)/' /etc/mkinitcpio.conf
@@ -99,6 +93,9 @@ default arch
 timeout 1
 editor 0
 END
+
+echo "Getting UUID"
+LVM_BLKID=$(blkid -s UUID -o value /dev/nvme0n1p2)
 
 mkdir -p /boot/loader/entries/
 touch /boot/loader/entries/arch.conf
