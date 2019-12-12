@@ -10,6 +10,7 @@
 - LVM on LUKS
 - LUKS2
 - systemd-boot (with Pacman hook for automatic updates)
+- mkinitcpio - systemd init hooks (instead of busybox)
 - SSD Periodic TRIM
 - Intel microcode
 - Standard Kernel + LTS kernel as fallback
