@@ -95,9 +95,6 @@ timeout 1
 editor 0
 END
 
-echo "Getting UUID"
-LVM_BLKID=$(blkid -s UUID -o value /dev/nvme0n1p2)
-
 mkdir -p /boot/loader/entries/
 touch /boot/loader/entries/arch.conf
 tee -a /boot/loader/entries/arch.conf << END
@@ -105,7 +102,7 @@ title ArchLinux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
-options rd.luks.name=$LVM_BLKID=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
+options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p2)=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
 END
 
 touch /boot/loader/entries/archlts.conf
@@ -114,7 +111,7 @@ title ArchLinux
 linux /vmlinuz-linux-lts
 initrd /intel-ucode.img
 initrd /initramfs-linux-lts.img
-options rd.luks.name=$LVM_BLKID=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
+options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p2)=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
 END
 
 echo "Setting up Pacman hook for automatic systemd-boot updates"
