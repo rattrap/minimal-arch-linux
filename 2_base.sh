@@ -55,10 +55,10 @@ echo "Changing default npm directory"
 mkdir "$HOME"/.npm-global
 npm config set prefix "$HOME/.npm-global"
 touch "$HOME"/.profile
-echo "export PATH=$HOME/.npm-global/bin:$PATH" >> "$HOME"/.profile
+tee "$HOME"/.profile << END
+export PATH=$HOME/.npm-global/bin:$PATH
+END
 source "$HOME"/.profile
-
-
 
 echo "Installing VS Code"
 sudo pacman -S --noconfirm code

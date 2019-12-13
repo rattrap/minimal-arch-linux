@@ -8,10 +8,11 @@ sh ./2_base.sh
 echo "Enabling autologin"
 mkdir -p  /etc/systemd/system/getty@tty1.service.d/
 touch /etc/systemd/system/getty@tty1.service.d/override.conf
-echo "[Service]" >> /etc/systemd/system/getty@tty1.service.d/override.conf
-echo "ExecStart=" >> /etc/systemd/system/getty@tty1.service.d/override.conf
-echo "ExecStart=-/usr/bin/agetty --autologin $USER --noclear %I $TERM" >> /etc/systemd/system/getty@tty1.service.d/override.conf
-
+tee -a /etc/systemd/system/getty@tty1.service.d/override.conf << END
+[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty --autologin $USER --noclear %I $TERM
+END
 
 echo "Installing xwayland"
 sudo pacman -S --noconfirm xorg-server-xwayland

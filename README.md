@@ -30,7 +30,7 @@
 | nvme0n1                                               | disk  |            |
 | ├─nvme0n1p1                                           | part  |   /boot    |
 | ├─nvme0n1p2                                           | part  |            |
-| &nbsp;&nbsp;&nbsp;└─cryptoVols                        | crypt |            |
+| &nbsp;&nbsp;&nbsp;└─cryptlvm                        | crypt |            |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─Arch-swap |  lvm  |   [SWAP]   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─Arch-root |  lvm  |     /      |
 
@@ -130,8 +130,8 @@ copy SSH key and add to Github (eg. nvim ~/.ssh/id_rsa.pub and copy content)
 ```
 mkdir -p /mnt/boot
 mount /dev/nvme0n1p1 /mnt/boot
-cryptsetup luksOpen /dev/nvme0n1p2 cryptoVols
-mount /dev/mapper/Arch-root /mnt
+cryptsetup luksOpen /dev/nvme0n1p2 cryptlvm
+mount /dev/vg0/Arch-root /mnt
 arch-chroot /mnt
 ```
 
