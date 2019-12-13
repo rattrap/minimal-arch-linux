@@ -41,9 +41,13 @@
 - UFW (deny incoming, allow outgoing)
 - Firejail with AppArmor integration
 - TLP (default settings)
-- (sway) Ayu Mirage color scheme (alacritty, neovim, rofi, waybar, VS Code)
-  - Visual: [[Sway] Ayu (Updated)](https://www.reddit.com/r/unixporn/comments/dosu0c/sway_ayu_updated/)
+- zsh:
+  - powerlevel10k theme
+  - oh-my-zsh
 - swaywm:
+  - (sway) Ayu Mirage color scheme (alacritty, neovim, rofi, waybar, VS Code)
+    - Visual: [[Sway] Ayu (Updated)](https://www.reddit.com/r/unixporn/comments/dosu0c/sway_ayu_updated/)
+  - GTK theme and icons: Custom Arc - Ayu Mirage + Papirus icons
   - autostart on tty1
   - waybar: onclick pavucontrol (volume control) and nmtui (ncli network manager)
   - swayidle and swaylock: automatic sleep and lock
@@ -52,23 +56,9 @@
   - slurp and grim for screenshots
   - Hibernate (power key) + suspend (lid close)
   - Automatic login (with systemd)
-- zsh:
-  - powerlevel10k theme
-  - oh-my-zsh
-- neovim
-- GTK theme and icons: Custom Arc - Ayu Mirage + Papirus icons
-- Other applications: firefox, keepassxc, git, openssh, vim, thunar (with USB automonting), Node.js LTS, tumbler, evince, thunderbird, upower, htop, VS code oss, nnn and a few others
+- Other applications: firefox, keepassxc, git, openssh, vim, thunar (with USB automonting), Node.js LTS, tumbler, evince, thunderbird, upower, htop, VS code oss, nnn, neovim and a few others
 
-## Quick start / Brief install guide
-
-_See 'Detailed installation guide' below for the expanded version_
-
-- Increase cowspace partition so that git can be downloaded without before chroot: `mount -o remount,size=2G /run/archiso/cowspace`
-- Install git: `pacman -Sy git`
-- Clone repository: `git clone https://github.com/exah-io/minimal-arch-linux.git`
-- Run install script: `bash minimal-arch-linux/1_arch_install.sh`
-
-## Detailed installation guide
+## Installation guide
 
 1. Download and boot into the latest [Arch Linux iso](https://www.archlinux.org/download/)
 2. Connect to the internet. If using wifi, you can use `wifi-menu` to connect to a network
@@ -97,22 +87,6 @@ z
 y
 y
 ```
-
-### VSCode - Settings
-
-- Install ESLint on a per project basis: npm i eslint
-- Check the following settings:
-  - editor.formatOnSave
-  - Prettier: Use Tabs
-  - enablePreview
-  - @tag:usesOnlineServices
-
-### Recommended Firefox add-ons
-
-- [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
-- [HTTPS Everywhere](https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/)
-- [Privacy Badger](https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/)
-- [Firefox - Ayu Mirage theme](https://addons.mozilla.org/en-US/firefox/addon/ayu-mirage/)
 
 ### How to setup Github with SSH Key
 
@@ -144,6 +118,22 @@ yes | makepkg -si
 cd ..
 rm -rf yay-bin
 ```
+
+### VSCode - Settings
+
+- Install ESLint on a per project basis: npm i eslint
+- Check the following settings:
+  - editor.formatOnSave
+  - Prettier: Use Tabs
+  - enablePreview
+  - @tag:usesOnlineServices
+
+### Recommended Firefox add-ons
+
+- [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
+- [HTTPS Everywhere](https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/)
+- [Privacy Badger](https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/)
+- [Firefox - Ayu Mirage theme](https://addons.mozilla.org/en-US/firefox/addon/ayu-mirage/)
 
 ### Recommended Gnome extensions
 
