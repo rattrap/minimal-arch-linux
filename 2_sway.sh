@@ -44,7 +44,7 @@ wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-l
 echo "Installing San Francisco Fonts"
 git clone https://aur.archlinux.org/otf-san-francisco-pro.git
 cd otf-san-francisco-pro
-yes | makepkg -si
+makepkg -si --noconfirm
 cd ..
 rm -rf otf-san-francisco-pro
 
