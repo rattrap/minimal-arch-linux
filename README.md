@@ -1,5 +1,4 @@
 # Minimal Arch Linux setup - Install scripts
-- Revamp undergoing. Current master branch is WIP and should not be used till this message is removed
 
 |                                                 Clean                                                 |                                               Busy                                                |
 | :---------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------: |
@@ -10,11 +9,11 @@
 - LVM on LUKS
 - LUKS2
 - systemd-boot (with Pacman hook for automatic updates)
-- mkinitcpio - systemd init hooks (instead of busybox)
+- systemd init hooks (instead of busybox)
 - SSD Periodic TRIM
 - Intel microcode
 - Standard Kernel + LTS kernel as fallback
-- AppArmor
+- AppArmor (with caching for faster startup)
 
 ### Requirements
 
@@ -38,12 +37,13 @@
 
 - Sway (2_sway.sh), Gnome (2_gnome.sh) and KDE Plasma (2_plasma.sh) support
 - UFW (deny incoming, allow outgoing)
+- TLP
 - Firejail with AppArmor integration
-- TLP (default settings)
 - zsh:
-  - powerlevel10k theme
   - oh-my-zsh
+  - powerlevel10k theme
 - yay (AUR helper)
+- Meslo Nerd Font
 - swaywm:
   - (sway) Ayu Mirage color scheme (alacritty, neovim, rofi, waybar, VS Code)
     - Visual: [[Sway] Ayu (Updated)](https://www.reddit.com/r/unixporn/comments/dosu0c/sway_ayu_updated/)
@@ -131,11 +131,10 @@ arch-chroot /mnt
 - [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
 - [Dynamic Panel Transparency](https://extensions.gnome.org/extension/1011/dynamic-panel-transparency/)
 
-### TODO
-- Plymouth (confirm if Silent boot is required)
-- Review install scripts
-- Maybe:
- - Replace ext4 with BTRFS
+### TODO (maybe)
+- Plymouth
+- Secure Boot
+- sway:
  - [Improve](https://www.reddit.com/r/swaywm/comments/bkzeo7/font_rendering_really_bad_and_rough_in_gtk3/?ref=readnext) [font](https://www.reddit.com/r/archlinux/comments/5r5ep8/make_your_arch_fonts_beautiful_easily/) [rendering](https://aur-dev.archlinux.org/packages/fontconfig-enhanced-defaults/) [with](https://gist.github.com/cryzed/e002e7057435f02cc7894b9e748c5671) [this](https://wiki.archlinux.org/index.php/Font_configuration#Incorrect_hinting_in_GTK_applications) [or this](https://www.reddit.com/r/archlinux/comments/9ujhbc/how_to_get_windows_like_font_rendering/)
  - [Support secure boot](https://wiki.archlinux.org/index.php/Secure_Boot)
  - Waybar: add battery discharge rate. Use [this config](https://gitlab.com/krathalan/waybar-modules/raw/3a652315f537ac957c37f08e55b5184da2b36cbd/mywaybar.jpg) as reference: [snippets](https://gitlab.com/snippets/1880686) and [modules](https://gitlab.com/krathalan/waybar-modules)
