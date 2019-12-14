@@ -37,13 +37,13 @@
 ## Post install script
 
 - Sway (2_sway.sh), Gnome (2_gnome.sh) and KDE Plasma (2_plasma.sh) support
-  - Gnome and KDE have very basic support
 - UFW (deny incoming, allow outgoing)
 - Firejail with AppArmor integration
 - TLP (default settings)
 - zsh:
   - powerlevel10k theme
   - oh-my-zsh
+- yay (AUR helper)
 - swaywm:
   - (sway) Ayu Mirage color scheme (alacritty, neovim, rofi, waybar, VS Code)
     - Visual: [[Sway] Ayu (Updated)](https://www.reddit.com/r/unixporn/comments/dosu0c/sway_ayu_updated/)
@@ -56,7 +56,8 @@
   - slurp and grim for screenshots
   - Hibernate (power key) + suspend (lid close)
   - Automatic login (with systemd)
-- Other applications: firefox, keepassxc, git, openssh, vim, thunar (with USB automonting), Node.js LTS, tumbler, evince, thunderbird, upower, htop, VS code oss, nnn, neovim and a few others
+  - thunar (with USB automonting)
+- Other applications: firefox, keepassxc, git, openssh, vim, Node.js LTS, tumbler, evince, thunderbird, upower, htop, VS code oss, nnn, neovim and a few others
 
 ## Installation guide
 
@@ -109,16 +110,6 @@ mount /dev/vg0/Arch-root /mnt
 arch-chroot /mnt
 ```
 
-### How to install yay
-
-```
-git clone https://aur.archlinux.org/yay-bin.git
-cd yay-bin
-yes | makepkg -si
-cd ..
-rm -rf yay-bin
-```
-
 ### VSCode - Settings
 
 - Install ESLint on a per project basis: npm i eslint
@@ -142,8 +133,7 @@ rm -rf yay-bin
 
 ### TODO
 - Plymouth (confirm if Silent boot is required)
-- Plasma autologin not working
-- Review install + base + plasma install scripts
+- Review install scripts
 - Maybe:
  - Replace ext4 with BTRFS
  - [Improve](https://www.reddit.com/r/swaywm/comments/bkzeo7/font_rendering_really_bad_and_rough_in_gtk3/?ref=readnext) [font](https://www.reddit.com/r/archlinux/comments/5r5ep8/make_your_arch_fonts_beautiful_easily/) [rendering](https://aur-dev.archlinux.org/packages/fontconfig-enhanced-defaults/) [with](https://gist.github.com/cryzed/e002e7057435f02cc7894b9e748c5671) [this](https://wiki.archlinux.org/index.php/Font_configuration#Incorrect_hinting_in_GTK_applications) [or this](https://www.reddit.com/r/archlinux/comments/9ujhbc/how_to_get_windows_like_font_rendering/)

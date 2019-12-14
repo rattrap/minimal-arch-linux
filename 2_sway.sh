@@ -51,9 +51,6 @@ rm -rf otf-san-francisco-pro
 echo "Enabling auto-mount and archives creation/deflation for thunar"
 sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
 
-echo "Setting wallpaper"
-wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/andre-benz-cXU6tNxhub0-unsplash.jpg
-
 echo "Adding VSCode ayu theme"
 code --install-extension teabyii.ayu
 

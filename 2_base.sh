@@ -50,7 +50,7 @@ rm -rf "$HOME"/.zshrc
 wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc
 
 echo "Installing Node.js LTS"
-sudo pacman -S --noconfirm nodejs-lts-erbium npm
+sudo pacman -S --noconfirm nodejs-lts-erbium npm yarn
 
 echo "Changing default npm directory"
 mkdir "$HOME"/.npm-global
@@ -61,12 +61,14 @@ export PATH=$HOME/.npm-global/bin:$PATH
 END
 source "$HOME"/.profile
 
+echo "Increasing the amount of inotify watchers"
+echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf && sudo sysctl --system
+
 echo "Installing VS Code"
 sudo pacman -S --noconfirm code
 
 echo "Installing VS Code theme + icons"
 code --install-extension pkief.material-icon-theme
-code --install-extension esbenp.prettier-vscode
 
 echo "Blacklisting bluetooth"
 sudo touch /etc/modprobe.d/nobt.conf
@@ -76,9 +78,6 @@ blacklist bluetooth
 END
 sudo mkinitcpio -p linux-lts
 sudo mkinitcpio -p linux
-
-echo "Increasing the amount of inotify watchers"
-echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf && sudo sysctl --system
 
 echo "Installing and configuring Firejail"
 sudo pacman -S --noconfirm firejail
@@ -104,3 +103,16 @@ END
 echo "Granting internet access again to VSCode in Firejail profile"
 sudo sed -i 's/net none/#net none/g' /etc/firejail/code.profile
 sudo firecfg
+
+echo "Enabling AppArmor cache"
+sudo sed -i 's/#write-cache/write-cache/g' /etc/apparmor/parser.conf
+
+echo "Downloading wallpaper"
+wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/andre-benz-cXU6tNxhub0-unsplash.jpg
+
+echo "Installing yay"
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
+makepkg -si --noconfirm
+cd ..
+rm -rf yay-bin
