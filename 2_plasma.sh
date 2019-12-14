@@ -19,8 +19,9 @@ sudo pacman -S --noconfirm sddm sddm-kcm
 sudo systemctl enable sddm.service
 
 echo "Setting up autologin"
-touch /etc/sddm.conf.d/autologin.conf
-tee /etc/sddm.conf.d/autologin.conf << END
+sudo mkdir -p /etc/sddm.conf.d/
+sudo touch /etc/sddm.conf.d/autologin.conf
+sudo tee /etc/sddm.conf.d/autologin.conf << END
 [Autologin]
 User=$USER
 Session=plasma.desktop

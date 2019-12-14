@@ -41,6 +41,13 @@ wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-l
 wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/colors.ayu-dark
 wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/colors.ayu-mirage
 
+echo "Installing San Francisco Fonts"
+git clone https://aur.archlinux.org/otf-san-francisco-pro.git
+cd otf-san-francisco-pro
+yes | makepkg -si
+cd ..
+rm -rf otf-san-francisco-pro
+
 echo "Enabling auto-mount and archives creation/deflation for thunar"
 sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
 
