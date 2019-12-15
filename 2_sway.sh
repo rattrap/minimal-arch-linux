@@ -6,9 +6,9 @@ chmod +x 2_base.sh
 sh ./2_base.sh
 
 echo "Enabling autologin"
-mkdir -p  /etc/systemd/system/getty@tty1.service.d/
-touch /etc/systemd/system/getty@tty1.service.d/override.conf
-tee -a /etc/systemd/system/getty@tty1.service.d/override.conf << END
+sudo mkdir -p  /etc/systemd/system/getty@tty1.service.d/
+sudo touch /etc/systemd/system/getty@tty1.service.d/override.conf
+sudo tee -a /etc/systemd/system/getty@tty1.service.d/override.conf << END
 [Service]
 ExecStart=
 ExecStart=-/usr/bin/agetty --autologin $USER --noclear %I $TERM
@@ -110,7 +110,7 @@ gsettings set $GTK_SCHEMA font-name "$FONT"
 gsettings set $GTK_SCHEMA document-font-name "$FONT"
 
 echo "Enabling suspend and hibernate hotkeys"
-sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=hibernate/g' /etc/systemd/logind.conf
-sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=suspend/g' /etc/systemd/logind.conf
+sudo sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=hibernate/g' /etc/systemd/logind.conf
+sudo sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=suspend/g' /etc/systemd/logind.conf
 
 echo "Your setup is ready. You can reboot now!"
