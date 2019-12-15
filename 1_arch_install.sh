@@ -21,7 +21,7 @@ cat /dev/zero > /dev/nvme0n1p1
 cat /dev/zero > /dev/nvme0n1p2
 
 echo "Setting up cryptographic volume"
-printf "%s" "$encryption_passphrase" | cryptsetup -c aes-xts-plain64 -h sha512 -s 512 --use-random --type luks2 luksFormat /dev/nvme0n1p2
+printf "%s" "$encryption_passphrase" | cryptsetup -h sha512 -s 512 --use-random --type luks2 luksFormat /dev/nvme0n1p2
 printf "%s" "$encryption_passphrase" | cryptsetup luksOpen /dev/nvme0n1p2 cryptlvm
 
 echo "Creating physical volume"
