@@ -100,7 +100,7 @@ rm -rf papirus-folders-git
 papirus-folders -C yellow --theme Papirus-Dark
 
 echo "Setting GTK theme, font and icons"
-FONT="SF Pro Text Regular 10"
+FONT="MesloLGS NF Regular 10"
 GTK_THEME="Ayu-Mirage-Dark"
 GTK_ICON_THEME="Papirus-Dark"
 GTK_SCHEMA="org.gnome.desktop.interface"
