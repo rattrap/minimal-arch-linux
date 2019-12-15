@@ -102,7 +102,7 @@ title ArchLinux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
-options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p2)=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
+options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p2)=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap rd.luks.options=discard apparmor=1 security=apparmor i915.fastboot=1 quiet rw
 END
 
 touch /boot/loader/entries/archlts.conf
@@ -111,7 +111,7 @@ title ArchLinux
 linux /vmlinuz-linux-lts
 initrd /intel-ucode.img
 initrd /initramfs-linux-lts.img
-options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p2)=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap apparmor=1 security=apparmor i915.fastboot=1 quiet rw
+options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p2)=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap rd.luks.options=discard apparmor=1 security=apparmor i915.fastboot=1 quiet rw
 END
 
 echo "Setting up Pacman hook for automatic systemd-boot updates"
