@@ -20,8 +20,8 @@ sudo pacman -S --noconfirm xorg-server-xwayland
 echo "Creating user's folders"
 sudo pacman -S --noconfirm xdg-user-dirs
 
-echo "Installing Alacritty terminal"
-sudo pacman -S --noconfirm alacritty
+echo "Installing Termite terminal"
+sudo pacman -S --noconfirm termite
 
 echo "Installing office applications"
 sudo pacman -S --noconfirm tumbler evince thunderbird
@@ -63,9 +63,9 @@ echo "Ricing swaynag"
 mkdir -p ~/.config/swaynag
 wget -P ~/.config/swaynag https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/swaynag/config
 
-echo "Ricing Alacritty"
-mkdir -p ~/.config/alacritty
-wget -P ~/.config/alacritty https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/alacritty/alacritty.yml
+echo "Ricing Termite"
+mkdir -p ~/.config/termite
+wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config
 
 echo "Ricing rofi"
 mkdir -p ~/.config/rofi

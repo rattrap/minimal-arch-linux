@@ -14,7 +14,7 @@
 }
 
 #window {
-  font: "SF Pro Text Regular 10";
+  font: "MesloLGS NF Regular 10";
   location: 0;
   background-color: @backgroundcolor;
   border-color: @accentcolor;

@@ -45,13 +45,13 @@
 - yay (AUR helper)
 - Meslo Nerd Font
 - swaywm:
-  - (sway) Ayu Mirage color scheme (alacritty, neovim, rofi, waybar, VS Code)
+  - (sway) Ayu Mirage color scheme (termite, neovim, rofi, waybar, VS Code)
     - Visual: [[Sway] Ayu (Updated)](https://www.reddit.com/r/unixporn/comments/dosu0c/sway_ayu_updated/)
   - GTK theme and icons: Custom Arc - Ayu Mirage + Papirus icons
   - autostart on tty1
   - waybar: onclick pavucontrol (volume control) and nmtui (ncli network manager)
   - swayidle and swaylock: automatic sleep and lock
-  - Alacritty terminal
+  - Termite terminal
   - rofi as application launcher
   - slurp and grim for screenshots
   - Hibernate (power key) + suspend (lid close)

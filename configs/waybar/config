@@ -6,10 +6,6 @@
   "width": 1920,
   "modules-left": [
     "sway/workspaces",
-    "custom/terminal",
-    "custom/editor",
-    "custom/browser",
-    "custom/files",
     "sway/mode"
   ],
   "modules-center": [ "clock" ],
@@ -42,27 +38,6 @@
     "format":"",
     "on-click": "swaynag -t ayu-mirage -m '' -b 'Exit' 'swaymsg exit' -b 'Reboot' 'swaymsg exec systemctl reboot' -b 'Shut down' 'systemctl poweroff'",
     "on-click-right": "swaymsg mode System"
-  },
-  "custom/browser": {
-    "format":"",
-    "tooltip": false,
-    "on-click": "firefox"
-  },
-  "custom/files": {
-    "format":"",
-    "tooltip": false,
-    "on-click": "thunar"
-  },
-  "custom/editor": {
-    "format":"",
-    "tooltip": false,
-    "on-click": "code"
-  },
-  "custom/terminal": {
-    "format":"",
-    "tooltip": false,
-    "on-click": "swaymsg scratchpad show",
-    "on-click-right": "alacritty"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",

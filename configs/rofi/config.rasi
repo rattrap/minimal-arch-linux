@@ -2,7 +2,7 @@ configuration {
   modi: "combi,drun,run,window";
   lines: 6;
   show-icons: true;
-  terminal: "alacritty";
+  terminal: "termite";
   run-shell-command: "{terminal} --window -- bash";
   drun-icon-theme: "Papirus-Dark";
   combi-modi: "drun,run";
