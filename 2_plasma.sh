@@ -26,3 +26,9 @@ sudo tee /etc/sddm.conf.d/autologin.conf << END
 User=$USER
 Session=plasma.desktop
 END 
+
+echo "Installing and setting up libinput-gestures"
+sudo gpasswd -a $USER input
+yay -S --noconfirm libinput-gestures
+libinput-gestures-setup autostart
+libinput-gestures-setup start
