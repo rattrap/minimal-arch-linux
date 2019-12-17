@@ -131,6 +131,14 @@ arch-chroot /mnt
 - [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
 - [Dynamic Panel Transparency](https://extensions.gnome.org/extension/1011/dynamic-panel-transparency/)
 
+### Secure Boot with Linux Foundation Preloader
+```
+yay -S preloader-signed
+sudo cp /usr/share/preloader-signed/{PreLoader,HashTool}.efi /boot/EFI/systemd
+sudo cp /boot/EFI/systemd/systemd-bootx64.efi /boot/EFI/systemd/loader.efi
+sudo efibootmgr --verbose --disk /dev/nvme0n1 --part 1 --create --label "PreLoader" --loader /EFI/systemd/PreLoader.efi
+```
+
 ### TODO (maybe)
 - [Support secure boot](https://wiki.archlinux.org/index.php/Secure_Boot)
 - Plymouth

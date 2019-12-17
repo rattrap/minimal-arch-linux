@@ -27,6 +27,9 @@ sudo systemctl mask systemd-rfkill.socket
 echo "Improving Intel GPU support"
 sudo pacman -S --noconfirm intel-media-driver
 
+echo "Adding Vulkan support"
+sudo pacman -S --noconfirm vulkan-intel vulkan-icd-loader
+
 echo "Installing common applications"
 sudo pacman -S --noconfirm firefox chromium keepassxc git openssh neovim links upower htop powertop p7zip ripgrep unzip
 
