@@ -67,11 +67,15 @@ source "$HOME"/.profile
 echo "Increasing the amount of inotify watchers"
 echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf && sudo sysctl --system
 
+echo "Installing Go lang"
+sudo pacman -S go dep go-tools
+
 echo "Installing VS Code"
 sudo pacman -S --noconfirm code
 
 echo "Installing VS Code theme + icons"
 code --install-extension pkief.material-icon-theme
+code --install-extension ms-vscode.go
 
 echo "Blacklisting bluetooth"
 sudo touch /etc/modprobe.d/nobt.conf
