@@ -42,7 +42,6 @@
 - zsh:
   - oh-my-zsh
   - powerlevel10k theme
-- yay (AUR helper)
 - Meslo Nerd Font
 - swaywm:
   - (sway) Ayu Mirage color scheme (termite, neovim, rofi, waybar, VS Code)
@@ -130,6 +129,15 @@ arch-chroot /mnt
 
 - [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
 - [Dynamic Panel Transparency](https://extensions.gnome.org/extension/1011/dynamic-panel-transparency/)
+
+### How to install yay
+```
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
+makepkg -si --noconfirm
+cd ..
+rm -rf yay-bin
+```
 
 ### Secure Boot with Linux Foundation Preloader
 ```
