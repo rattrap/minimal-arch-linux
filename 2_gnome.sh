@@ -20,9 +20,3 @@ sudo tee -a /etc/gdm/custom.conf << END
 AutomaticLogin=$USER
 AutomaticLoginEnable=True
 END
-
-echo "Installing and setting up libinput-gestures"
-sudo gpasswd -a $USER input
-yay -S --noconfirm libinput-gestures
-libinput-gestures-setup autostart
-libinput-gestures-setup start
