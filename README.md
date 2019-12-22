@@ -148,6 +148,24 @@ sudo cp /boot/EFI/systemd/systemd-bootx64.efi /boot/EFI/systemd/loader.efi
 sudo efibootmgr --verbose --disk /dev/nvme0n1 --part 1 --create --label "PreLoader" --loader /EFI/systemd/PreLoader.efi
 ```
 
+### Plymouth
+```
+yay -S --noconfirm plymouth
+
+/etc/mkinitcpio.conf
+HOOKS=(base systemd sd-plymouth [...] sd-encrypt [...])
+
+kernel params (/boot/loader/entries/arch.conf):
+    quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0
+
+sudo mkinitcpio -p linux
+sudo mkinitcpio -p linux-lts
+
+echo "Installing and setting plymouth theme"
+yay -S --noconfirm plymouth-theme-arch-breeze-git
+sudo plymouth-set-default-theme -R arch-breeze
+```
+
 ### TODO (maybe)
 - [Support secure boot](https://wiki.archlinux.org/index.php/Secure_Boot)
 - Plymouth
