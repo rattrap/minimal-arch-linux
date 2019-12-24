@@ -24,6 +24,7 @@ echo "Ricing Termite"
 mkdir -p ~/.config/termite
 wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.monochrome
 mv ~/.config/termite/config.monochrome ~/.config/termite/config
+mkdir -p ~/.config/gtk-3.0
 touch ~/.config/gtk-3.0/gtk.css
 tee -a ~/.config/gtk-3.0/gtk.css << END
 VteTerminal, vte-terminal {
@@ -92,24 +93,31 @@ rm -rf papirus-folders-git
 papirus-folders -C black --theme Papirus-Dark
 
 echo "Setting GTK theme, font and icons"
-FONT="RobotoMono Nerd Font Regular 9"
-GTK_THEME="Qogir-win-light"
-GTK_ICON_THEME="Papirus-Dark"
-GTK_SCHEMA="org.gnome.desktop.interface"
-gsettings set $GTK_SCHEMA gtk-theme "$GTK_THEME"
-gsettings set $GTK_SCHEMA icon-theme "$GTK_ICON_THEME"
-gsettings set $GTK_SCHEMA font-name "$FONT"
-gsettings set $GTK_SCHEMA document-font-name "$FONT"
+mkdir -p ~/.config/gtk-3.0
+touch ~/.config/gtk-3.0/settings.ini
+tee -a ~/.config/gtk-3.0/settings.ini << END
+[Settings]
+gtk-theme-name=Qogir-win-light
+gtk-icon-theme-name=Papirus-Dark
+gtk-font-name=Roboto 9
+gtk-cursor-theme-name=Adwaita
+gtk-cursor-theme-size=0
+gtk-toolbar-style=GTK_TOOLBAR_BOTH
+gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
+gtk-button-images=1
+gtk-menu-images=1
+gtk-enable-event-sounds=1
+gtk-enable-input-feedback-sounds=1
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hintstyle=hintfull
+END
 
 echo "Installing office applications"
 sudo pacman -S --noconfirm tumbler evince thunderbird
 
 echo "Adding VSCode theme"
 code --install-extension gtwsky.oolory
-
-echo "Improving fonts rendering"
-mkdir -p ~/.config/fontconfig
-sudo wget -P ~/.config/fontconfig https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/fonts/fonts.conf
 
 echo "Autostart X with fish"
 tee -a ~/.config/fish/config.fish << END

@@ -68,6 +68,7 @@ END
 
 echo "Installing and configuring Starship prompt/fish"
 yay -S --noconfirm starship-bin
+mkdir -p ~/.config/fish
 touch ~/.config/fish/config.fish
 tee -a ~/.config/fish/config.fish << END
 # Hide the fish greeting
@@ -78,7 +79,6 @@ set -g fish_color_command --bold
 
 # Load Starship prompt
 starship init fish | source
-
 END
 
 echo "Installing Node.js LTS"
