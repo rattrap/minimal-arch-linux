@@ -6,7 +6,7 @@ chmod +x 2_base.sh
 sh ./2_base.sh
 
 echo "Enabling autologin"
-sudo mkdir -p  /etc/systemd/system/getty@tty1.service.d/
+sudo mkdir -p /etc/systemd/system/getty@tty1.service.d/
 sudo touch /etc/systemd/system/getty@tty1.service.d/override.conf
 sudo tee -a /etc/systemd/system/getty@tty1.service.d/override.conf << END
 [Service]
@@ -17,11 +17,6 @@ END
 echo "Installing xorg and dependencies"
 sudo pacman -S --noconfirm xorg xf86-input-libinput xorg-xinput xorg-xinit xterm
 
-echo "Autostart X at login"
-tee -a ~/.bash_profile << END
-[[ -z \$DISPLAY ]] && [[ \$(tty) = /dev/tty1 ]] && exec startx
-END
-
 echo "Installing Termite terminal"
 sudo pacman -S --noconfirm termite
 
@@ -29,6 +24,12 @@ echo "Ricing Termite"
 mkdir -p ~/.config/termite
 wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.monochrome
 mv ~/.config/termite/config.monochrome ~/.config/termite/config
+touch ~/.config/gtk-3.0/gtk.css
+tee -a ~/.config/gtk-3.0/gtk.css << END
+VteTerminal, vte-terminal {
+ padding: 18px;
+}
+END
 
 echo "Installing Picom (former compton)"
 sudo pacman -S --noconfirm picom
@@ -59,12 +60,17 @@ mkdir -p ~/.config/i3blocks
 wget -P ~/.config/i3blocks https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/i3blocks/config
 
 echo "Installing i3 dependencies"
-sudo pacman -S --noconfirm dmenu i3lock pulseaudio pavucontrol thunar mousepad qalculate-gtk rofi feh
+sudo pacman -S --noconfirm pulseaudio pavucontrol thunar mousepad qalculate-gtk rofi feh
 
 echo "Ricing rofi"
 mkdir -p ~/.config/rofi
 wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/monochromatic.rasi
 mv ~/.config/rofi/monochromatic.rasi ~/.config/rofi/config.rasi
+
+echo "Installing and configuring i3lock"
+sudo pacman -S --noconfirm imagemagick feh xorg-xrandr xorg-xdpyinfo
+yay -S --noconfirm i3lock-color betterlockscreen
+sudo cp /usr/share/doc/betterlockscreen/examples/betterlockscreenrc ~/.config
 
 echo "Enabling auto-mount and archives creation/deflation for thunar"
 sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
@@ -100,5 +106,19 @@ sudo pacman -S --noconfirm tumbler evince thunderbird
 
 echo "Adding VSCode theme"
 code --install-extension gtwsky.oolory
+
+echo "Improving fonts rendering"
+mkdir -p ~/.config/fontconfig
+sudo wget -P ~/.config/fontconfig https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/fonts/fonts.conf
+
+echo "Autostart X with fish"
+tee -a ~/.config/fish/config.fish << END
+# Start X at login
+if status is-interactive
+    if test -z "$DISPLAY" -a $XDG_VTNR = 1
+        exec startx -- -keeptty
+    end
+end
+END
 
 echo "Your setup is ready. You can reboot now!"

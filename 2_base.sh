@@ -66,7 +66,7 @@ tee -a ~/.bashrc << END
 exec fish
 END
 
-echo "Installing and configuring Starship prompt"
+echo "Installing and configuring Starship prompt/fish"
 yay -S --noconfirm starship-bin
 touch ~/.config/fish/config.fish
 tee -a ~/.config/fish/config.fish << END
@@ -78,6 +78,7 @@ set -g fish_color_command --bold
 
 # Load Starship prompt
 starship init fish | source
+
 END
 
 echo "Installing Node.js LTS"

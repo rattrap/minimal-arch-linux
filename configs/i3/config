@@ -3,7 +3,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:RobotoMono Nerd Font Regular 9
+font pango:Roboto Mono Nerd Font Regular 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -136,7 +136,7 @@ bar {
         i3bar_command i3bar -t
         position top
         height 26
-        font pango:RobotoMono Nerd Font Regular 9
+        font pango:Roboto Mono Nerd Font Regular 9
         colors {
             #statusline #EEEEEE
             #background #1C1D2B88
@@ -168,3 +168,6 @@ bindsym $mod+Ctrl+Shift+Right resize shrink width 10 px or 10 ppt
 bindsym $mod+Ctrl+Shift+Up resize grow height 10 px or 10 ppt
 bindsym $mod+Ctrl+Shift+Down resize shrink height 10 px or 10 ppt
 bindsym $mod+Ctrl+Shift+Left resize grow width 10 px or 10 ppt
+
+# Screen lock
+bindsym $mod+m betterlockscreen --lock blur
