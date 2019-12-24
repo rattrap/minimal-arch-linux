@@ -14,6 +14,9 @@ ExecStart=
 ExecStart=-/usr/bin/agetty --autologin $USER --noclear %I $TERM
 END
 
+echo "Installing xorg and dependencies"
+sudo pacman -S --noconfirm xorg xf86-input-libinput xorg-xinput xorg-xinit
+
 echo "Creating user's folders"
 sudo pacman -S --noconfirm xdg-user-dirs
 
@@ -47,7 +50,7 @@ mkdir -p ~/.config/i3blocks
 wget -P ~/.config/i3blocks https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/i3blocks/config
 
 echo "Installing i3 dependencies"
-sudo pacman -S --noconfirm pulseaudio pavucontrol thunar mousepad qalculate-gtk rofi feh
+sudo pacman -S --noconfirm dmenu i3lock pulseaudio pavucontrol thunar mousepad qalculate-gtk rofi feh
 
 echo "Enabling auto-mount and archives creation/deflation for thunar"
 sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
