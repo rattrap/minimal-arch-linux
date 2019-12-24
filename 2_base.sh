@@ -23,6 +23,9 @@ sudo pacman -S --noconfirm vulkan-intel vulkan-icd-loader
 echo "Installing common applications"
 sudo pacman -S --noconfirm firefox chromium keepassxc git openssh neovim links upower htop powertop p7zip ripgrep unzip
 
+echo "Creating user's folders"
+sudo pacman -S --noconfirm xdg-user-dirs
+
 echo "Installing fonts"
 sudo pacman -S --noconfirm ttf-roboto ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack noto-fonts
 sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/Iosevka%20Nerd%20Font%20Complete.ttf

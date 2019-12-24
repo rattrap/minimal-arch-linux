@@ -22,9 +22,6 @@ tee -a ~/.bash_profile << END
 [[ -z \$DISPLAY ]] && [[ \$(tty) = /dev/tty1 ]] && exec startx
 END
 
-echo "Creating user's folders"
-sudo pacman -S --noconfirm xdg-user-dirs
-
 echo "Installing Termite terminal"
 sudo pacman -S --noconfirm termite
 
@@ -64,15 +61,20 @@ wget -P ~/.config/i3blocks https://raw.githubusercontent.com/exah-io/minimal-arc
 echo "Installing i3 dependencies"
 sudo pacman -S --noconfirm dmenu i3lock pulseaudio pavucontrol thunar mousepad qalculate-gtk rofi feh
 
+echo "Ricing rofi"
+mkdir -p ~/.config/rofi
+wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/monochromatic.rasi
+mv ~/.config/rofi/monochromatic.rasi ~/.config/rofi/config.rasi
+
 echo "Enabling auto-mount and archives creation/deflation for thunar"
 sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
 
 echo "Installing GTK theme and dependencies"
 sudo pacman -S --noconfirm gtk-engine-murrine gtk-engines
 sudo mkdir -p /usr/share/themes/
-sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/Qogir-win-light.tar.xz
-sudo tar -xzf /usr/share/themes/Qogir-win-light.tar.xz -C /usr/share/themes/
-sudo rm -f /usr/share/themes/Qogir-win-light.tar.xz
+sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/Qogir-win-light.tar.gz
+sudo tar -xzf /usr/share/themes/Qogir-win-light.tar.gz -C /usr/share/themes/
+sudo rm -f /usr/share/themes/Qogir-win-light.tar.gz
 
 echo "Installing icons"
 sudo pacman -S --noconfirm papirus-icon-theme
@@ -81,7 +83,7 @@ cd papirus-folders-git
 yes | makepkg -si
 cd ..
 rm -rf papirus-folders-git
-papirus-folders -C yellow --theme Papirus-Dark
+papirus-folders -C black --theme Papirus-Dark
 
 echo "Setting GTK theme, font and icons"
 FONT="RobotoMono Nerd Font Regular 9"

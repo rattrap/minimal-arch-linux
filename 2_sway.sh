@@ -17,9 +17,6 @@ END
 echo "Installing xwayland"
 sudo pacman -S --noconfirm xorg-server-xwayland
 
-echo "Creating user's folders"
-sudo pacman -S --noconfirm xdg-user-dirs
-
 echo "Installing Termite terminal"
 sudo pacman -S --noconfirm termite
 

@@ -1,5 +1,5 @@
 
-set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -15,7 +15,7 @@ bindsym $mod+Return exec termite
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+Tab exec rofi -show combi
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -154,11 +154,11 @@ bar {
 
 # i3-gaps
 for_window [class="^.*"] border pixel 0
-gaps inner 32
-gaps outer 32
+gaps inner 16
+#gaps outer 32
 
 # feh - Wallpaper Setter
-exec_always --no-startup-id feh --bg-fill "~/Pictures/metalbuilding.jpeg"
+exec_always --no-startup-id feh --bg-fill ~/Pictures/metalbuilding.jpeg
 
 # picom - Compositing Manager for Shadows and Opacity
 exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
