@@ -19,9 +19,7 @@ sudo pacman -S --noconfirm xorg xf86-input-libinput xorg-xinput xorg-xinit xterm
 
 echo "Autostart X at login"
 tee -a ~/.bash_profile << END
-if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx
-fi
+[[ -z \$DISPLAY ]] && [[ \$(tty) = /dev/tty1 ]] && exec startx
 END
 
 echo "Creating user's folders"
@@ -100,3 +98,5 @@ sudo pacman -S --noconfirm tumbler evince thunderbird
 
 echo "Adding VSCode theme"
 code --install-extension gtwsky.oolory
+
+echo "Your setup is ready. You can reboot now!"

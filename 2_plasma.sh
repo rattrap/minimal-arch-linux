@@ -26,3 +26,5 @@ sudo tee -a /etc/sddm.conf.d/autologin.conf << END
 User=$USER
 Session=plasma.desktop
 END 
+
+echo "Your setup is ready. You can reboot now!"

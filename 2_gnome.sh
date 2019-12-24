@@ -20,3 +20,5 @@ sudo tee -a /etc/gdm/custom.conf << END
 AutomaticLogin=$USER
 AutomaticLoginEnable=True
 END
+
+echo "Your setup is ready. You can reboot now!"
