@@ -15,7 +15,14 @@ ExecStart=-/usr/bin/agetty --autologin $USER --noclear %I $TERM
 END
 
 echo "Installing xorg and dependencies"
-sudo pacman -S --noconfirm xorg xf86-input-libinput xorg-xinput xorg-xinit
+sudo pacman -S --noconfirm xorg xf86-input-libinput xorg-xinput xorg-xinit xterm
+
+echo "Autostart X at login"
+tee -a ~/.bash_profile << END
+if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  exec startx
+fi
+END
 
 echo "Creating user's folders"
 sudo pacman -S --noconfirm xdg-user-dirs
@@ -37,6 +44,13 @@ wget -P ~/.config/picom https://raw.githubusercontent.com/exah-io/minimal-arch-l
 
 echo "Installing i3"
 sudo pacman -S --noconfirm i3-gaps
+
+echo "Autostart i3 at login"
+touch ~/.xinitrc
+tee -a ~/.xinitrc << END
+#! /bin/bash
+exec i3
+END
 
 echo "Ricing i3"
 mkdir -p ~/.config/i3

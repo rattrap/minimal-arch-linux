@@ -44,7 +44,7 @@ echo "Changing default npm directory"
 mkdir "$HOME"/.npm-global
 npm config set prefix "$HOME/.npm-global"
 touch "$HOME"/.profile
-tee "$HOME"/.profile << END
+tee -a "$HOME"/.profile << END
 export PATH=$HOME/.npm-global/bin:$PATH
 END
 source "$HOME"/.profile
@@ -63,7 +63,7 @@ code --install-extension ms-vscode.go
 
 echo "Blacklisting bluetooth"
 sudo touch /etc/modprobe.d/nobt.conf
-sudo tee /etc/modprobe.d/nobt.conf << END
+sudo tee -a /etc/modprobe.d/nobt.conf << END
 blacklist btusb
 blacklist bluetooth
 END
@@ -77,5 +77,6 @@ makepkg -si --noconfirm
 cd ..
 rm -rf yay-bin
 
-echo "Downloading wallpaper"
+echo "Downloading wallpapers"
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/andre-benz-cXU6tNxhub0-unsplash.jpg
+wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/metalbuilding.jpeg
