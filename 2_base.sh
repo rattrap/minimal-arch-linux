@@ -40,6 +40,46 @@ sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal
 sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/MesloLGS%20NF%20Italic.ttf
 sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/MesloLGS%20NF%20Bold.ttf
 
+echo "Blacklisting bluetooth"
+sudo touch /etc/modprobe.d/nobt.conf
+sudo tee -a /etc/modprobe.d/nobt.conf << END
+blacklist btusb
+blacklist bluetooth
+END
+sudo mkinitcpio -p linux-lts
+sudo mkinitcpio -p linux
+
+echo "Installing yay"
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
+makepkg -si --noconfirm
+cd ..
+rm -rf yay-bin
+
+echo "Downloading wallpapers"
+wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/andre-benz-cXU6tNxhub0-unsplash.jpg
+wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/metalbuilding.jpeg
+
+echo "Installing and configuring fish"
+sudo pacman -S --noconfirm fish
+tee -a ~/.bashrc << END
+exec fish
+END
+
+echo "Installing and configuring Starship prompt"
+yay -S --noconfirm starship-bin
+touch ~/.config/fish/config.fish
+tee -a ~/.config/fish/config.fish << END
+# Hide the fish greeting
+set fish_greeting ""
+
+# Syntax highlighting
+set -g fish_color_command --bold
+
+# Load Starship prompt
+starship init fish | source
+END
+
 echo "Installing Node.js LTS"
 sudo pacman -S --noconfirm nodejs-lts-erbium npm yarn
 
@@ -60,26 +100,3 @@ sudo pacman -S --noconfirm go dep go-tools
 
 echo "Installing VS Code"
 sudo pacman -S --noconfirm code
-
-echo "Installing VS Code theme + icons"
-code --install-extension ms-vscode.go
-
-echo "Blacklisting bluetooth"
-sudo touch /etc/modprobe.d/nobt.conf
-sudo tee -a /etc/modprobe.d/nobt.conf << END
-blacklist btusb
-blacklist bluetooth
-END
-sudo mkinitcpio -p linux-lts
-sudo mkinitcpio -p linux
-
-echo "Installing yay"
-git clone https://aur.archlinux.org/yay-bin.git
-cd yay-bin
-makepkg -si --noconfirm
-cd ..
-rm -rf yay-bin
-
-echo "Downloading wallpapers"
-wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/andre-benz-cXU6tNxhub0-unsplash.jpg
-wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/metalbuilding.jpeg
