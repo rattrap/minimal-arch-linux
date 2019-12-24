@@ -37,13 +37,6 @@ sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal
 sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/MesloLGS%20NF%20Italic.ttf
 sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/MesloLGS%20NF%20Bold.ttf
 
-echo "Installing and setting zsh, oh-my-zsh and powerlevel10k"
-sudo pacman -S --noconfirm zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME"/.oh-my-zsh/custom/themes/powerlevel10k
-rm -rf "$HOME"/.zshrc
-wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc
-
 echo "Installing Node.js LTS"
 sudo pacman -S --noconfirm nodejs-lts-erbium npm yarn
 

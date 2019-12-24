@@ -36,9 +36,6 @@
 
 - Sway (2_sway.sh), Gnome (2_gnome.sh) and KDE Plasma (2_plasma.sh) support
 - UFW (deny incoming, allow outgoing)
-- zsh:
-  - oh-my-zsh
-  - powerlevel10k theme
 - Fira Code Font
 - swaywm:
   - (sway) Ayu Mirage color scheme (termite, neovim, rofi, waybar, VS Code)

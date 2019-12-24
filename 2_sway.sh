@@ -26,12 +26,6 @@ sudo pacman -S --noconfirm termite
 echo "Installing office applications"
 sudo pacman -S --noconfirm tumbler evince thunderbird
 
-echo "Importing sway specific zsh configurations"
-wget -P ~/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/sway/.zprofile
-mkdir -p ~/.zshrc.d
-wget -P ~/.zshrc.d https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/sway/.zshrc.d/environ.zsh
-wget -P ~/.zshrc.d https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/sway/.zshrc.d/wayland.zsh
-
 echo "Installing sway and additional packages"
 sudo pacman -S --noconfirm sway swaylock swayidle waybar otf-font-awesome wl-clipboard pulseaudio pavucontrol rofi slurp grim thunar mousepad nnn light feh qalculate-gtk
 mkdir -p ~/Pictures/screenshots
