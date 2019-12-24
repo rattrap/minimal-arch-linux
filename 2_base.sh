@@ -14,16 +14,6 @@ sudo ufw enable
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 
-echo "Installing and enabling TLP"
-yes | sudo pacman -S tlp tlp-rdw
-sudo systemctl enable tlp.service
-sudo systemctl enable tlp.service
-sudo systemctl start tlp.service
-sudo systemctl start tlp.service
-sudo systemctl enable NetworkManager-dispatcher.service
-sudo systemctl mask systemd-rfkill.service
-sudo systemctl mask systemd-rfkill.socket
-
 echo "Improving Intel GPU support"
 sudo pacman -S --noconfirm intel-media-driver
 
@@ -35,15 +25,15 @@ sudo pacman -S --noconfirm firefox chromium keepassxc git openssh neovim links u
 
 echo "Installing fonts"
 sudo pacman -S --noconfirm ttf-roboto ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack noto-fonts
-# sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf
-# sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/Fira%20Code%20Bold%20Nerd%20Font%20Complete.ttf
-# sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/Fira%20Code%20Light%20Nerd%20Font%20Complete.ttf
-# sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/Fira%20Code%20Medium%20Nerd%20Font%20Complete.ttf
-# sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/Fira%20Code%20Retina%20Nerd%20Font%20Complete.ttf
-sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/MesloLGS%20NF%20Regular.ttf
-sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/MesloLGS%20NF%20Bold%20Italic.ttf
-sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/MesloLGS%20NF%20Italic.ttf
-sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/MesloLGS%20NF%20Bold.ttf
+sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf
+sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/Fira%20Code%20Bold%20Nerd%20Font%20Complete.ttf
+sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/Fira%20Code%20Light%20Nerd%20Font%20Complete.ttf
+sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/Fira%20Code%20Medium%20Nerd%20Font%20Complete.ttf
+sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/Fira%20Code%20Retina%20Nerd%20Font%20Complete.ttf
+# sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/MesloLGS%20NF%20Regular.ttf
+# sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/MesloLGS%20NF%20Bold%20Italic.ttf
+# sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/MesloLGS%20NF%20Italic.ttf
+# sudo wget -P /usr/share/fonts/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/fonts/MesloLGS%20NF%20Bold.ttf
 
 echo "Installing and setting zsh, oh-my-zsh and powerlevel10k"
 sudo pacman -S --noconfirm zsh
@@ -74,7 +64,6 @@ echo "Installing VS Code"
 sudo pacman -S --noconfirm code
 
 echo "Installing VS Code theme + icons"
-code --install-extension pkief.material-icon-theme
 code --install-extension ms-vscode.go
 
 echo "Blacklisting bluetooth"
@@ -86,33 +75,12 @@ END
 sudo mkinitcpio -p linux-lts
 sudo mkinitcpio -p linux
 
-echo "Installing and configuring Firejail"
-sudo pacman -S --noconfirm firejail
-sudo apparmor_parser -r /etc/apparmor.d/firejail-default
-sudo firecfg
-sudo touch /etc/pacman.d/hooks/firejail.hook
-sudo tee -a /etc/pacman.d/hooks/firejail.hook << END
-[Trigger]
-Type = File
-Operation = Install
-Operation = Upgrade
-Operation = Remove
-Target = usr/bin/*
-Target = usr/local/bin/*
-Target = usr/share/applications/*.desktop
-[Action]
-Description = Configure symlinks in /usr/local/bin based on firecfg.config...
-When = PostTransaction
-Depends = firejail
-Exec = /bin/sh -c 'firecfg &>/dev/null'
-END
-
-echo "Granting internet access again to VSCode in Firejail profile"
-sudo sed -i 's/net none/#net none/g' /etc/firejail/code.profile
-sudo firecfg
-
-echo "Enabling AppArmor cache"
-sudo sed -i 's/#write-cache/write-cache/g' /etc/apparmor/parser.conf
+echo "Installing yay"
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
+makepkg -si --noconfirm
+cd ..
+rm -rf yay-bin
 
 echo "Downloading wallpaper"
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/andre-benz-cXU6tNxhub0-unsplash.jpg

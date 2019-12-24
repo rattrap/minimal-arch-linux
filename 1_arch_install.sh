@@ -48,7 +48,7 @@ yes | mkswap /dev/vg0/swap
 swapon /dev/vg0/swap
 
 echo "Installing Arch Linux"
-yes '' | pacstrap /mnt base base-devel linux linux-headers linux-lts linux-lts-headers linux-firmware lvm2 device-mapper e2fsprogs intel-ucode cryptsetup mesa networkmanager apparmor wget man-db man-pages nano vi diffutils
+yes '' | pacstrap /mnt base base-devel linux linux-headers linux-lts linux-lts-headers linux-firmware lvm2 device-mapper e2fsprogs intel-ucode cryptsetup mesa networkmanager P wget man-db man-pages nano vi diffutils
 
 echo "Generating fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -102,7 +102,7 @@ title ArchLinux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
-options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p2)=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap rd.luks.options=discard apparmor=1 security=apparmor i915.fastboot=1 quiet rw
+options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p2)=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap rd.luks.options=discard i915.fastboot=1 quiet rw
 END
 
 touch /boot/loader/entries/archlts.conf
@@ -111,7 +111,7 @@ title ArchLinux
 linux /vmlinuz-linux-lts
 initrd /intel-ucode.img
 initrd /initramfs-linux-lts.img
-options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p2)=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap rd.luks.options=discard apparmor=1 security=apparmor i915.fastboot=1 quiet rw
+options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p2)=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap rd.luks.options=discard i915.fastboot=1 quiet rw
 END
 
 echo "Setting up Pacman hook for automatic systemd-boot updates"
@@ -134,9 +134,6 @@ systemctl enable fstrim.timer
 
 echo "Enabling NetworkManager"
 systemctl enable NetworkManager
-
-echo "Enabling AppArmor"
-systemctl enable apparmor.service
 
 echo "Adding user as a sudoer"
 echo '%wheel ALL=(ALL) ALL' | EDITOR='tee -a' visudo

@@ -13,7 +13,6 @@
 - SSD Periodic TRIM
 - Intel microcode
 - Standard Kernel + LTS kernel as fallback
-- AppArmor (with caching for faster startup)
 
 ### Requirements
 
@@ -37,12 +36,10 @@
 
 - Sway (2_sway.sh), Gnome (2_gnome.sh) and KDE Plasma (2_plasma.sh) support
 - UFW (deny incoming, allow outgoing)
-- TLP
-- Firejail with AppArmor integration
 - zsh:
   - oh-my-zsh
   - powerlevel10k theme
-- Meslo Nerd Font
+- Fira Code Font
 - swaywm:
   - (sway) Ayu Mirage color scheme (termite, neovim, rofi, waybar, VS Code)
     - Visual: [[Sway] Ayu (Updated)](https://www.reddit.com/r/unixporn/comments/dosu0c/sway_ayu_updated/)
