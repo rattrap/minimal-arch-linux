@@ -1,12 +1,9 @@
 ### VARIABLES
 # Font
-set $font Fira Code Retina 10
-
-# Color scheme
-set $colors ayu-mirage
+set $font San Francisco Pro Regular 10
 
 # Background image
-set $background andre-benz-cXU6tNxhub0-unsplash.jpg
+set $background metalbuilding.jpeg
 
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
@@ -236,6 +233,3 @@ set $screenshot grim
 set $screenshotout $HOME/Pictures/screenshots/$(date "+%Y-%m-%d-%H%M%S_shot.png")
 bindsym Print exec $screenshot $screenshotout
 bindsym $mod+Print exec $screenshot -g "$($screenselect)" $screenshotout
-
-include colors.$colors
-include /etc/sway/config.d/*

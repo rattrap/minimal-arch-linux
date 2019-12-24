@@ -34,20 +34,20 @@ markup=none
 # The first parameter sets the step (and units to display)
 # The second parameter overrides the mixer selection
 # See the script for details.
-#[volume]
-#label=VOL
+[volume]
+label=VOL
 #label=♪
-#instance=Master
+instance=Master
 #instance=PCM
-#interval=once
-#signal=10
+interval=once
+signal=10
 
 # CPU usage
 #
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [cpu_usage]
-label= CPU
+label=CPU
 interval=5
 #min_width=CPU: 100.00%
 #separator=false
@@ -56,7 +56,7 @@ interval=5
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-label= RAM
+label=RAM
 #separator=false
 interval=10
 
@@ -73,7 +73,7 @@ interval=10
 
 [bandwidth]
 #instance=eth0
-label=
+label=BW
 interval=5
 
 #[firewall]
@@ -88,7 +88,7 @@ interval=5
 [iface]
 #instance=wlan0
 #color=#3BB92D
-label=
+label=WIFI
 interval=120
 #separator=false
 
@@ -99,7 +99,7 @@ interval=120
 #
 # The battery instance defaults to 0.
 [battery]
-label=Battery
+label=BAT
 #label=⚡
 #instance=1
 interval=30
@@ -154,7 +154,7 @@ interval=30
 #
 [time]
 #color=#9FE697
-label=
+#label=
 command=date '+%A, %d %B %Y %H:%M:%S '
 interval=1
 #align=right

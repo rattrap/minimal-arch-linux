@@ -28,9 +28,6 @@ sudo pacman -S --noconfirm sway swaylock swayidle waybar otf-font-awesome wl-cli
 mkdir -p ~/Pictures/screenshots
 mkdir -p ~/.config/sway
 wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/config
-wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/colors.ayu
-wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/colors.ayu-dark
-wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/colors.ayu-mirage
 
 echo "Installing San Francisco Fonts"
 git clone https://aur.archlinux.org/otf-san-francisco-pro.git
@@ -42,44 +39,34 @@ rm -rf otf-san-francisco-pro
 echo "Enabling auto-mount and archives creation/deflation for thunar"
 sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
 
-echo "Adding VSCode ayu theme"
-code --install-extension teabyii.ayu
-
 echo "Ricing waybar"
 mkdir -p ~/.config/waybar
 wget -P ~/.config/waybar https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/waybar/config
 wget -P ~/.config/waybar https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/waybar/style.css
 
-echo "Ricing swaynag"
-mkdir -p ~/.config/swaynag
-wget -P ~/.config/swaynag https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/swaynag/config
-
 echo "Ricing Termite"
 mkdir -p ~/.config/termite
-wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config
+wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.monochrome
+mv ~/.config/termite/config.monochrome ~/.config/termite/config
+mkdir -p ~/.config/gtk-3.0
+touch ~/.config/gtk-3.0/gtk.css
+tee -a ~/.config/gtk-3.0/gtk.css << END
+VteTerminal, vte-terminal {
+ padding: 18px;
+}
+END
 
 echo "Ricing rofi"
 mkdir -p ~/.config/rofi
-wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/config.rasi
-wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/ayu-mirage.rasi
-wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/ayu-dark.rasi
-wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/ayu.rasi
-wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/defaults.rasi
-
-echo "Ricing neovim"
-mkdir -p "$HOME"/.config/nvim
-wget -P "$HOME"/.config/nvim https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/nvim/init.vim
-
-echo "Installing vim-plug"
-curl -fLo "$HOME"/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim +'PlugInstall --sync' +qa
+wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/monochromatic.rasi
+mv ~/.config/rofi/monochromatic.rasi ~/.config/rofi/config.rasi
 
 echo "Installing GTK theme and dependencies"
 sudo pacman -S --noconfirm gtk-engine-murrine gtk-engines
 sudo mkdir -p /usr/share/themes/
-sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/ayu-gtk-themes.tar.gz
-sudo tar -xzf /usr/share/themes/ayu-gtk-themes.tar.gz -C /usr/share/themes/
-sudo rm -f /usr/share/themes/ayu-gtk-themes.tar.gz
+sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/Qogir-win-light.tar.gz
+sudo tar -xzf /usr/share/themes/Qogir-win-light.tar.gz -C /usr/share/themes/
+sudo rm -f /usr/share/themes/Qogir-win-light.tar.gz
 
 echo "Installing icons"
 sudo pacman -S --noconfirm papirus-icon-theme
@@ -88,11 +75,11 @@ cd papirus-folders-git
 yes | makepkg -si
 cd ..
 rm -rf papirus-folders-git
-papirus-folders -C yellow --theme Papirus-Dark
+papirus-folders -C black --theme Papirus-Dark
 
 echo "Setting GTK theme, font and icons"
-FONT="Fira Code Retina 10"
-GTK_THEME="Ayu-Mirage-Dark"
+FONT="San Francisco Pro Regular 10"
+GTK_THEME="Qogir-win-light"
 GTK_ICON_THEME="Papirus-Dark"
 GTK_SCHEMA="org.gnome.desktop.interface"
 gsettings set $GTK_SCHEMA gtk-theme "$GTK_THEME"
