@@ -99,7 +99,7 @@ tee -a ~/.config/gtk-3.0/settings.ini << END
 [Settings]
 gtk-theme-name=Qogir-win-light
 gtk-icon-theme-name=Papirus-Dark
-gtk-font-name=Roboto 9
+gtk-font-name=Roboto 10
 gtk-cursor-theme-name=Adwaita
 gtk-cursor-theme-size=0
 gtk-toolbar-style=GTK_TOOLBAR_BOTH
