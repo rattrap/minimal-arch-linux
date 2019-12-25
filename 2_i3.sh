@@ -14,6 +14,14 @@ ExecStart=
 ExecStart=-/usr/bin/agetty --autologin $USER --noclear %I $TERM
 END
 
+echo "Enable X autostart"
+tee -a ~/.bash_profile << END
+
+if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  exec startx
+fi
+END
+
 echo "Installing xorg and dependencies"
 sudo pacman -S --noconfirm xorg xf86-input-libinput xorg-xinput xorg-xinit xterm
 
@@ -61,20 +69,24 @@ mkdir -p ~/.config/i3blocks
 wget -P ~/.config/i3blocks https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/i3blocks/config
 
 echo "Installing i3 dependencies"
-sudo pacman -S --noconfirm pulseaudio pavucontrol thunar mousepad qalculate-gtk rofi feh
+sudo pacman -S --noconfirm pulseaudio pavucontrol thunar mousepad qalculate-gtk feh
 
-echo "Ricing rofi"
+echo "Enabling auto-mount and archives creation/deflation for thunar"
+sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
+
+echo "Installing office applications"
+sudo pacman -S --noconfirm tumbler evince thunderbird
+
+echo "Installing and ricing rofi"
+sudo pacman -S --noconfirm rofi
 mkdir -p ~/.config/rofi
 wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/monochromatic.rasi
 mv ~/.config/rofi/monochromatic.rasi ~/.config/rofi/config.rasi
 
-echo "Installing and configuring i3lock"
+echo "Installing and configuring i3lock / betterlockscreen"
 sudo pacman -S --noconfirm imagemagick feh xorg-xrandr xorg-xdpyinfo
 yay -S --noconfirm i3lock-color betterlockscreen
 sudo cp /usr/share/doc/betterlockscreen/examples/betterlockscreenrc ~/.config
-
-echo "Enabling auto-mount and archives creation/deflation for thunar"
-sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
 
 echo "Installing GTK theme and dependencies"
 sudo pacman -S --noconfirm gtk-engine-murrine gtk-engines
@@ -113,25 +125,15 @@ gtk-xft-hinting=1
 gtk-xft-hintstyle=hintfull
 END
 
-echo "Installing office applications"
-sudo pacman -S --noconfirm tumbler evince thunderbird
-
 echo "Adding VSCode theme"
 code --install-extension gtwsky.oolory
 
 echo "Autostart X with fish"
-tee -a ~/.config/fish/config.fish << tee
+tee -a ~/.config/fish/config.fish << END
 
 # Syntax highlighting
 set -g fish_color_command --bold
 set -g fish_color_param white
-
-# Start X at login
-if status is-interactive
-    if test -z "$DISPLAY" -a $XDG_VTNR = 1
-        exec startx -- -keeptty
-    end
-end
-tee
+END
 
 echo "Your setup is ready. You can reboot now!"

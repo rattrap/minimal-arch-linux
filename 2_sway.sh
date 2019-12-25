@@ -20,14 +20,26 @@ sudo pacman -S --noconfirm xorg-server-xwayland
 echo "Installing Termite terminal"
 sudo pacman -S --noconfirm termite
 
-echo "Installing office applications"
-sudo pacman -S --noconfirm tumbler evince thunderbird
+echo "Ricing Termite"
+mkdir -p ~/.config/termite
+wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.monochrome
+mv ~/.config/termite/config.monochrome ~/.config/termite/config
+mkdir -p ~/.config/gtk-3.0
+touch ~/.config/gtk-3.0/gtk.css
+tee -a ~/.config/gtk-3.0/gtk.css << END
+VteTerminal, vte-terminal {
+ padding: 18px;
+}
+END
 
 echo "Installing sway and additional packages"
 sudo pacman -S --noconfirm sway swaylock swayidle waybar otf-font-awesome wl-clipboard pulseaudio pavucontrol rofi slurp grim thunar mousepad nnn light feh qalculate-gtk
 mkdir -p ~/Pictures/screenshots
 mkdir -p ~/.config/sway
 wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/config
+
+echo "Installing office applications"
+sudo pacman -S --noconfirm tumbler evince thunderbird
 
 echo "Installing San Francisco Fonts"
 git clone https://aur.archlinux.org/otf-san-francisco-pro.git
@@ -43,18 +55,6 @@ echo "Ricing waybar"
 mkdir -p ~/.config/waybar
 wget -P ~/.config/waybar https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/waybar/config
 wget -P ~/.config/waybar https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/waybar/style.css
-
-echo "Ricing Termite"
-mkdir -p ~/.config/termite
-wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.monochrome
-mv ~/.config/termite/config.monochrome ~/.config/termite/config
-mkdir -p ~/.config/gtk-3.0
-touch ~/.config/gtk-3.0/gtk.css
-tee -a ~/.config/gtk-3.0/gtk.css << END
-VteTerminal, vte-terminal {
- padding: 18px;
-}
-END
 
 echo "Ricing rofi"
 mkdir -p ~/.config/rofi
