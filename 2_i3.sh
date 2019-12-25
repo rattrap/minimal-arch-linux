@@ -14,14 +14,6 @@ ExecStart=
 ExecStart=-/usr/bin/agetty --autologin $USER --noclear %I $TERM
 END
 
-echo "Enable X autostart"
-tee -a ~/.bash_profile << END
-
-if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx
-fi
-END
-
 echo "Installing xorg and dependencies"
 sudo pacman -S --noconfirm xorg xf86-input-libinput xorg-xinput xorg-xinit xterm
 
@@ -134,6 +126,13 @@ tee -a ~/.config/fish/config.fish << END
 # Syntax highlighting
 set -g fish_color_command --bold
 set -g fish_color_param white
+
+# Start X at login
+if status --is-interactive
+    if test -z "$DISPLAY" -a $XDG_VTNR = 1
+        exec startx -- -keeptty
+    end
+end
 END
 
 echo "Your setup is ready. You can reboot now!"
