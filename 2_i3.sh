@@ -122,6 +122,10 @@ code --install-extension gtwsky.oolory
 echo "Autostart X with fish"
 tee -a ~/.config/fish/config.fish << tee
 
+# Syntax highlighting
+set -g fish_color_command --bold
+set -g fish_color_param white
+
 # Start X at login
 if status is-interactive
     if test -z "$DISPLAY" -a $XDG_VTNR = 1

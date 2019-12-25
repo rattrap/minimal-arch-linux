@@ -72,10 +72,7 @@ mkdir -p ~/.config/fish
 touch ~/.config/fish/config.fish
 tee -a ~/.config/fish/config.fish << END
 # Hide the fish greeting
-set fish_greeting "--"
-
-# Syntax highlighting
-set -g fish_color_command --bold
+set fish_greeting "- -"
 
 # Load Starship prompt
 starship init fish | source

@@ -34,9 +34,10 @@
 
 ## Post install script
 
-- Sway (2_sway.sh), Gnome (2_gnome.sh) and KDE Plasma (2_plasma.sh) support
+- Sway (2_sway.sh), i3 (2_i3.sh), Gnome (2_gnome.sh) and KDE Plasma (2_plasma.sh) support
 - UFW (deny incoming, allow outgoing)
-- Fira Code Font
+- Iosevka Font (termite)
+- Fish shell with [Starship](https://starship.rs/) prompt
 - swaywm:
   - (sway) Ayu Mirage color scheme (termite, neovim, rofi, waybar, VS Code)
     - Visual: [[Sway] Ayu (Updated)](https://www.reddit.com/r/unixporn/comments/dosu0c/sway_ayu_updated/)
