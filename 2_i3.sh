@@ -45,7 +45,7 @@ sudo pacman -S --noconfirm i3-gaps
 echo "Autostart i3 at login"
 touch ~/.xinitrc
 tee -a ~/.xinitrc << END
-#! /bin/bash
+#!/bin/bash
 exec i3
 END
 
@@ -120,13 +120,14 @@ echo "Adding VSCode theme"
 code --install-extension gtwsky.oolory
 
 echo "Autostart X with fish"
-tee -a ~/.config/fish/config.fish << END
+tee -a ~/.config/fish/config.fish << tee
+
 # Start X at login
 if status is-interactive
     if test -z "$DISPLAY" -a $XDG_VTNR = 1
         exec startx -- -keeptty
     end
 end
-END
+tee
 
 echo "Your setup is ready. You can reboot now!"
