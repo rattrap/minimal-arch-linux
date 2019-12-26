@@ -35,13 +35,13 @@
 ## Post install script
 
 - Sway (2_sway.sh), i3 (2_i3.sh), Gnome (2_gnome.sh) and KDE Plasma (2_plasma.sh) support
+- Plymouth
 - UFW (deny incoming, allow outgoing)
 - Iosevka Font
-- Fish shell with [Starship](https://starship.rs/) prompt
+- Bash with [Starship](https://starship.rs/) prompt
+- Automatic login (with systemd)
 - swaywm:
-  - (sway) Ayu Mirage color scheme (termite, neovim, rofi, waybar, VS Code)
-    - Visual: [[Sway] Ayu (Updated)](https://www.reddit.com/r/unixporn/comments/dosu0c/sway_ayu_updated/)
-  - GTK theme and icons: Custom Arc - Ayu Mirage + Papirus icons
+  - GTK theme and icons: Qogir win light + Papirus Dark icons
   - autostart on tty1
   - waybar: onclick pavucontrol (volume control) and nmtui (ncli network manager)
   - swayidle and swaylock: automatic sleep and lock
@@ -49,7 +49,6 @@
   - rofi as application launcher
   - slurp and grim for screenshots
   - Hibernate (power key) + suspend (lid close)
-  - Automatic login (with systemd)
   - thunar (with USB automonting)
 - Other applications: firefox, keepassxc, git, openssh, vim, Node.js LTS, tumbler, evince, thunderbird, upower, htop, VS code oss, nnn, neovim and a few others
 
@@ -151,16 +150,11 @@ sudo efibootmgr --verbose --disk /dev/nvme0n1 --part 1 --create --label "PreLoad
 
 ### Plymouth
 ```
+echo "Installing and configuring Plymouth"
 yay -S --noconfirm plymouth
-
-/etc/mkinitcpio.conf
-HOOKS=(base systemd sd-plymouth [...] sd-encrypt [...])
-
-kernel params (/boot/loader/entries/arch.conf):
-    quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0
-
-sudo mkinitcpio -p linux
-sudo mkinitcpio -p linux-lts
+sudo sed -i 's/base systemd autodetect/base systemd sd-plymouth autodetect/g' /etc/mkinitcpio.conf
+sudo sed -i 's/quiet rw/quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0 rw/g' /boot/loader/entries/arch.conf
+# Arch LTS left out on purpose, in case there's an issue with Plymouth
 
 echo "Installing and setting plymouth theme"
 yay -S --noconfirm plymouth-theme-arch-breeze-git
@@ -169,9 +163,6 @@ sudo plymouth-set-default-theme -R arch-breeze
 
 ### TODO (maybe)
 - [Support secure boot](https://wiki.archlinux.org/index.php/Secure_Boot)
-- Plymouth
-- sway:
-  - [Improve](https://www.reddit.com/r/swaywm/comments/bkzeo7/font_rendering_really_bad_and_rough_in_gtk3/?ref=readnext) [font](https://www.reddit.com/r/archlinux/comments/5r5ep8/make_your_arch_fonts_beautiful_easily/) [rendering](https://aur-dev.archlinux.org/packages/fontconfig-enhanced-defaults/) [with](https://gist.github.com/cryzed/e002e7057435f02cc7894b9e748c5671) [this](https://wiki.archlinux.org/index.php/Font_configuration#Incorrect_hinting_in_GTK_applications) [or this](https://www.reddit.com/r/archlinux/comments/9ujhbc/how_to_get_windows_like_font_rendering/)
-  - Waybar: add battery discharge rate. Use [this config](https://gitlab.com/krathalan/waybar-modules/raw/3a652315f537ac957c37f08e55b5184da2b36cbd/mywaybar.jpg) as reference: [snippets](https://gitlab.com/snippets/1880686) and [modules](https://gitlab.com/krathalan/waybar-modules)
-  - Use [swaylock-blur](https://github.com/cjbassi/swaylock-blur)
-  - Add gestures to switch workspaces: [example](https://www.reddit.com/r/unixporn/comments/bd0l15/sway_real_world_student_workflow/ekv1ird?utm_source=share&utm_medium=web2x)
+- Waybar: add battery discharge rate. Use [this config](https://gitlab.com/krathalan/waybar-modules/raw/3a652315f537ac957c37f08e55b5184da2b36cbd/mywaybar.jpg) as reference: [snippets](https://gitlab.com/snippets/1880686) and [modules](https://gitlab.com/krathalan/waybar-modules)
+- Use [swaylock-blur](https://github.com/cjbassi/swaylock-blur)
+- Add gestures to switch workspaces: [example](https://www.reddit.com/r/unixporn/comments/bd0l15/sway_real_world_student_workflow/ekv1ird?utm_source=share&utm_medium=web2x)
