@@ -14,7 +14,6 @@
     "pulseaudio",
     "backlight",
     "network",
-    "custom/system"
   ],
   "custom/separator": {
     "format": "·",

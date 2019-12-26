@@ -73,6 +73,7 @@ sudo pacman -S --noconfirm tumbler evince thunderbird
 echo "Installing and ricing rofi"
 sudo pacman -S --noconfirm rofi
 mkdir -p ~/.config/rofi
+wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/config.rasi
 wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/monochromatic.rasi
 mv ~/.config/rofi/monochromatic.rasi ~/.config/rofi/config.rasi
 
@@ -84,7 +85,6 @@ sudo tar -xzf /usr/share/themes/Qogir-win-light.tar.gz -C /usr/share/themes/
 sudo rm -f /usr/share/themes/Qogir-win-light.tar.gz
 
 echo "Installing Papirus icons"
-sudo pacman -S --noconfirm papirus-icon-theme
 sudo wget -P /usr/share/icons https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/Papirus-Dark.tar.gz
 sudo tar -xzf /usr/share/icons/Papirus-Dark.tar.gz -C /usr/share/icons/
 sudo rm -f /usr/share/icons/Papirus-Dark.tar.gz
