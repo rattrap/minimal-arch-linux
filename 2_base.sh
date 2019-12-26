@@ -49,19 +49,12 @@ END
 sudo mkinitcpio -p linux-lts
 sudo mkinitcpio -p linux
 
-echo "Installing yay"
-git clone https://aur.archlinux.org/yay-bin.git
-cd yay-bin
-makepkg -si --noconfirm
-cd ..
-rm -rf yay-bin
-
 echo "Downloading wallpapers"
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/andre-benz-cXU6tNxhub0-unsplash.jpg
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/metalbuilding.jpeg
 
 echo "Installing and configuring Starship prompt"
-yay -S --noconfirm starship-bin
+curl -fsSL https://starship.rs/install.sh | bash
 touch ~/.bashrc
 tee -a ~/.bashrc << END
 eval "$(starship init bash)"

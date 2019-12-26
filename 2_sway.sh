@@ -76,14 +76,11 @@ sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minima
 sudo tar -xzf /usr/share/themes/Qogir-win-light.tar.gz -C /usr/share/themes/
 sudo rm -f /usr/share/themes/Qogir-win-light.tar.gz
 
-echo "Installing icons"
+echo "Installing Papirus icons"
 sudo pacman -S --noconfirm papirus-icon-theme
-git clone https://aur.archlinux.org/papirus-folders-git.git
-cd papirus-folders-git
-yes | makepkg -si
-cd ..
-rm -rf papirus-folders-git
-papirus-folders -C black --theme Papirus-Dark
+sudo wget -P /usr/share/icons https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/Papirus-Dark.tar.gz
+sudo tar -xzf /usr/share/icons/Papirus-Dark.tar.gz -C /usr/share/icons/
+sudo rm -f /usr/share/icons/Papirus-Dark.tar.gz
 
 echo "Setting GTK theme, font and icons"
 FONT="San Francisco Pro Regular 10"
