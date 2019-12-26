@@ -121,18 +121,18 @@ echo "Adding VSCode theme"
 code --install-extension gtwsky.oolory
 
 echo "Autostart X with fish"
-tee -a ~/.config/fish/config.fish << TEE
+tee -a ~/.config/fish/config.fish << EOF
 
 # Syntax highlighting
 set -g fish_color_command --bold
 set -g fish_color_param white
 
 # Start X at login
-if status --is-interactive
+if status is-interactive
     if test -z "$DISPLAY" -a $XDG_VTNR = 1
         exec startx -- -keeptty
     end
 end
-TEE
+EOF
 
 echo "Your setup is ready. You can reboot now!"
