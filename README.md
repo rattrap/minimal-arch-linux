@@ -38,7 +38,7 @@
 - Plymouth
 - UFW (deny incoming, allow outgoing)
 - Iosevka Font
-- Bash with [Starship](https://starship.rs/) prompt
+- ZSH with Oh-My-Zsh and Powerlevel10k
 - Automatic login (with systemd)
 - yay (AUR helper)
 - swaywm:

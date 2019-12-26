@@ -42,8 +42,7 @@ mkdir -p ~/.config/sway
 wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/config
 
 echo "Making sway start on login"
-touch ~/.bash_profile
-tee -a ~/.bash_profile << END
+tee -a ~/.zshrc << END
 if [ "$(tty)" = "/dev/tty1" ]; then
 	exec sway
 fi

@@ -14,6 +14,21 @@ sudo ufw enable
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 
+echo "Installing yay"
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
+makepkg -si --noconfirm
+cd ..
+rm -rf yay-bin
+
+echo "Installing and setting zsh, oh-my-zsh and powerlevel10k"
+sudo pacman -S --noconfirm zsh
+chsh -s /usr/bin/zsh
+yay -S --noconfirm oh-my-zsh-git
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME"/.oh-my-zsh/custom/themes/powerlevel10k
+rm -rf "$HOME"/.zshrc
+wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc
+
 echo "Improving Intel GPU support"
 sudo pacman -S --noconfirm intel-media-driver
 
@@ -53,19 +68,6 @@ echo "Downloading wallpapers"
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/andre-benz-cXU6tNxhub0-unsplash.jpg
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/metalbuilding.jpeg
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/Phoenix-dark-grey.png
-
-echo "Installing yay"
-git clone https://aur.archlinux.org/yay-bin.git
-cd yay-bin
-makepkg -si --noconfirm
-cd ..
-rm -rf yay-bin
-
-echo "Installing and configuring Starship prompt"
-yay -S --noconfirm starship-bin
-touch ~/.bashrc
-echo 'eval "$(starship init bash)"' >> ~/.bashrc
-
 
 echo "Installing Node.js LTS"
 sudo pacman -S --noconfirm nodejs-lts-erbium npm yarn

@@ -46,8 +46,7 @@ echo "Installing i3"
 sudo pacman -S --noconfirm i3-gaps
 
 echo "Making i3 start on login"
-touch ~/.bash_profile
-tee -a ~/.bash_profile << END
+tee -a ~/.zshrc << END
 if [ "$(tty)" = "/dev/tty1" ]; then
 	exec i3
 fi
