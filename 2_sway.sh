@@ -6,13 +6,16 @@ chmod +x 2_base.sh
 sh ./2_base.sh
 
 echo "Enabling autologin"
-sudo mkdir -p  /etc/systemd/system/getty@tty1.service.d/
+sudo mkdir -p /etc/systemd/system/getty@tty1.service.d/
 sudo touch /etc/systemd/system/getty@tty1.service.d/override.conf
 sudo tee -a /etc/systemd/system/getty@tty1.service.d/override.conf << END
 [Service]
 ExecStart=
-ExecStart=-/usr/bin/agetty --autologin $USER --noclear %I $TERM
+ExecStart=-/usr/bin/agetty --skip-login --nonewline --noissue --autologin $USER --noclear %I $TERM
 END
+
+echo "Removing last login message"
+touch ~/.hushlogin
 
 echo "Installing xwayland"
 sudo pacman -S --noconfirm xorg-server-xwayland
@@ -22,8 +25,8 @@ sudo pacman -S --noconfirm termite
 
 echo "Ricing Termite"
 mkdir -p ~/.config/termite
-wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.monochrome
-mv ~/.config/termite/config.monochrome ~/.config/termite/config
+wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.monochrome-alt
+mv ~/.config/termite/config.monochrome-alt ~/.config/termite/config
 mkdir -p ~/.config/gtk-3.0
 touch ~/.config/gtk-3.0/gtk.css
 tee -a ~/.config/gtk-3.0/gtk.css << END
@@ -78,9 +81,13 @@ sudo tar -xzf /usr/share/themes/Qogir-win-light.tar.gz -C /usr/share/themes/
 sudo rm -f /usr/share/themes/Qogir-win-light.tar.gz
 
 echo "Installing Papirus icons"
-sudo wget -P /usr/share/icons https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/Papirus-Dark.tar.gz
-sudo tar -xzf /usr/share/icons/Papirus-Dark.tar.gz -C /usr/share/icons/
-sudo rm -f /usr/share/icons/Papirus-Dark.tar.gz
+sudo pacman -S --noconfirm papirus-icon-theme
+git clone https://aur.archlinux.org/papirus-folders-git.git
+cd papirus-folders-git
+yes | makepkg -si
+cd ..
+rm -rf papirus-folders-git
+papirus-folders -C black --theme Papirus-Dark
 
 echo "Setting GTK theme, font and icons"
 FONT="San Francisco Pro Regular 10"

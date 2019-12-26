@@ -1,5 +1,5 @@
 [options]
-font = Iosevka Nerd Font Regular 11
+font = Iosevka Nerd Font Regular 12
 scrollback_lines = 2000
 
 [colors]

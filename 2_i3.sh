@@ -11,8 +11,11 @@ sudo touch /etc/systemd/system/getty@tty1.service.d/override.conf
 sudo tee -a /etc/systemd/system/getty@tty1.service.d/override.conf << END
 [Service]
 ExecStart=
-ExecStart=-/usr/bin/agetty --autologin $USER --noclear %I $TERM
+ExecStart=-/usr/bin/agetty --skip-login --nonewline --noissue --autologin $USER --noclear %I $TERM
 END
+
+echo "Removing last login message"
+touch ~/.hushlogin
 
 echo "Installing xorg and dependencies"
 sudo pacman -S --noconfirm xorg xf86-input-libinput xorg-xinput xorg-xinit xterm
@@ -85,9 +88,13 @@ sudo tar -xzf /usr/share/themes/Qogir-win-light.tar.gz -C /usr/share/themes/
 sudo rm -f /usr/share/themes/Qogir-win-light.tar.gz
 
 echo "Installing Papirus icons"
-sudo wget -P /usr/share/icons https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/Papirus-Dark.tar.gz
-sudo tar -xzf /usr/share/icons/Papirus-Dark.tar.gz -C /usr/share/icons/
-sudo rm -f /usr/share/icons/Papirus-Dark.tar.gz
+sudo pacman -S --noconfirm papirus-icon-theme
+git clone https://aur.archlinux.org/papirus-folders-git.git
+cd papirus-folders-git
+yes | makepkg -si
+cd ..
+rm -rf papirus-folders-git
+papirus-folders -C black --theme Papirus-Dark
 
 echo "Setting GTK theme, font and icons"
 mkdir -p ~/.config/gtk-3.0

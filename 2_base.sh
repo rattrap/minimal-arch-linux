@@ -54,8 +54,15 @@ wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/metalbuilding.jpeg
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/Phoenix-dark-grey.png
 
+echo "Installing yay"
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
+makepkg -si --noconfirm
+cd ..
+rm -rf yay-bin
+
 echo "Installing and configuring Starship prompt"
-curl -fsSL https://starship.rs/install.sh | bash
+yay -S --noconfirm starship-bin
 touch ~/.bashrc
 tee -a ~/.bashrc << END
 eval "$(starship init bash)"
@@ -78,3 +85,12 @@ echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-wat
 
 echo "Installing VS Code"
 sudo pacman -S --noconfirm code
+
+echo "Installing and configuring plymouth"
+yay -S --noconfirm plymouth
+sudo sed -i 's/base systemd autodetect/base systemd sd-plymouth autodetect/g' /etc/mkinitcpio.conf
+sudo sed -i 's/quiet rw/quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0 rw/g' /boot/loader/entries/arch.conf
+
+echo "Installing and setting plymouth theme"
+yay -S --noconfirm plymouth-theme-arch-breeze-git
+sudo plymouth-set-default-theme -R arch-breeze
