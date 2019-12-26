@@ -60,24 +60,14 @@ echo "Downloading wallpapers"
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/andre-benz-cXU6tNxhub0-unsplash.jpg
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/metalbuilding.jpeg
 
-echo "Installing and configuring fish"
-sudo pacman -S --noconfirm fish
-tee -a ~/.bashrc << END
-exec fish
-END
-
-echo "Installing and configuring Starship prompt/fish"
+echo "Installing and configuring Starship prompt"
 yay -S --noconfirm starship-bin
-mkdir -p ~/.config/fish
-touch ~/.config/fish/config.fish
-tee -a ~/.config/fish/config.fish << END
-# Hide the fish greeting
-set fish_greeting "- -"
-
-# Load Starship prompt
-starship init fish | source
+touch ~/.bashrc
+tee -a ~/.bashrc << END
+eval "$(starship init bash)"
 END
 
+[-------------------------------------------------------------------------------------------------------------------------------------------------------]
 echo "Installing Node.js LTS"
 sudo pacman -S --noconfirm nodejs-lts-erbium npm yarn
 
@@ -93,8 +83,8 @@ source "$HOME"/.profile
 echo "Increasing the amount of inotify watchers"
 echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf && sudo sysctl --system
 
-echo "Installing Go lang"
-sudo pacman -S --noconfirm go dep go-tools
+[-------------------------------------------------------------------------------------------------------------------------------------------------------]
+
 
 echo "Installing VS Code"
 sudo pacman -S --noconfirm code

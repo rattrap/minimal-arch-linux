@@ -104,6 +104,12 @@ mount /dev/vg0/Arch-root /mnt
 arch-chroot /mnt
 ```
 
+### How to install Go lang
+```
+echo "Installing Go lang"
+sudo pacman -S --noconfirm go dep go-tools
+```
+
 ### VSCode - Settings
 
 - Install ESLint on a per project basis: npm i eslint

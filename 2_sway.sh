@@ -38,6 +38,14 @@ mkdir -p ~/Pictures/screenshots
 mkdir -p ~/.config/sway
 wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/config
 
+echo "Making sway start on login"
+touch ~/.bash_profile
+tee -a ~/.bash_profile << END
+if [ "$(tty)" = "/dev/tty1" ]; then
+	exec sway
+fi
+END
+
 echo "Installing office applications"
 sudo pacman -S --noconfirm tumbler evince thunderbird
 
@@ -90,5 +98,8 @@ gsettings set $GTK_SCHEMA document-font-name "$FONT"
 echo "Enabling suspend and hibernate hotkeys"
 sudo sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=hibernate/g' /etc/systemd/logind.conf
 sudo sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=suspend/g' /etc/systemd/logind.conf
+
+echo "Adding VSCode theme"
+code --install-extension gtwsky.oolory
 
 echo "Your setup is ready. You can reboot now!"

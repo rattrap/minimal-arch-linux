@@ -42,11 +42,12 @@ wget -P ~/.config/picom https://raw.githubusercontent.com/exah-io/minimal-arch-l
 echo "Installing i3"
 sudo pacman -S --noconfirm i3-gaps
 
-echo "Autostart i3 at login"
-touch ~/.xinitrc
-tee -a ~/.xinitrc << END
-#!/bin/bash
-exec i3
+echo "Making i3 start on login"
+touch ~/.bash_profile
+tee -a ~/.bash_profile << END
+if [ "$(tty)" = "/dev/tty1" ]; then
+	exec i3
+fi
 END
 
 echo "Ricing i3"
@@ -61,7 +62,7 @@ mkdir -p ~/.config/i3blocks
 wget -P ~/.config/i3blocks https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/i3blocks/config
 
 echo "Installing i3 dependencies"
-sudo pacman -S --noconfirm pulseaudio pavucontrol thunar mousepad qalculate-gtk feh
+sudo pacman -S --noconfirm pulseaudio pavucontrol thunar mousepad qalculate-gtk feh i3lock
 
 echo "Enabling auto-mount and archives creation/deflation for thunar"
 sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
@@ -74,11 +75,6 @@ sudo pacman -S --noconfirm rofi
 mkdir -p ~/.config/rofi
 wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/monochromatic.rasi
 mv ~/.config/rofi/monochromatic.rasi ~/.config/rofi/config.rasi
-
-echo "Installing and configuring i3lock / betterlockscreen"
-sudo pacman -S --noconfirm imagemagick feh xorg-xrandr xorg-xdpyinfo
-yay -S --noconfirm i3lock-color betterlockscreen
-sudo cp /usr/share/doc/betterlockscreen/examples/betterlockscreenrc ~/.config
 
 echo "Installing GTK theme and dependencies"
 sudo pacman -S --noconfirm gtk-engine-murrine gtk-engines
@@ -119,20 +115,5 @@ END
 
 echo "Adding VSCode theme"
 code --install-extension gtwsky.oolory
-
-echo "Autostart X with fish"
-tee -a ~/.config/fish/config.fish << END
-
-# Syntax highlighting
-set -g fish_color_command --bold
-set -g fish_color_param white
-
-# Start X at login
-if status is-login
-    if test -z "$DISPLAY" -a $XDG_VTNR = 1
-        exec startx -- -keeptty
-    end
-end
-END
 
 echo "Your setup is ready. You can reboot now!"
