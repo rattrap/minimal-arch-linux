@@ -30,7 +30,7 @@
   
   #workspaces button.focused {
     color: #ffffff;
-    border-bottom: 1px solid transparent;
+    font-weight: bold;
   }
   
   #waybar.ayu-mirage #workspaces button.focused {
