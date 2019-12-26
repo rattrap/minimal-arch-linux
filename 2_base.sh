@@ -52,6 +52,7 @@ sudo mkinitcpio -p linux
 echo "Downloading wallpapers"
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/andre-benz-cXU6tNxhub0-unsplash.jpg
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/metalbuilding.jpeg
+wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/Phoenix-dark-grey.png
 
 echo "Installing and configuring Starship prompt"
 curl -fsSL https://starship.rs/install.sh | bash
@@ -60,7 +61,6 @@ tee -a ~/.bashrc << END
 eval "$(starship init bash)"
 END
 
-[-------------------------------------------------------------------------------------------------------------------------------------------------------]
 echo "Installing Node.js LTS"
 sudo pacman -S --noconfirm nodejs-lts-erbium npm yarn
 
@@ -75,9 +75,6 @@ source "$HOME"/.profile
 
 echo "Increasing the amount of inotify watchers"
 echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf && sudo sysctl --system
-
-[-------------------------------------------------------------------------------------------------------------------------------------------------------]
-
 
 echo "Installing VS Code"
 sudo pacman -S --noconfirm code

@@ -36,7 +36,7 @@
 
 - Sway (2_sway.sh), i3 (2_i3.sh), Gnome (2_gnome.sh) and KDE Plasma (2_plasma.sh) support
 - UFW (deny incoming, allow outgoing)
-- Iosevka Font (termite)
+- Iosevka Font
 - Fish shell with [Starship](https://starship.rs/) prompt
 - swaywm:
   - (sway) Ayu Mirage color scheme (termite, neovim, rofi, waybar, VS Code)

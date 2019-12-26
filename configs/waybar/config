@@ -11,12 +11,9 @@
   "modules-center": [ "clock" ],
   "modules-right": [
     "tray",
-    "memory",
-    "cpu",
-    "temperature",
     "pulseaudio",
-    "network",
     "backlight",
+    "network",
     "custom/system"
   ],
   "custom/separator": {

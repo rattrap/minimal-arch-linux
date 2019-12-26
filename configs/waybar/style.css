@@ -1,7 +1,7 @@
  * {
     font-weight: 700;
-    font-family: "Fira Code Retina";
-    font-size: 12px;
+    font-family: "Iosevka Nerd Font Regular";
+    font-size: 11px;
   }
   
   #waybar {
@@ -11,11 +11,11 @@
   }
   
   #waybar.ayu-mirage {
-    color: #bfbab0;
+    color: #ffffff;
   }
   
   #waybar.ayu-dark {
-    color: #b3b1ad;
+    color: #ffffff;
   }
   
   #workspaces {
@@ -29,16 +29,16 @@
   }
   
   #workspaces button.focused {
-    color: #ff9940;
+    color: #ffffff;
     border-bottom: 1px solid transparent;
   }
   
   #waybar.ayu-mirage #workspaces button.focused {
-    color: #ffcc66;
+    color: #ffffff;
   }
   
   #waybar.ayu-dark #workspaces button.focused {
-    color: #e6b450;
+    color: #ffffff;
   }
   
   #workspaces button.urgent {
