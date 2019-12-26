@@ -13,7 +13,7 @@
     "tray",
     "pulseaudio",
     "backlight",
-    "network",
+    "network"
   ],
   "custom/separator": {
     "format": "·",

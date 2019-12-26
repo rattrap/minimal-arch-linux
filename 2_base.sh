@@ -61,13 +61,6 @@ makepkg -si --noconfirm
 cd ..
 rm -rf yay-bin
 
-echo "Installing and configuring Starship prompt"
-yay -S --noconfirm starship-bin
-touch ~/.bashrc
-tee -a ~/.bashrc << END
-eval "$(starship init bash)"
-END
-
 echo "Installing Node.js LTS"
 sudo pacman -S --noconfirm nodejs-lts-erbium npm yarn
 
@@ -86,10 +79,11 @@ echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-wat
 echo "Installing VS Code"
 sudo pacman -S --noconfirm code
 
-echo "Installing and configuring plymouth"
+echo "Installing and configuring Plymouth"
 yay -S --noconfirm plymouth
 sudo sed -i 's/base systemd autodetect/base systemd sd-plymouth autodetect/g' /etc/mkinitcpio.conf
 sudo sed -i 's/quiet rw/quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0 rw/g' /boot/loader/entries/arch.conf
+# Arch LTS left out on purpose, in case there's an issue with Plymouth
 
 echo "Installing and setting plymouth theme"
 yay -S --noconfirm plymouth-theme-arch-breeze-git
