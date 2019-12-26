@@ -61,6 +61,12 @@ makepkg -si --noconfirm
 cd ..
 rm -rf yay-bin
 
+echo "Installing and configuring Starship prompt"
+yay -S --noconfirm starship-bin
+touch ~/.bashrc
+echo 'eval "$(starship init bash)"' >> ~/.bashrc
+
+
 echo "Installing Node.js LTS"
 sudo pacman -S --noconfirm nodejs-lts-erbium npm yarn
 

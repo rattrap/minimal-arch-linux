@@ -29,6 +29,7 @@ default_border pixel 1
 gaps inner 10
 gaps outer 10
 hide_edge_borders smart
+client.focused #ffffff40 #ffffff40 #ffffff40 #ffffff40 #ffffff40
 
 # Brightness control
 bindsym XF86MonBrightnessUp exec light -A 5

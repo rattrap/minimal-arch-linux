@@ -4,7 +4,7 @@ scrollback_lines = 2000
 
 [colors]
 foreground = #EBEBFF
-background = #111111
+background = #000000
 color0     = #EBEBFF
 color1     = #EBEBFF
 color2     = #EBEBFF

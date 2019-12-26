@@ -40,6 +40,7 @@
 - Iosevka Font
 - Bash with [Starship](https://starship.rs/) prompt
 - Automatic login (with systemd)
+- yay (AUR helper)
 - swaywm:
   - GTK theme and icons: Qogir win light + Papirus Dark icons
   - autostart on tty1
