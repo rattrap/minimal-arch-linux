@@ -3,9 +3,6 @@
 echo "Updating packages"
 sudo pacman -Syu --noconfirm
 
-echo "Installing DKMS packages"
-sudo pacman -S --noconfirm dkms
-
 echo "Installing and configuring UFW"
 sudo pacman -S --noconfirm ufw
 sudo systemctl enable ufw
@@ -13,21 +10,6 @@ sudo systemctl start ufw
 sudo ufw enable
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
-
-echo "Installing yay"
-git clone https://aur.archlinux.org/yay-bin.git
-cd yay-bin
-makepkg -si --noconfirm
-cd ..
-rm -rf yay-bin
-
-echo "Installing and setting zsh, oh-my-zsh and powerlevel10k"
-sudo pacman -S --noconfirm zsh
-chsh -s /usr/bin/zsh
-yay -S --noconfirm oh-my-zsh-git
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME"/.oh-my-zsh/custom/themes/powerlevel10k
-rm -rf "$HOME"/.zshrc
-wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc
 
 echo "Improving Intel GPU support"
 sudo pacman -S --noconfirm intel-media-driver
@@ -87,6 +69,13 @@ echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-wat
 echo "Installing VS Code"
 sudo pacman -S --noconfirm code
 
+echo "Installing yay"
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
+makepkg -si --noconfirm
+cd ..
+rm -rf yay-bin
+
 echo "Installing and configuring Plymouth"
 yay -S --noconfirm plymouth
 sudo sed -i 's/base systemd autodetect/base systemd sd-plymouth autodetect/g' /etc/mkinitcpio.conf
@@ -96,3 +85,11 @@ sudo sed -i 's/quiet rw/quiet splash loglevel=3 rd.udev.log_priority=3 vt.global
 echo "Installing and setting plymouth theme"
 yay -S --noconfirm plymouth-theme-arch-breeze-git
 sudo plymouth-set-default-theme -R arch-breeze
+
+echo "Installing and setting zsh, oh-my-zsh and powerlevel10k"
+sudo pacman -S --noconfirm zsh
+chsh -s /usr/bin/zsh
+yay -S --noconfirm oh-my-zsh-git
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME"/.oh-my-zsh/custom/themes/powerlevel10k
+rm -rf "$HOME"/.zshrc
+wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc
