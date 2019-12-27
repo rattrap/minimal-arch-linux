@@ -43,6 +43,7 @@ wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-l
 
 echo "Making sway start on login"
 tee -a ~/.zshrc << END
+
 if [ "$(tty)" = "/dev/tty1" ]; then
 	exec sway
 fi
