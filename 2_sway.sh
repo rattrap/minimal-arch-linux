@@ -74,7 +74,10 @@ sudo tar -xzf /usr/share/themes/Qogir-win-light.tar.gz -C /usr/share/themes/
 sudo rm -f /usr/share/themes/Qogir-win-light.tar.gz
 
 echo "Installing Tela icons"
-yay -S --noconfirm tela-icon-theme-git
+sudo mkdir -p /usr/share/icons/
+sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/tela-icons.tar.gz
+sudo tar -xzf /usr/share/icons/tela-icons.tar.gz -C /usr/share/icons/
+sudo rm -f /usr/share/icons/tela-icons.tar.gz
 
 echo "Setting GTK theme, font and icons"
 FONT="MesloLGS NF Regular 10"
