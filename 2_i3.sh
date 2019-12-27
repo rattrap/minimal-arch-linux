@@ -25,8 +25,8 @@ sudo pacman -S --noconfirm termite
 
 echo "Ricing Termite"
 mkdir -p ~/.config/termite
-wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.monochrome
-mv ~/.config/termite/config.monochrome ~/.config/termite/config
+wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.monochrome-alt
+mv ~/.config/termite/config.monochrome-alt ~/.config/termite/config
 mkdir -p ~/.config/gtk-3.0
 touch ~/.config/gtk-3.0/gtk.css
 tee -a ~/.config/gtk-3.0/gtk.css << END
@@ -87,14 +87,8 @@ sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minima
 sudo tar -xzf /usr/share/themes/Qogir-win-light.tar.gz -C /usr/share/themes/
 sudo rm -f /usr/share/themes/Qogir-win-light.tar.gz
 
-echo "Installing Papirus icons"
-sudo pacman -S --noconfirm papirus-icon-theme
-git clone https://aur.archlinux.org/papirus-folders-git.git
-cd papirus-folders-git
-yes | makepkg -si
-cd ..
-rm -rf papirus-folders-git
-papirus-folders -C black --theme Papirus-Dark
+echo "Installing Tela icons"
+yay -S --noconfirm tela-icon-theme-git
 
 echo "Setting GTK theme, font and icons"
 mkdir -p ~/.config/gtk-3.0
@@ -102,8 +96,8 @@ touch ~/.config/gtk-3.0/settings.ini
 tee -a ~/.config/gtk-3.0/settings.ini << END
 [Settings]
 gtk-theme-name=Qogir-win-light
-gtk-icon-theme-name=Papirus-Dark
-gtk-font-name=Roboto 10
+gtk-icon-theme-name=Tela-black
+gtk-font-name=MesloLGS NF Regular 10
 gtk-cursor-theme-name=Adwaita
 gtk-cursor-theme-size=0
 gtk-toolbar-style=GTK_TOOLBAR_BOTH
@@ -117,7 +111,11 @@ gtk-xft-hinting=1
 gtk-xft-hintstyle=hintfull
 END
 
+echo "Enabling suspend and hibernate hotkeys"
+sudo sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=hibernate/g' /etc/systemd/logind.conf
+sudo sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=suspend/g' /etc/systemd/logind.conf
+
 echo "Adding VSCode theme"
-code --install-extension gtwsky.oolory
+code --install-extension viktorqvarfordt.vscode-pitch-black-theme
 
 echo "Your setup is ready. You can reboot now!"
