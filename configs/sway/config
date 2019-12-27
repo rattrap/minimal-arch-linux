@@ -1,6 +1,6 @@
 ### VARIABLES
 # Font
-set $font Iosevka Nerd Font Regular 10
+set $font MesloLGS NF Regular 10
 
 # Background image
 set $background Phoenix-dark-grey.png

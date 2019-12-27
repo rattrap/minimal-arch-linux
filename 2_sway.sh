@@ -52,13 +52,6 @@ END
 echo "Installing office applications"
 sudo pacman -S --noconfirm tumbler evince thunderbird
 
-echo "Installing San Francisco Fonts"
-git clone https://aur.archlinux.org/otf-san-francisco-pro.git
-cd otf-san-francisco-pro
-makepkg -si --noconfirm
-cd ..
-rm -rf otf-san-francisco-pro
-
 echo "Enabling auto-mount and archives creation/deflation for thunar"
 sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
 
@@ -80,19 +73,13 @@ sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minima
 sudo tar -xzf /usr/share/themes/Qogir-win-light.tar.gz -C /usr/share/themes/
 sudo rm -f /usr/share/themes/Qogir-win-light.tar.gz
 
-echo "Installing Papirus icons"
-sudo pacman -S --noconfirm papirus-icon-theme
-git clone https://aur.archlinux.org/papirus-folders-git.git
-cd papirus-folders-git
-yes | makepkg -si
-cd ..
-rm -rf papirus-folders-git
-papirus-folders -C black --theme Papirus-Dark
+echo "Installing Tela icons"
+yay -S --noconfirm tela-icon-theme-git
 
 echo "Setting GTK theme, font and icons"
-FONT="San Francisco Pro Regular 10"
+FONT="MesloLGS NF Regular 10"
 GTK_THEME="Qogir-win-light"
-GTK_ICON_THEME="Papirus-Dark"
+GTK_ICON_THEME="Tela-black"
 GTK_SCHEMA="org.gnome.desktop.interface"
 gsettings set $GTK_SCHEMA gtk-theme "$GTK_THEME"
 gsettings set $GTK_SCHEMA icon-theme "$GTK_ICON_THEME"
@@ -104,6 +91,6 @@ sudo sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=hibernate/g' /etc/systemd
 sudo sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=suspend/g' /etc/systemd/logind.conf
 
 echo "Adding VSCode theme"
-code --install-extension gtwsky.oolory
+code --install-extension viktorqvarfordt.vscode-pitch-black-theme
 
 echo "Your setup is ready. You can reboot now!"

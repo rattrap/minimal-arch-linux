@@ -3,7 +3,7 @@ configuration {
   lines: 6;
   show-icons: true;
   terminal: "termite";
-  run-shell-command: "{terminal} --window -- bash";
+  run-shell-command: "{terminal} --window -- zsh";
   drun-icon-theme: "Papirus-Dark";
   combi-modi: "drun,run";
   hide-scrollbar: true;

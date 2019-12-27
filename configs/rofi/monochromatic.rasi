@@ -10,7 +10,7 @@
 }
 
 #window {
-  font: "Iosevka Nerd Font Regular 11";
+  font: "MesloLGS NF Regular 10";
   location: 0;
   background-color: @backgroundcolor;
   border-color: @accentcolor;
