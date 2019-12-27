@@ -27,6 +27,13 @@ echo "Ricing Termite"
 mkdir -p ~/.config/termite
 wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.monochrome-alt
 mv ~/.config/termite/config.monochrome-alt ~/.config/termite/config
+mkdir -p ~/.config/gtk-3.0
+touch ~/.config/gtk-3.0/gtk.css
+tee -a ~/.config/gtk-3.0/gtk.css << END
+VteTerminal, vte-terminal {
+ padding: 18px;
+}
+END
 
 echo "Installing Picom (former compton)"
 sudo pacman -S --noconfirm picom
@@ -82,6 +89,11 @@ sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/exah-io/minimal
 sudo tar -xzf /usr/share/icons/tela-icons.tar.gz -C /usr/share/icons/
 sudo rm -f /usr/share/icons/tela-icons.tar.gz
 
+echo "Installing Quintom Snow cursor"
+sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/Quintom_Snow.tar.gz
+sudo tar -xzf /usr/share/icons/Quintom_Snow.tar.gz -C /usr/share/icons/
+sudo rm -f /usr/share/icons/Quintom_Snow.tar.gz
+
 echo "Installing San Francisco Fonts"
 git clone https://aur.archlinux.org/otf-san-francisco-pro.git
 cd otf-san-francisco-pro
@@ -97,7 +109,7 @@ tee -a ~/.config/gtk-3.0/settings.ini << END
 gtk-theme-name=Qogir-win-light
 gtk-icon-theme-name=Tela-black
 gtk-font-name=San Francisco Pro Regular 10
-gtk-cursor-theme-name=Adwaita
+gtk-cursor-theme-name=Quintom_Snow
 gtk-cursor-theme-size=0
 gtk-toolbar-style=GTK_TOOLBAR_BOTH
 gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR

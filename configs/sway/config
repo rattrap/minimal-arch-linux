@@ -234,3 +234,6 @@ set $screenshot grim
 set $screenshotout $HOME/Pictures/screenshots/$(date "+%Y-%m-%d-%H%M%S_shot.png")
 bindsym Print exec $screenshot $screenshotout
 bindsym $mod+Print exec $screenshot -g "$($screenselect)" $screenshotout
+
+# Set cursor theme
+seat seat0 xcursor_theme Quintom_Snow

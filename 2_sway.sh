@@ -27,6 +27,13 @@ echo "Ricing Termite"
 mkdir -p ~/.config/termite
 wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.monochrome-alt
 mv ~/.config/termite/config.monochrome-alt ~/.config/termite/config
+mkdir -p ~/.config/gtk-3.0
+touch ~/.config/gtk-3.0/gtk.css
+tee -a ~/.config/gtk-3.0/gtk.css << END
+VteTerminal, vte-terminal {
+ padding: 18px;
+}
+END
 
 echo "Installing sway and additional packages"
 sudo pacman -S --noconfirm sway swaylock swayidle waybar otf-font-awesome wl-clipboard pulseaudio pavucontrol rofi slurp grim thunar mousepad nnn light feh qalculate-gtk
@@ -68,6 +75,11 @@ sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/exah-io/minimal
 sudo tar -xzf /usr/share/icons/tela-icons.tar.gz -C /usr/share/icons/
 sudo rm -f /usr/share/icons/tela-icons.tar.gz
 
+echo "Installing Quintom Snow cursor"
+sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/Quintom_Snow.tar.gz
+sudo tar -xzf /usr/share/icons/Quintom_Snow.tar.gz -C /usr/share/icons/
+sudo rm -f /usr/share/icons/Quintom_Snow.tar.gz
+
 echo "Installing San Francisco Fonts"
 git clone https://aur.archlinux.org/otf-san-francisco-pro.git
 cd otf-san-francisco-pro
@@ -80,10 +92,12 @@ FONT="San Francisco Pro Regular 10"
 GTK_THEME="Qogir-win-light"
 GTK_ICON_THEME="Tela-black"
 GTK_SCHEMA="org.gnome.desktop.interface"
+CURSOR_THEME="Quintom_Snow"
 gsettings set $GTK_SCHEMA gtk-theme "$GTK_THEME"
 gsettings set $GTK_SCHEMA icon-theme "$GTK_ICON_THEME"
 gsettings set $GTK_SCHEMA font-name "$FONT"
 gsettings set $GTK_SCHEMA document-font-name "$FONT"
+gsettings set $GTK_SCHEMA cursor-theme "$CURSOR_THEME"
 
 echo "Enabling suspend and hibernate hotkeys"
 sudo sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=hibernate/g' /etc/systemd/logind.conf

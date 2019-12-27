@@ -12,6 +12,7 @@
   "modules-right": [
     "tray",
     "pulseaudio",
+    "battery",
     "backlight",
     "network"
   ],
@@ -31,7 +32,7 @@
     "tooltip": false
   },
   "pulseaudio": {
-    "format": "{icon} {volume}%",
+    "format": "Audio: {volume}%",
     "format-bluetooth": "{icon} ",
     "format-muted": "",
     "format-icons": {
@@ -56,7 +57,7 @@
   },
   "network": {
     "format": "{ifname}",
-    "format-wifi": " {essid}",
+    "format-wifi": "Wifi: {essid}",
     "format-ethernet": " {ifname}",
     "format-disconnected": "",
     "tooltip": false,
@@ -69,8 +70,18 @@
     "tooltip": false
   },
   "backlight": {
-      "format": "{percent}% ",
+      "format": "Backlight: {percent}%",
       "on-scroll-down": "light -A 1",
       "on-scroll-up": "light -U 1"
-  }
+  },
+  "battery": {
+    "interval": 60,
+    "states": {
+        "warning": 30,
+        "critical": 15
+    },
+    "format": "Battery: {capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "max-length": 25
+}
 }
