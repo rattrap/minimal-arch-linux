@@ -30,11 +30,6 @@
     "format": "{:%a %b %d %H:%M}",
     "tooltip": false
   },
-  "custom/system": {
-    "format":"",
-    "on-click": "swaynag -t ayu-mirage -m '' -b 'Exit' 'swaymsg exit' -b 'Reboot' 'swaymsg exec systemctl reboot' -b 'Shut down' 'systemctl poweroff'",
-    "on-click-right": "swaymsg mode System"
-  },
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-bluetooth": "{icon} ",

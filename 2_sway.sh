@@ -42,10 +42,10 @@ mkdir -p ~/.config/sway
 wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/config
 
 echo "Making sway start on login"
-tee -a ~/.zshrc << END
+tee -a ~/.zprofile << END
 
-if [ "$(tty)" = "/dev/tty1" ]; then
-	exec sway
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+  XKB_DEFAULT_LAYOUT=us exec sway
 fi
 END
 

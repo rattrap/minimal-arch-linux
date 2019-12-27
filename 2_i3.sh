@@ -46,9 +46,10 @@ echo "Installing i3"
 sudo pacman -S --noconfirm i3-gaps
 
 echo "Making i3 start on login"
-tee -a ~/.zshrc << END
-if [ "$(tty)" = "/dev/tty1" ]; then
-	exec i3
+tee -a ~/.zprofile << END
+
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+  XKB_DEFAULT_LAYOUT=us exec i3
 fi
 END
 
