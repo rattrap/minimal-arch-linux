@@ -82,6 +82,13 @@ sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/exah-io/minimal
 sudo tar -xzf /usr/share/icons/tela-icons.tar.gz -C /usr/share/icons/
 sudo rm -f /usr/share/icons/tela-icons.tar.gz
 
+echo "Installing San Francisco Fonts"
+git clone https://aur.archlinux.org/otf-san-francisco-pro.git
+cd otf-san-francisco-pro
+makepkg -si --noconfirm
+cd ..
+rm -rf otf-san-francisco-pro
+
 echo "Setting GTK theme, font and icons"
 mkdir -p ~/.config/gtk-3.0
 touch ~/.config/gtk-3.0/settings.ini
@@ -89,7 +96,7 @@ tee -a ~/.config/gtk-3.0/settings.ini << END
 [Settings]
 gtk-theme-name=Qogir-win-light
 gtk-icon-theme-name=Tela-black
-gtk-font-name=MesloLGS NF Regular 10
+gtk-font-name=San Francisco Pro Regular 10
 gtk-cursor-theme-name=Adwaita
 gtk-cursor-theme-size=0
 gtk-toolbar-style=GTK_TOOLBAR_BOTH

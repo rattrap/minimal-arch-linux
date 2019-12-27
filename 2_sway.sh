@@ -68,8 +68,15 @@ sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/exah-io/minimal
 sudo tar -xzf /usr/share/icons/tela-icons.tar.gz -C /usr/share/icons/
 sudo rm -f /usr/share/icons/tela-icons.tar.gz
 
+echo "Installing San Francisco Fonts"
+git clone https://aur.archlinux.org/otf-san-francisco-pro.git
+cd otf-san-francisco-pro
+makepkg -si --noconfirm
+cd ..
+rm -rf otf-san-francisco-pro
+
 echo "Setting GTK theme, font and icons"
-FONT="MesloLGS NF Regular 10"
+FONT="San Francisco Pro Regular 10"
 GTK_THEME="Qogir-win-light"
 GTK_ICON_THEME="Tela-black"
 GTK_SCHEMA="org.gnome.desktop.interface"
