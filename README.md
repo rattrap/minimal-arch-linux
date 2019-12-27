@@ -37,7 +37,7 @@
 - Sway (2_sway.sh), i3 (2_i3.sh), Gnome (2_gnome.sh) and KDE Plasma (2_plasma.sh) support
 - Plymouth
 - UFW (deny incoming, allow outgoing)
-- Iosevka Font
+- Meslo NG Nerd Font
 - ZSH with Oh-My-Zsh and Powerlevel10k
 - Automatic login (with systemd)
 - yay (AUR helper)
