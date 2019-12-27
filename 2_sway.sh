@@ -27,13 +27,6 @@ echo "Ricing Termite"
 mkdir -p ~/.config/termite
 wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.monochrome-alt
 mv ~/.config/termite/config.monochrome-alt ~/.config/termite/config
-mkdir -p ~/.config/gtk-3.0
-touch ~/.config/gtk-3.0/gtk.css
-tee -a ~/.config/gtk-3.0/gtk.css << END
-VteTerminal, vte-terminal {
- padding: 18px;
-}
-END
 
 echo "Installing sway and additional packages"
 sudo pacman -S --noconfirm sway swaylock swayidle waybar otf-font-awesome wl-clipboard pulseaudio pavucontrol rofi slurp grim thunar mousepad nnn light feh qalculate-gtk
