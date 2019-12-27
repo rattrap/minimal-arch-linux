@@ -46,12 +46,8 @@ echo "Installing i3"
 sudo pacman -S --noconfirm i3-gaps
 
 echo "Making i3 start on login"
-tee -a ~/.zprofile << END
-
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-  XKB_DEFAULT_LAYOUT=us exec i3
-fi
-END
+wget -P ~/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zprofile.i3
+mv .zprofile.i3 .zprofile
 
 echo "Ricing i3"
 mkdir -p ~/.config/i3

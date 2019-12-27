@@ -3,7 +3,7 @@
 #
 
 [options]
-font = MesloLGS NF Regular 11
+font = MesloLGS NF Regular 10
 hyperlinks = true
 cursor_blink = off
 cell_width_scale = 1.3

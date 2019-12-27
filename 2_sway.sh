@@ -42,12 +42,8 @@ mkdir -p ~/.config/sway
 wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/config
 
 echo "Making sway start on login"
-tee -a ~/.zprofile << END
-
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-  XKB_DEFAULT_LAYOUT=us exec sway
-fi
-END
+wget -P ~/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zprofile.sway
+mv .zprofile.sway .zprofile
 
 echo "Installing office applications"
 sudo pacman -S --noconfirm tumbler evince thunderbird
