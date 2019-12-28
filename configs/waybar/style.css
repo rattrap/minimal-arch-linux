@@ -1,89 +1,70 @@
- * {
-    font-weight: 700;
-    font-family: "San Francisco Pro Regular";
-    font-size: 10px;
-  }
-  
-  #waybar {
-    background: transparent;
-    color: #6c7680;
-    transition: background-color 0.2s;
-  }
-  
-  #waybar.ayu-mirage {
-    color: #ffffff;
-  }
-  
-  #waybar.ayu-dark {
-    color: #ffffff;
-  }
-  
-  #workspaces {
-    margin-right: 6px;
-  }
-  
-  #workspaces button {
-    background: transparent;
-    border: none;
-    padding: 0 8px;
-  }
-  
-  #workspaces button.focused {
-    color: #ffffff;
-    font-weight: bold;
-  }
-  
-  #waybar.ayu-mirage #workspaces button.focused {
-    color: #ffffff;
-  }
-  
-  #waybar.ayu-dark #workspaces button.focused {
-    color: #ffffff;
-  }
-  
-  #workspaces button.urgent {
-    color: #f51818;
-  }
-  
-  #waybar.ayu-mirage #workspaces button.urgent {
-    color: #ff3333;
-  }
-  
-  #waybar.ayu-dark #workspaces button.urgent {
-    color: #ff3333;
-  }
-  
-  #battery,
-  #cpu,
-  #memory,
-  #disk,
-  #temperature,
-  #backlight,
-  #network,
-  #pulseaudio,
-  #custom-media,
-  #tray,
-  #idle_inhibitor,
-  #custom-browser,
-  #custom-terminal,
-  #custom-files,
-  #custom-editor,
-  #custom-disks,
-  #custom-weather,
-  #custom-system,
-  #custom-separator,
-  #mode {
-    padding: 0 12px;
-  }
-  
-  #tray {
-    opacity: 0.8;
-  }
-  
-  #custom-system {
-    margin-right: 6px;
-  }
-  
-  #workspaces {
-    margin: 0 3px 0 1px;
-  }  
+* {
+  font-weight: 700;
+  font-family: "San Francisco Pro Regular";
+  font-size: 10px;
+}
+
+#waybar {
+  background: transparent;
+  color: #6c7680;
+  transition: background-color 0.2s;
+}
+
+#waybar.ayu-mirage {
+  color: #ffffff;
+}
+
+#waybar.ayu-dark {
+  color: #ffffff;
+}
+
+#workspaces {
+  margin-right: 6px;
+}
+
+#workspaces button {
+  background: transparent;
+  border: none;
+  padding: 0 8px;
+}
+
+#workspaces button.focused {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+#waybar.ayu-mirage #workspaces button.focused {
+  color: #ffffff;
+}
+
+#waybar.ayu-dark #workspaces button.focused {
+  color: #ffffff;
+}
+
+#workspaces button.urgent {
+  color: #f51818;
+}
+
+#waybar.ayu-mirage #workspaces button.urgent {
+  color: #ff3333;
+}
+
+#waybar.ayu-dark #workspaces button.urgent {
+  color: #ff3333;
+}
+
+#battery,
+#backlight,
+#network,
+#pulseaudio,
+#mode {
+  padding: 0 12px;
+}
+
+#tray {
+  opacity: 0.8;
+}
+
+#workspaces {
+  margin: 0 3px 0 1px;
+}  

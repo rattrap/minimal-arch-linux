@@ -1,32 +1,18 @@
 {
-  "name": "ayu-mirage", /* Options: ayu, ayu-mirage, ayu-dark */
   "layer": "top",
   "position": "top",
   "height": 30,
   "width": 1920,
   "modules-left": [
-    "sway/workspaces",
-    "sway/mode"
+    "sway/workspaces"
   ],
   "modules-center": [ "clock" ],
   "modules-right": [
-    "tray",
     "pulseaudio",
     "battery",
     "backlight",
     "network"
   ],
-  "custom/separator": {
-    "format": "·",
-    "tooltip": false
-  },
-  "sway/mode": {
-    "format": "<span style=\"italic\">{}</span>"
-  },
-  "tray": {
-    "icon-size": 14,
-    "spacing": 22
-  },
   "clock": {
     "format": "{:%a %b %d %H:%M}",
     "tooltip": false
@@ -44,17 +30,6 @@
     "on-click-right": "pavucontrol",
     "tooltip": false
   },
-  "temperature": {
-    "thermal-zone": 2,
-    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-    "critical-threshold": 80,
-    "format-critical": "{temperatureC}°C ",
-    "format": " {temperatureC}°C"
-  },
-  "cpu": {
-    "tooltip": false,
-    "format": " {}%"
-  },
   "network": {
     "format": "{ifname}",
     "format-wifi": "Wifi: {essid}",
@@ -63,11 +38,6 @@
     "tooltip": false,
     "max-length": 50,
     "on-click": "swaymsg exec '$term -e nmtui-connect'"
-  },
-  "memory": {
-    "interval": 30,
-    "format": " {used:0.1f}GB",
-    "tooltip": false
   },
   "backlight": {
       "format": "Backlight: {percent}%",
@@ -81,7 +51,6 @@
         "critical": 15
     },
     "format": "Battery: {capacity}%",
-    "format-icons": ["", "", "", "", ""],
     "max-length": 25
 }
 }
