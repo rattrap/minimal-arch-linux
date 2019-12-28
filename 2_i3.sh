@@ -25,8 +25,8 @@ sudo pacman -S --noconfirm termite
 
 echo "Ricing Termite"
 mkdir -p ~/.config/termite
-wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.monochrome-alt
-mv ~/.config/termite/config.monochrome-alt ~/.config/termite/config
+wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.shapeshifter
+mv ~/.config/termite/config.shapeshifter ~/.config/termite/config
 mkdir -p ~/.config/gtk-3.0
 touch ~/.config/gtk-3.0/gtk.css
 tee -a ~/.config/gtk-3.0/gtk.css << END
