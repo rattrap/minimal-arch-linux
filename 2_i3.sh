@@ -129,4 +129,9 @@ sudo sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=suspend/g' /etc/systemd/
 echo "Adding VSCode theme"
 code --install-extension viktorqvarfordt.vscode-pitch-black-theme
 
+echo "Applying VSCode user settings"
+mkdir -p ~/.config/Code\ -\ OSS/User
+wget -P ~/.config/Code\ -\ OSS/User https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/
+vscode/settings.json
+
 echo "Your setup is ready. You can reboot now!"
