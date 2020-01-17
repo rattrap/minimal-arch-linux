@@ -16,7 +16,7 @@ sudo pacman -S --noconfirm plasma-wayland-session
 
 echo "Installing SDDM and SDDM-KCM"
 sudo pacman -S --noconfirm sddm sddm-kcm
-sudo systemctl enable sddm.service
+sudo systemctl enable sddm-plymouth.service
 
 echo "Setting up autologin"
 sudo mkdir -p /etc/sddm.conf.d/
