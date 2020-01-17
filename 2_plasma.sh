@@ -9,7 +9,7 @@ echo "Installing Xorg"
 sudo pacman -S --noconfirm xorg
 
 echo "Installing Plasma and common applications"
-sudo pacman -S --noconfirm plasma ark dolphin dolphin-plugins gwenview kaccounts-integration kaccounts-providers kate kgpg kmail konsole kwalletmanager okular spectacle
+sudo pacman -S --noconfirm plasma ark dolphin dolphin-plugins gwenview kaccounts-integration kaccounts-providers kate kgpg kmail konsole kwalletmanager okular spectacle plasma-browser-integration
 
 echo "Installing Plasma wayland session"
 sudo pacman -S --noconfirm plasma-wayland-session
