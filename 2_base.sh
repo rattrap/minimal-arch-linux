@@ -47,21 +47,13 @@ sudo mkinitcpio -p linux-lts
 sudo mkinitcpio -p linux
 
 echo "Downloading wallpapers"
-wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/andre-benz-cXU6tNxhub0-unsplash.jpg
+wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/762f2480-2590-49c5-8a37-3ad6b911184f.png
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/metalbuilding.jpeg
 wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/Phoenix-dark-grey.png
 
 echo "Installing Node.js LTS"
-sudo pacman -S --noconfirm nodejs-lts-erbium npm yarn
-
-echo "Changing default npm directory"
-mkdir "$HOME"/.npm-global
-npm config set prefix "$HOME/.npm-global"
-touch "$HOME"/.profile
-tee -a "$HOME"/.profile << END
-export PATH=$HOME/.npm-global/bin:$PATH
-END
-source "$HOME"/.profile
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+nvm install --lts=erbium
 
 echo "Increasing the amount of inotify watchers"
 echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf && sudo sysctl --system
