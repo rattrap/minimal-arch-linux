@@ -27,16 +27,16 @@ autologin-session=xfce
 END
 
 echo "Installing gtk themes"
-sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/kali/kali-dark.tar.gz
-sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/kali/kali-light.tar.gz
+sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/kali-dark.tar.gz
+sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/kali-light.tar.gz
 sudo tar -zxvf /usr/share/themes/kali-dark.tar.gz
 sudo rm /usr/share/icons/kali-dark.tar.gz
 sudo tar -zxvf /usr/share/themes/kali-light.tar.gz
 sudo rm /usr/share/icons/kali-light.tar.gz
 
 echo "Installing gtk icons"
-sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/kali/Flat-Remix-Blue-Dark.tar.gz
-sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/kali/Flat-Remix-Blue-Light.tar.gz
+sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/Flat-Remix-Blue-Dark.tar.gz
+sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/Flat-Remix-Blue-Light.tar.gz
 sudo tar -zxvf /usr/share/icons/Flat-Remix-Blue-Dark.tar.gz
 sudo rm /usr/share/icons/Flat-Remix-Blue-Dark.tar.gz
 sudo tar -zxvf /usr/share/icons/Flat-Remix-Blue-Light.tar.gz
