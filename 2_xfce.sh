@@ -29,29 +29,32 @@ END
 echo "Installing gtk themes"
 sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/kali-dark.tar.gz
 sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/kali-light.tar.gz
-sudo tar -zxvf /usr/share/themes/kali-dark.tar.gz
+sudo tar -zxvf /usr/share/themes/kali-dark.tar.gz -C /usr/share/themes/
 sudo rm /usr/share/icons/kali-dark.tar.gz
-sudo tar -zxvf /usr/share/themes/kali-light.tar.gz
+sudo tar -zxvf /usr/share/themes/kali-light.tar.gz -C /usr/share/themes/
 sudo rm /usr/share/icons/kali-light.tar.gz
 
 echo "Installing gtk icons"
 sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/Flat-Remix-Blue-Dark.tar.gz
 sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/Flat-Remix-Blue-Light.tar.gz
-sudo tar -zxvf /usr/share/icons/Flat-Remix-Blue-Dark.tar.gz
+sudo tar -zxvf /usr/share/icons/Flat-Remix-Blue-Dark.tar.gz -C /usr/share/icons/
 sudo rm /usr/share/icons/Flat-Remix-Blue-Dark.tar.gz
-sudo tar -zxvf /usr/share/icons/Flat-Remix-Blue-Light.tar.gz
+sudo tar -zxvf /usr/share/icons/Flat-Remix-Blue-Light.tar.gz -C /usr/share/icons/
 sudo rm /usr/share/icons/Flat-Remix-Blue-Light.tar.gz
 
 echo "Installing color schemes"
 sudo wget -P /usr/share/qtermwidget5/color-schemes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/qterminal/Kali-Dark.colorscheme
 sudo wget -P /usr/share/qtermwidget5/color-schemes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/qterminal/Kali-Light.colorscheme
 
+sudo wget -P /usr/share/xfce4/terminal/colorschemes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/xfce-terminal/Kali.theme
+sudo chown -R $USER /usr/share/xfce4/terminal/colorschemes/Kali.theme
+
 echo "Installing configs"
 sudo wget -P ~/.config/qterminal.org/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/qterminal/qterminal.ini
 sudo chown -R $USER ~/.config/qterminal.org
 
 sudo wget -P ~/.config/xfce4/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/xfce-configs.tar.gz
-sudo tar -zxvf ~/.config/xfce4/xfce-configs.tar.gz
+sudo tar -zxvf ~/.config/xfce4/xfce-configs.tar.gz -C ~/.config/xfce4/
 sudo rm ~/.config/xfce4/xfce-configs.tar.gz
 sudo chown -R $USER ~/.config/xfce4
 
@@ -59,7 +62,10 @@ sudo wget -P ~/.config/Thunar/ https://raw.githubusercontent.com/exah-io/minimal
 sudo chown -R $USER ~/.config/Thunar
 
 sudo wget -P /etc/xdg/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/xdg.tar.gz
-sudo tar -zxvf /etc/xdg/xdg.tar.gz
+sudo tar -zxvf /etc/xdg/xdg.tar.gz -C /etc/xdg/
 sudo rm /etc/xdg/xdg.tar.gz
+
+echo "Letting power manager handle lid close events"
+xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/logind-handle-lid-switch -s false
 
 echo "Your setup is ready. You can reboot now!"
