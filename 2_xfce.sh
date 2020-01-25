@@ -12,7 +12,7 @@ echo "Installing pulseaudio"
 sudo pacman -S --noconfirm pulseaudio pavucontrol
 
 echo "Installing xfce and common applications"
-sudo pacman -S --noconfirm xfce4 xfce4-goodies qterminal tumbler
+sudo pacman -S --noconfirm xfce4 xfce4-goodies qterminal tumbler network-manager-applet
 
 echo "Enabling auto-mount and archives creation/deflation for thunar"
 sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
@@ -77,5 +77,35 @@ sudo chown -R $USER ~/.config/Thunar
 sudo wget -P /etc/xdg/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/xdg.tar.gz
 sudo tar -zxvf /etc/xdg/xdg.tar.gz -C /etc/xdg/
 sudo rm /etc/xdg/xdg.tar.gz
+
+echo "Disabling saved sessions"
+xfconf-query -c xfce4-session -p /general/SaveOnExit -s false
+
+echo "Enabling notifications daemon"
+sudo pacman -S xfce4-notifyd
+sudo mkdir -p /etc/systemd/user/xfce4-notifyd.service.d/
+sudo tee -a /etc/systemd/user/xfce4-notifyd.service.d/display_env.conf << END
+[Service]
+Environment="DISPLAY=:0.0"
+END
+systemctl --user start xfce4-notifyd
+
+echo "Adding OpenVPN support"
+sudo pacmam -S networkmanager-openvpn
+
+echo "Installing i3-gaps and termite"
+sudo pacman -S i3-gaps termite
+
+echo "Ricing Termite"
+mkdir -p ~/.config/termite
+wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.kali-dark
+mv ~/.config/termite/config.kali-dark ~/.config/termite/config
+mkdir -p ~/.config/gtk-3.0
+touch ~/.config/gtk-3.0/gtk.css
+tee -a ~/.config/gtk-3.0/gtk.css << END
+VteTerminal, vte-terminal {
+ padding: 18px;
+}
+END
 
 echo "Your setup is ready. You can reboot now!"
