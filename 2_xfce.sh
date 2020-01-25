@@ -51,13 +51,13 @@ sudo wget -P /usr/share/xfce4/terminal/colorschemes/ https://raw.githubuserconte
 echo "Installing configs"
 sudo wget -P ~/.config/qterminal.org/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/qterminal/qterminal.ini
 
-sudo wget -P ~/.config/xfce4/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/xfce-configs.tar.gz
-sudo tar -zxvf ~/.config/xfce4/xfce-configs.tar.gz
-sudo rm ~/.config/xfce4/xfce-configs.tar.gz
-sudo wget -P ~/.config/Thunar/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/thunar/uca.xml
+# sudo wget -P ~/.config/xfce4/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/xfce-configs.tar.gz
+# sudo tar -zxvf ~/.config/xfce4/xfce-configs.tar.gz
+# sudo rm ~/.config/xfce4/xfce-configs.tar.gz
+# sudo wget -P ~/.config/Thunar/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/thunar/uca.xml
 
-sudo wget -P /etc/xdg/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/xdg.tar.gz
-sudo tar -zxvf /etc/xdg/xdg.tar.gz
-sudo rm /etc/xdg/xdg.tar.gz
+# sudo wget -P /etc/xdg/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/xdg.tar.gz
+# sudo tar -zxvf /etc/xdg/xdg.tar.gz
+# sudo rm /etc/xdg/xdg.tar.gz
 
 echo "Your setup is ready. You can reboot now!"
