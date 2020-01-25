@@ -9,7 +9,10 @@ echo "Installing Xorg"
 sudo pacman -S --noconfirm xorg
 
 echo "Installing xfce and common applications"
-sudo pacman -S --noconfirm xfce4 xfce4-goodies qterminal tumbler
+sudo pacman -S --noconfirm xfce4 xfce4-goodies qterminal tumbler pulseaudio pavucontrol
+
+echo "Enabling auto-mount and archives creation/deflation for thunar"
+sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
 
 echo "Installing display manager"
 sudo pacman -S --noconfirm lightdm lightdm-gtk-greeter
@@ -51,12 +54,12 @@ sudo chown -R $USER /usr/share/xfce4/terminal/colorschemes/Kali.theme
 
 echo "Installing configs"
 sudo wget -P ~/.config/qterminal.org/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/qterminal/qterminal.ini
-sudo chown -R $USER ~/.config/qterminal.org
+chown -R $USER ~/.config/qterminal.org
 
 sudo wget -P ~/.config/xfce4/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/xfce-configs.tar.gz
 sudo tar -zxvf ~/.config/xfce4/xfce-configs.tar.gz -C ~/.config/xfce4/
 sudo rm ~/.config/xfce4/xfce-configs.tar.gz
-sudo chown -R $USER ~/.config/xfce4
+chown -R $USER ~/.config/xfce4
 
 sudo wget -P ~/.config/Thunar/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/thunar/uca.xml
 sudo chown -R $USER ~/.config/Thunar
