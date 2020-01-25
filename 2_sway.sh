@@ -5,6 +5,20 @@ wget https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/2_base.
 chmod +x 2_base.sh
 sh ./2_base.sh
 
+echo "Blacklisting bluetooth"
+sudo touch /etc/modprobe.d/nobt.conf
+sudo tee -a /etc/modprobe.d/nobt.conf << END
+blacklist btusb
+blacklist bluetooth
+END
+sudo mkinitcpio -p linux-lts
+sudo mkinitcpio -p linux
+
+echo "Downloading wallpapers"
+wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/762f2480-2590-49c5-8a37-3ad6b911184f.png
+wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/metalbuilding.jpeg
+wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/Phoenix-dark-grey.png
+
 echo "Enabling autologin"
 sudo mkdir -p /etc/systemd/system/getty@tty1.service.d/
 sudo touch /etc/systemd/system/getty@tty1.service.d/override.conf

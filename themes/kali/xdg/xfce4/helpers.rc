@@ -1,5 +1,0 @@
-# Default applications in Kali
-WebBrowser=debian-sensible-browser
-MailReader=thunderbird
-TerminalEmulator=qterminal
-FileManager=Thunar
