@@ -46,8 +46,6 @@ echo "Installing color schemes"
 sudo wget -P /usr/share/qtermwidget5/color-schemes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/qterminal/Kali-Dark.colorscheme
 sudo wget -P /usr/share/qtermwidget5/color-schemes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/qterminal/Kali-Light.colorscheme
 
-sudo wget -P /usr/share/xfce4/terminal/colorschemes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/xfce-terminal/Kali.theme
-
 echo "Installing configs"
 sudo wget -P ~/.config/qterminal.org/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/qterminal/qterminal.ini
 
