@@ -13,7 +13,7 @@ sudo pacman -S --noconfirm xfce4 xfce4-goodies
 
 echo "Installing display manager"
 sudo pacman -S --noconfirm lightdm lightdm-gtk-greeter
-sudo systemctl enable lightdm-plymouth.service
+sudo systemctl enable lightdm.service
 
 echo "Adding user to autologin group"
 sudo groupadd -r autologin
