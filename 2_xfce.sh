@@ -9,11 +9,11 @@ echo "Installing Xorg"
 sudo pacman -S --noconfirm xorg
 
 echo "Installing xfce and common applications"
-sudo pacman -S --noconfirm xfce4 xfce4-goodies qterminal
+sudo pacman -S --noconfirm xfce4 xfce4-goodies qterminal tumbler
 
 echo "Installing display manager"
 sudo pacman -S --noconfirm lightdm lightdm-gtk-greeter
-sudo systemctl enable lightdm-plymouth.service
+sudo systemctl enable lightdm.service
 
 echo "Adding user to autologin group"
 sudo groupadd -r autologin
@@ -45,13 +45,19 @@ sudo rm /usr/share/icons/Flat-Remix-Blue-Light.tar.gz
 echo "Installing color schemes"
 sudo wget -P /usr/share/qtermwidget5/color-schemes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/qterminal/Kali-Dark.colorscheme
 sudo wget -P /usr/share/qtermwidget5/color-schemes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/qterminal/Kali-Light.colorscheme
+
 sudo wget -P /usr/share/xfce4/terminal/colorschemes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/kali/xfce-terminal/Kali.theme
 
 echo "Installing configs"
 sudo wget -P ~/.config/qterminal.org/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/qterminal/qterminal.ini
+
 sudo wget -P ~/.config/xfce4/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/xfce-configs.tar.gz
 sudo tar -zxvf ~/.config/xfce4/xfce-configs.tar.gz
 sudo rm ~/.config/xfce4/xfce-configs.tar.gz
 sudo wget -P ~/.config/Thunar/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/thunar/uca.xml
+
+sudo wget -P /etc/xdg/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/xdg.tar.gz
+sudo tar -zxvf /etc/xdg/xdg.tar.gz
+sudo rm /etc/xdg/xdg.tar.gz
 
 echo "Your setup is ready. You can reboot now!"

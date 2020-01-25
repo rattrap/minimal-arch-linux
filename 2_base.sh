@@ -35,20 +35,3 @@ nvm install --lts=erbium
 
 echo "Increasing the amount of inotify watchers"
 echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf && sudo sysctl --system
-
-echo "Installing yay"
-git clone https://aur.archlinux.org/yay-bin.git
-cd yay-bin
-makepkg -si --noconfirm
-cd ..
-rm -rf yay-bin
-
-echo "Installing and configuring Plymouth"
-yay -S --noconfirm plymouth
-sudo sed -i 's/base systemd autodetect/base systemd sd-plymouth autodetect/g' /etc/mkinitcpio.conf
-sudo sed -i 's/quiet rw/quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0 rw/g' /boot/loader/entries/arch.conf
-# Arch LTS left out on purpose, in case there's an issue with Plymouth
-
-echo "Installing and setting plymouth theme"
-yay -S --noconfirm plymouth-theme-arch-breeze-git
-sudo plymouth-set-default-theme -R arch-breeze
