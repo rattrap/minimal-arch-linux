@@ -8,11 +8,21 @@ sh ./2_base.sh
 echo "Installing Xorg"
 sudo pacman -S --noconfirm xorg
 
+echo "Installing pulseaudio"
+sudo pacman -S --noconfirm pulseaudio pavucontrol
+
 echo "Installing xfce and common applications"
-sudo pacman -S --noconfirm xfce4 xfce4-goodies qterminal tumbler pulseaudio pavucontrol
+sudo pacman -S --noconfirm xfce4 xfce4-goodies qterminal tumbler
 
 echo "Enabling auto-mount and archives creation/deflation for thunar"
 sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-roller xarchiver
+
+echo "Uniforming QT theme"
+sudo pacman -S --noconfirm qt5-styleplugins
+touch ~/.xinitrc
+tee -a ~/.xinitrc << END
+QT_QPA_PLATFORMTHEME=gtk2
+END
 
 echo "Installing display manager"
 sudo pacman -S --noconfirm lightdm lightdm-gtk-greeter
@@ -67,8 +77,5 @@ sudo chown -R $USER ~/.config/Thunar
 sudo wget -P /etc/xdg/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/xdg.tar.gz
 sudo tar -zxvf /etc/xdg/xdg.tar.gz -C /etc/xdg/
 sudo rm /etc/xdg/xdg.tar.gz
-
-echo "Letting power manager handle lid close events"
-xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/logind-handle-lid-switch -s false
 
 echo "Your setup is ready. You can reboot now!"
