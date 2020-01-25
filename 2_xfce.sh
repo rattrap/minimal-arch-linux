@@ -13,13 +13,18 @@ sudo pacman -S --noconfirm xfce4 xfce4-goodies
 
 echo "Installing display manager"
 sudo pacman -S --noconfirm lightdm lightdm-gtk-greeter
-sudo systemctl enable lightdm
+sudo systemctl enable lightdm-plymouth.service
 
-# missing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo "Adding user to autologin group"
+sudo groupadd -r autologin
+sudo gpasswd -a $USER autologin
+
 echo "Setting up autologin"
 sudo tee -a /etc/lightdm/lightdm.conf << END
-
-END 
+[Seat:*]
+autologin-user=$USER
+autologin-session=xfce
+END
 
 echo "Installing gtk themes"
 sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/kali/kali-dark.tar.gz
