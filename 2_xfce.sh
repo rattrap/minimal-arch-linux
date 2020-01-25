@@ -48,5 +48,18 @@ sudo wget -P /usr/share/qtermwidget5/color-schemes/ https://raw.githubuserconten
 
 echo "Installing configs"
 sudo wget -P ~/.config/qterminal.org/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/qterminal/qterminal.ini
+sudo chown -R $USER ~/.config/qterminal.org
+
+sudo wget -P ~/.config/xfce4/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/xfce-configs.tar.gz
+sudo tar -zxvf ~/.config/xfce4/xfce-configs.tar.gz
+sudo rm ~/.config/xfce4/xfce-configs.tar.gz
+sudo chown -R $USER ~/.config/xfce4
+
+sudo wget -P ~/.config/Thunar/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/thunar/uca.xml
+sudo chown -R $USER ~/.config/Thunar
+
+sudo wget -P /etc/xdg/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/xfce/xdg.tar.gz
+sudo tar -zxvf /etc/xdg/xdg.tar.gz
+sudo rm /etc/xdg/xdg.tar.gz
 
 echo "Your setup is ready. You can reboot now!"

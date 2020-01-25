@@ -134,11 +134,24 @@ sudo pacman -S --noconfirm go dep go-tools
 
 ### How to install yay
 ```
+echo "Installing yay"
 git clone https://aur.archlinux.org/yay-bin.git
 cd yay-bin
 makepkg -si --noconfirm
 cd ..
 rm -rf yay-bin
+```
+
+### How to install zsh with powerlevel10k and oh-my-zsh
+```
+echo "Installing and setting zsh, oh-my-zsh and powerlevel10k"
+sudo pacman -S --noconfirm zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME"/.oh-my-zsh/custom/themes/powerlevel10k
+rm -rf "$HOME"/.zshrc
+wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc
+rm -rf "$HOME"/.p10k.zsh
+wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.p10k.zsh
 ```
 
 ### Secure Boot with Linux Foundation Preloader
