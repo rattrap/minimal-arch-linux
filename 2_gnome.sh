@@ -12,9 +12,7 @@ echo "Enabling GDM"
 sudo systemctl enable gdm.service
 
 echo "Enabling automatic login"
-sudo mkdir -p /etc/gdm/
-sudo touch /etc/gdm/custom.conf
-sudo tee -a /etc/gdm/custom.conf << END
+sudo tee -a /etc/lightdm/lightdm.conf << END
 # Enable automatic login for user
 [daemon]
 AutomaticLogin=$USER
