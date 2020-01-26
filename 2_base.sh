@@ -35,3 +35,12 @@ nvm install --lts=erbium
 
 echo "Increasing the amount of inotify watchers"
 echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf && sudo sysctl --system
+
+echo "Installing and setting zsh, oh-my-zsh and powerlevel10k"
+sudo pacman -S --noconfirm zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME"/.oh-my-zsh/custom/themes/powerlevel10k
+rm -rf "$HOME"/.zshrc
+wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc
+rm -rf "$HOME"/.p10k.zsh
+wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.p10k.zsh

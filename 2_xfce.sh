@@ -82,7 +82,7 @@ echo "Disabling saved sessions"
 xfconf-query -c xfce4-session -p /general/SaveOnExit -s false
 
 echo "Enabling notifications daemon"
-sudo pacman -S xfce4-notifyd
+sudo pacman -S --noconfirm xfce4-notifyd
 sudo mkdir -p /etc/systemd/user/xfce4-notifyd.service.d/
 sudo tee -a /etc/systemd/user/xfce4-notifyd.service.d/display_env.conf << END
 [Service]
