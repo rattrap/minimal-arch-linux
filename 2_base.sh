@@ -18,7 +18,7 @@ echo "Adding Vulkan support"
 sudo pacman -S --noconfirm vulkan-intel vulkan-icd-loader
 
 echo "Installing common applications"
-sudo pacman -S --noconfirm firefox chromium keepassxc git openssh neovim links upower htop powertop p7zip ripgrep unzip
+sudo pacman -S --noconfirm firefox chromium keepassxc git openssh neovim links upower htop powertop p7zip ripgrep unzip code
 
 echo "Creating user's folders"
 sudo pacman -S --noconfirm xdg-user-dirs
@@ -40,7 +40,3 @@ echo "Installing and setting zsh, oh-my-zsh and powerlevel10k"
 sudo pacman -S --noconfirm zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME"/.oh-my-zsh/custom/themes/powerlevel10k
-rm -rf "$HOME"/.zshrc
-wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc
-rm -rf "$HOME"/.p10k.zsh
-wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.p10k.zsh

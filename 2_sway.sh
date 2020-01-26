@@ -14,11 +14,6 @@ END
 sudo mkinitcpio -p linux-lts
 sudo mkinitcpio -p linux
 
-echo "Downloading wallpapers"
-wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/762f2480-2590-49c5-8a37-3ad6b911184f.png
-wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/metalbuilding.jpeg
-wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/Phoenix-dark-grey.png
-
 echo "Enabling autologin"
 sudo mkdir -p /etc/systemd/system/getty@tty1.service.d/
 sudo touch /etc/systemd/system/getty@tty1.service.d/override.conf
@@ -39,8 +34,8 @@ sudo pacman -S --noconfirm termite
 
 echo "Ricing Termite"
 mkdir -p ~/.config/termite
-wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.shapeshifter
-mv ~/.config/termite/config.shapeshifter ~/.config/termite/config
+wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.kali-dark
+mv ~/.config/termite/config.kali-dark ~/.config/termite/config
 mkdir -p ~/.config/gtk-3.0
 touch ~/.config/gtk-3.0/gtk.css
 tee -a ~/.config/gtk-3.0/gtk.css << END
@@ -117,12 +112,8 @@ echo "Enabling suspend and hibernate hotkeys"
 sudo sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=hibernate/g' /etc/systemd/logind.conf
 sudo sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=suspend/g' /etc/systemd/logind.conf
 
-echo "Adding VSCode theme"
-code --install-extension viktorqvarfordt.vscode-pitch-black-theme
-
 echo "Applying VSCode user settings"
 mkdir -p ~/.config/Code\ -\ OSS/User
 wget -P ~/.config/Code\ -\ OSS/User https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/vscode/settings.json
-
 
 echo "Your setup is ready. You can reboot now!"
