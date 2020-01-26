@@ -91,10 +91,10 @@ END
 systemctl --user start xfce4-notifyd
 
 echo "Adding OpenVPN support"
-sudo pacmam -S networkmanager-openvpn
+sudo pacmam -S --noconfirm networkmanager-openvpn
 
 echo "Installing i3-gaps and termite"
-sudo pacman -S i3-gaps termite
+sudo pacman -S --noconfirm i3-gaps termite
 
 echo "Ricing Termite"
 mkdir -p ~/.config/termite
