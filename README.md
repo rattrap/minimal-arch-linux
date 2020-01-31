@@ -2,7 +2,7 @@
 
 |                                                 Clean                                                 |                                               Busy                                                |
 | :---------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------: |
-| ![clean](https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/clean.png) | ![busy](https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/busy.png) |
+| ![clean](https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/clean.png) | ![busy](https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/busy.png) |
 
 ## Install script
 
@@ -25,9 +25,9 @@
 
 | Name                                                  | Type  | Mountpoint |
 | ----------------------------------------------------- | :---: | :--------: |
-| nvme0n1                                               | disk  |            |
-| ├─nvme0n1p1                                           | part  |   /boot    |
-| ├─nvme0n1p2                                           | part  |            |
+| sda                                                   | disk  |            |
+| ├─sda1                                                | part  |   /boot    |
+| ├─sda     2                                           | part  |            |
 | &nbsp;&nbsp;&nbsp;└─cryptlvm                        | crypt |            |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─Arch-swap |  lvm  |   [SWAP]   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─Arch-root |  lvm  |     /      |
@@ -59,7 +59,7 @@
 2. Connect to the internet. If using wifi, you can use `wifi-menu` to connect to a network
 3. Clear all existing partitions (see below: MISC - How to clear all partitions)
 4. (optional) Give highest priority to the closest mirror to you on /etc/pacman.d/mirrorlist by moving it to the top
-5. `wget https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/1_arch_install.sh`
+5. `wget https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/1_arch_install.sh`
 6. Change the variables at the top of the file (lines 3 through 9)
    - continent_country must have the following format: Zone/SubZone . e.g. Europe/Berlin
    - run `timedatectl list-timezones` to see full list of zones and subzones
@@ -67,7 +67,7 @@
 8. Run the script: `./1_arch_install.sh`
 9. Reboot into Arch Linux
 10. Connect to wifi with `nmtui`
-11. `wget https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/2_sway.sh`
+11. `wget https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/2_sway.sh`
 12. Make the script executable: `chmod +x 2_sway.sh`
 13. Run the script: `./2_sway.sh`
 
@@ -76,7 +76,7 @@
 ### How to clear all partitions
 
 ```
-gdisk /dev/nvme0n1
+gdisk /dev/sda
 x
 z
 y
@@ -98,8 +98,8 @@ copy SSH key and add to Github (eg. nvim ~/.ssh/id_rsa.pub and copy content)
 
 ```
 mkdir -p /mnt/boot
-mount /dev/nvme0n1p1 /mnt/boot
-cryptsetup luksOpen /dev/nvme0n1p2 cryptlvm
+mount /dev/sda1 /mnt/boot
+cryptsetup luksOpen /dev/sda2 cryptlvm
 mount /dev/vg0/Arch-root /mnt
 arch-chroot /mnt
 ```
@@ -149,9 +149,9 @@ sudo pacman -S --noconfirm zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME"/.oh-my-zsh/custom/themes/powerlevel10k
 rm -rf "$HOME"/.zshrc
-wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zshrc
+wget -P "$HOME" https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/configs/zsh/.zshrc
 rm -rf "$HOME"/.p10k.zsh
-wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.p10k.zsh
+wget -P "$HOME" https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/configs/zsh/.p10k.zsh
 ```
 
 ### Secure Boot with Linux Foundation Preloader
@@ -159,7 +159,7 @@ wget -P "$HOME" https://raw.githubusercontent.com/exah-io/minimal-arch-linux/mas
 yay -S preloader-signed
 sudo cp /usr/share/preloader-signed/{PreLoader,HashTool}.efi /boot/EFI/systemd
 sudo cp /boot/EFI/systemd/systemd-bootx64.efi /boot/EFI/systemd/loader.efi
-sudo efibootmgr --verbose --disk /dev/nvme0n1 --part 1 --create --label "PreLoader" --loader /EFI/systemd/PreLoader.efi
+sudo efibootmgr --verbose --disk /dev/sda --part 1 --create --label "PreLoader" --loader /EFI/systemd/PreLoader.efi
 ```
 
 ### Plymouth

@@ -3,7 +3,7 @@
 set $font MesloLGS NF Regular 10
 
 # Background image
-set $background buzz-andersen-E4944K_4SvI-unsplash.jpg
+set $background 762f2480-2590-49c5-8a37-3ad6b911184f.png
 
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4

@@ -3,9 +3,9 @@
 encryption_passphrase=""
 root_password=""
 user_password=""
-hostname=""
-user_name=""
-continent_city=""
+hostname="ics"
+user_name="leo"
+continent_city="Europe/Bucharest"
 swap_size="16"
 
 echo "Updating system clock"
@@ -13,16 +13,16 @@ timedatectl set-ntp true
 timedatectl set-timezone $continent_city
 
 echo "Creating partition tables"
-printf "n\n1\n4096\n+512M\nef00\nw\ny\n" | gdisk /dev/nvme0n1
-printf "n\n2\n\n\n8e00\nw\ny\n" | gdisk /dev/nvme0n1
+printf "n\n1\n4096\n+512M\nef00\nw\ny\n" | gdisk /dev/sda
+printf "n\n2\n\n\n8e00\nw\ny\n" | gdisk /dev/sda
 
 echo "Zeroing partitions"
-cat /dev/zero > /dev/nvme0n1p1
-cat /dev/zero > /dev/nvme0n1p2
+cat /dev/zero > /dev/sda1
+cat /dev/zero > /dev/sda2
 
 echo "Setting up cryptographic volume"
-printf "%s" "$encryption_passphrase" | cryptsetup -h sha512 -s 512 --use-random --type luks2 luksFormat /dev/nvme0n1p2
-printf "%s" "$encryption_passphrase" | cryptsetup luksOpen /dev/nvme0n1p2 cryptlvm
+printf "%s" "$encryption_passphrase" | cryptsetup -h sha512 -s 512 --use-random --type luks2 luksFormat /dev/sda2
+printf "%s" "$encryption_passphrase" | cryptsetup luksOpen /dev/sda2 cryptlvm
 
 echo "Creating physical volume"
 pvcreate /dev/mapper/cryptlvm
@@ -39,9 +39,9 @@ yes | mkfs.ext4 /dev/vg0/root
 mount /dev/vg0/root /mnt
 
 echo "Setting up /boot partition"
-yes | mkfs.fat -F32 /dev/nvme0n1p1
+yes | mkfs.fat -F32 /dev/sda1
 mkdir /mnt/boot
-mount /dev/nvme0n1p1 /mnt/boot
+mount /dev/sda1 /mnt/boot
 
 echo "Setting up swap"
 yes | mkswap /dev/vg0/swap
@@ -102,7 +102,7 @@ title ArchLinux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
-options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p2)=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap rd.luks.options=discard i915.fastboot=1 quiet rw
+options rd.luks.name=$(blkid -s UUID -o value /dev/sda2)=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap rd.luks.options=discard i915.fastboot=1 quiet rw
 END
 
 touch /boot/loader/entries/archlts.conf
@@ -111,7 +111,7 @@ title ArchLinux
 linux /vmlinuz-linux-lts
 initrd /intel-ucode.img
 initrd /initramfs-linux-lts.img
-options rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p2)=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap rd.luks.options=discard i915.fastboot=1 quiet rw
+options rd.luks.name=$(blkid -s UUID -o value /dev/sda2)=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap rd.luks.options=discard i915.fastboot=1 quiet rw
 END
 
 echo "Setting up Pacman hook for automatic systemd-boot updates"

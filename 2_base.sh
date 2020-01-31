@@ -18,7 +18,7 @@ echo "Adding Vulkan support"
 sudo pacman -S --noconfirm vulkan-intel vulkan-icd-loader
 
 echo "Installing common applications"
-sudo pacman -S --noconfirm firefox chromium keepassxc git openssh neovim links upower htop powertop p7zip ripgrep unzip code
+sudo pacman -S --noconfirm firefox chromium keepassxc git openssh vim links upower htop powertop unzip code
 
 echo "Creating user's folders"
 sudo pacman -S --noconfirm xdg-user-dirs
@@ -27,7 +27,7 @@ echo "Installing fonts"
 sudo pacman -S --noconfirm ttf-roboto ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack noto-fonts ttf-fira-code cantarell-fonts
 
 echo "Downloading wallpapers"
-wget -P ~/Pictures/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/wallpapers/buzz-andersen-E4944K_4SvI-unsplash.jpg
+wget -P ~/Pictures/ https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/wallpapers/762f2480-2590-49c5-8a37-3ad6b911184f.png
 
 echo "Installing Node.js LTS"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash

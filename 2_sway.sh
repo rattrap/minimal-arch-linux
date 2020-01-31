@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Downloading and running base script"
-wget https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/2_base.sh
+wget https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/2_base.sh
 chmod +x 2_base.sh
 sh ./2_base.sh
 
@@ -34,7 +34,7 @@ sudo pacman -S --noconfirm termite
 
 echo "Ricing Termite"
 mkdir -p ~/.config/termite
-wget -P ~/.config/termite https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/termite/config.kali-dark
+wget -P ~/.config/termite https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/configs/termite/config.kali-dark
 mv ~/.config/termite/config.kali-dark ~/.config/termite/config
 mkdir -p ~/.config/gtk-3.0
 touch ~/.config/gtk-3.0/gtk.css
@@ -53,10 +53,10 @@ echo "Installing sway and additional packages"
 sudo pacman -S --noconfirm sway swaylock swayidle waybar otf-font-awesome wl-clipboard pulseaudio pavucontrol rofi slurp grim thunar mousepad nnn light feh qalculate-gtk
 mkdir -p ~/Pictures/screenshots
 mkdir -p ~/.config/sway
-wget -P ~/.config/sway/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/sway/config
+wget -P ~/.config/sway/ https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/configs/sway/config
 
 echo "Making sway start on login"
-wget -P ~/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/zsh/.zprofile.sway
+wget -P ~/ https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/configs/zsh/.zprofile.sway
 mv .zprofile.sway .zprofile
 
 echo "Installing office applications"
@@ -67,30 +67,30 @@ sudo pacman -S --noconfirm gvfs thunar-volman thunar-archive-plugin ark file-rol
 
 echo "Ricing waybar"
 mkdir -p ~/.config/waybar
-wget -P ~/.config/waybar https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/waybar/config
-wget -P ~/.config/waybar https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/waybar/style.css
+wget -P ~/.config/waybar https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/configs/waybar/config
+wget -P ~/.config/waybar https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/configs/waybar/style.css
 
 echo "Ricing rofi"
 mkdir -p ~/.config/rofi
-wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/config.rasi
-wget -P ~/.config/rofi https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/rofi/monochromatic.rasi
+wget -P ~/.config/rofi https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/configs/rofi/config.rasi
+wget -P ~/.config/rofi https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/configs/rofi/monochromatic.rasi
 mv ~/.config/rofi/monochromatic.rasi ~/.config/rofi/config.rasi
 
 echo "Installing GTK theme and dependencies"
 sudo pacman -S --noconfirm gtk-engine-murrine gtk-engines
 sudo mkdir -p /usr/share/themes/
-sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/Qogir-win-light.tar.gz
+sudo wget -P /usr/share/themes/ https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/themes/Qogir-win-light.tar.gz
 sudo tar -xzf /usr/share/themes/Qogir-win-light.tar.gz -C /usr/share/themes/
 sudo rm -f /usr/share/themes/Qogir-win-light.tar.gz
 
 echo "Installing Tela icons"
 sudo mkdir -p /usr/share/icons/
-sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/tela-icons.tar.gz
+sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/themes/tela-icons.tar.gz
 sudo tar -xzf /usr/share/icons/tela-icons.tar.gz -C /usr/share/icons/
 sudo rm -f /usr/share/icons/tela-icons.tar.gz
 
 echo "Installing Quintom Snow cursor"
-sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/themes/Quintom_Snow.tar.gz
+sudo wget -P /usr/share/icons/ https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/themes/Quintom_Snow.tar.gz
 sudo tar -xzf /usr/share/icons/Quintom_Snow.tar.gz -C /usr/share/icons/
 sudo rm -f /usr/share/icons/Quintom_Snow.tar.gz
 
@@ -119,6 +119,6 @@ sudo sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=suspend/g' /etc/systemd/
 
 echo "Applying VSCode user settings"
 mkdir -p ~/.config/Code\ -\ OSS/User
-wget -P ~/.config/Code\ -\ OSS/User https://raw.githubusercontent.com/exah-io/minimal-arch-linux/master/configs/vscode/settings.json
+wget -P ~/.config/Code\ -\ OSS/User https://raw.githubusercontent.com/rattrap/minimal-arch-linux/master/configs/vscode/settings.json
 
 echo "Your setup is ready. You can reboot now!"
