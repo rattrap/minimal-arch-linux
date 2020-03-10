@@ -62,7 +62,7 @@ yes | mkswap /dev/vg0/swap
 swapon /dev/vg0/swap
 
 echo "Installing Arch Linux"
-yes '' | pacstrap /mnt base base-devel linux linux-headers linux-lts linux-lts-headers linux-firmware lvm2 device-mapper e2fsprogs intel-ucode cryptsetup mesa networkmanager wget man-db man-pages nano vi diffutils
+yes '' | pacstrap /mnt base base-devel linux-lts lvm2 device-mapper e2fsprogs intel-ucode cryptsetup mesa networkmanager wget
 
 echo "Generating fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -95,7 +95,6 @@ echo -en "$user_password\n$user_password" | passwd $user_name
 echo "Generating initramfs"
 sed -i 's/^HOOKS.*/HOOKS=(base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt sd-lvm2 filesystems fsck)/' /etc/mkinitcpio.conf
 sed -i 's/^MODULES.*/MODULES=(ext4 intel_agp i915)/' /etc/mkinitcpio.conf
-mkinitcpio -p linux
 mkinitcpio -p linux-lts
 
 echo "Setting up systemd-boot"
@@ -104,21 +103,12 @@ bootctl --path=/boot install
 mkdir -p /boot/loader/
 touch /boot/loader/loader.conf
 tee -a /boot/loader/loader.conf << END
-default arch
+default archlts
 timeout 1
 editor 0
 END
 
 mkdir -p /boot/loader/entries/
-touch /boot/loader/entries/arch.conf
-tee -a /boot/loader/entries/arch.conf << END
-title ArchLinux
-linux /vmlinuz-linux
-initrd /intel-ucode.img
-initrd /initramfs-linux.img
-options rd.luks.name=$(blkid -s UUID -o value /dev/sda2)=cryptlvm root=/dev/vg0/root resume=/dev/vg0/swap rd.luks.options=discard i915.fastboot=1 quiet rw
-END
-
 touch /boot/loader/entries/archlts.conf
 tee -a /boot/loader/entries/archlts.conf << END
 title ArchLinux
