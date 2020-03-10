@@ -69,6 +69,9 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 echo "Configuring new system"
 arch-chroot /mnt /bin/bash <<EOF
+
+set -e
+
 echo "Setting system clock"
 ln -fs /usr/share/zoneinfo/$continent_city /etc/localtime
 hwclock --systohc --localtime
