@@ -14,8 +14,9 @@ swap_size="16"
 echo "Setting up pacman mirrors"
 curl --silent "https://www.archlinux.org/mirrorlist/?country=$mirror_country&protocol=http&protocol=https&ip_version=4" > /etc/pacman.d/mirrorlist.backup
 sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
-pacman -Syyu
-pacman -S pacman-contrib
+cp -Rv /etc/pacman.d/mirrorlist.backup /etc/pacman.d/mirrorlist
+pacman -Sy --noconfirm
+pacman -S --noconfirm pacman-contrib
 rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
 echo "Updating system clock"
