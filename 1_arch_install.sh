@@ -1,16 +1,29 @@
 #!/bin/bash
 
+set -e
+
 encryption_passphrase=""
 root_password=""
 user_password=""
 hostname="ics"
 user_name="leo"
+mirror_country="RO"
 continent_city="Europe/Bucharest"
 swap_size="16"
+
+echo "Setting up pacman mirrors"
+curl --silent "https://www.archlinux.org/mirrorlist/?country=$mirror_country&protocol=http&protocol=https&ip_version=4" > /etc/pacman.d/mirrorlist.backup
+sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
+pacman -Syyu
+pacman -S pacman-contrib
+rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
 echo "Updating system clock"
 timedatectl set-ntp true
 timedatectl set-timezone $continent_city
+
+echo "Clearing disk"
+printf "x\nz\ny\ny\n" | gdisk /dev/sda
 
 echo "Creating partition tables"
 printf "n\n1\n4096\n+512M\nef00\nw\ny\n" | gdisk /dev/sda
