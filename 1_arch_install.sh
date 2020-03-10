@@ -31,8 +31,8 @@ printf "n\n1\n4096\n+512M\nef00\nw\ny\n" | gdisk /dev/sda
 printf "n\n2\n\n\n8e00\nw\ny\n" | gdisk /dev/sda
 
 echo "Zeroing partitions"
-dd if=/dev/zero of=/dev/sda1 conv=noerror,sync
-dd if=/dev/zero of=/dev/sda2 conv=noerror,sync
+dd if=/dev/zero of=/dev/sda1 bs=512 count=$(blockdev --getsz /dev/sda1)
+dd if=/dev/zero of=/dev/sda2 bs=512 count=$(blockdev --getsz /dev/sda2)
 
 echo "Setting up cryptographic volume"
 printf "%s" "$encryption_passphrase" | cryptsetup -h sha512 -s 512 --use-random --type luks2 luksFormat /dev/sda2
